@@ -12,7 +12,7 @@ const FrameComponent4 = ({ className = "" }) => {
           <button className="cursor-pointer [border:none] pt-[11px] px-[21px] pb-2.5 bg-f2 self-stretch rounded-md flex flex-row items-start justify-start hover:bg-darkslategray-300">
             <div className="h-[39px] w-[116px] relative rounded-md bg-f2 hidden" />
             <a className="[text-decoration:none] relative text-xs font-medium font-poppins text-light-mode-white-5-ffffff text-left inline-block min-w-[68px] z-[1]">
-            <Link to='/' className="no-underline text-silver">Dashboard</Link>
+            <Link to='/dashboard' className="no-underline text-silver">Dashboard</Link>
             </a>
           </button>
         </div>
@@ -32,7 +32,7 @@ const FrameComponent4 = ({ className = "" }) => {
              
             </div>
             <div className="relative font-medium">
-            <Link to='/pitch-listing' className="no-underline text-silver">Booking Management</Link>
+            <Link to='/booking-management' className="no-underline text-silver">Booking Management</Link>
             </div>
           </div>
         </div>
