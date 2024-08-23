@@ -11,9 +11,7 @@ const FrameComponent4 = ({ className = "" }) => {
         <div className="w-[116px] flex flex-col items-start justify-start pt-px px-0 pb-0 box-border">
           <button className="cursor-pointer [border:none] pt-[11px] px-[21px] pb-2.5 bg-f2 self-stretch rounded-md flex flex-row items-start justify-start hover:bg-darkslategray-300">
             <div className="h-[39px] w-[116px] relative rounded-md bg-f2 hidden" />
-            <a className="[text-decoration:none] relative text-xs font-medium font-poppins text-light-mode-white-5-ffffff text-left inline-block min-w-[68px] z-[1]">
-            <Link to='/dashboard' className="no-underline text-silver">Dashboard</Link>
-            </a>
+            <Link to='/dashboard' className=" [text-decoration:none] relative text-xs font-medium font-poppins text-light-mode-white-5-ffffff text-left inline-block min-w-[68px] z-[1]">Dashboard</Link>
           </button>
         </div>
         <div className="h-[39px] w-[97px] relative hidden">
@@ -28,7 +26,7 @@ const FrameComponent4 = ({ className = "" }) => {
           <div className="flex flex-row items-start justify-start gap-6">
             <div className="relative font-medium inline-block min-w-[72px]">
             
-             <Link to='/pitch-listing' className="no-underline text-silver">Pitch Listing</Link>
+            <Link to='/pitch-listing' className=" [text-decoration:none] relative text-xs font-medium font-poppins text-light-mode-white-5-ffffff text-left inline-block min-w-[68px] z-[1]">Pitch Listing</Link>
              
             </div>
             <div className="relative font-medium">
