@@ -1,9 +1,13 @@
 import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const ContentArea = ({ className = "" }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { booking } = location.state || {};
+
+  console.log('Booking Data:', booking);  // Log the booking data to confirm
 
   const onConfirmButtonClick = useCallback(() => {
     navigate("/dashboard");
@@ -33,10 +37,10 @@ const ContentArea = ({ className = "" }) => {
         <div className="w-[1040px] flex flex-col items-start justify-start gap-[43px] max-w-full text-lg text-black mq675:gap-[21px]">
           <div className="flex flex-col items-start justify-start gap-[7px]">
             <h3 className="m-0 relative text-inherit leading-[22px] font-bold font-[inherit] z-[1]">
-              Oyinkansola Soleye
+            {booking?.name || "Name not available"}
             </h3>
             <div className="relative text-xs font-medium font-poppins text-f2 inline-block min-w-[57px] z-[1]">
-              #445664
+            {booking?.bookingId || "Booking ID not available"}
             </div>
           </div>
           <div className="self-stretch flex flex-row items-start justify-start py-0 pl-[18px] pr-0 box-border max-w-full text-xs text-darkslategray-400">
@@ -80,7 +84,7 @@ const ContentArea = ({ className = "" }) => {
                           20 Dec, 2024
                         </div>
                         <div className="relative leading-[120%] inline-block min-w-[100px] whitespace-nowrap z-[1]">
-                          +234 7066048648
+                        {booking?.number || "Number not available"}
                         </div>
                         <div className="relative leading-[120%] inline-block min-w-[41px] z-[1]">
                           Kaduna

@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import { Img } from "./Img";
+import { memo } from "react";
 
-const FrameComponent = ({ className = "", aare }) => {
+const FrameComponent = memo(({ className = "", aare }) => {
   return (
     <header
       className={`self-stretch h-[151px] relative bg-icons overflow-hidden shrink-0 max-w-full text-left text-smi text-light-mode-white-5-ffffff font-poppins mq725:h-auto mq725:min-h-[151] ${className}`}
@@ -84,7 +85,7 @@ const FrameComponent = ({ className = "", aare }) => {
       </div>
     </header>
   );
-};
+});
 
 FrameComponent.propTypes = {
   className: PropTypes.string,
