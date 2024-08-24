@@ -139,7 +139,7 @@ const BookingManagement = () => {
               <div className="flex flex-col items-start justify-start gap-[46px] text-xs">
                 {bookings.map((_, index) => (
                   <div key={index} className="relative [text-decoration:underline] font-medium inline-block min-w-[73px]">
-                      <Link to='/booking-details'
+                      <Link to='/booking-details' className="text-black-900">View details</Link>
                   </div>
                 ))}
               </div>
