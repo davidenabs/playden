@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const FrameComponent2 = ({ className = "" }) => {
   return (
@@ -16,18 +17,16 @@ const FrameComponent2 = ({ className = "" }) => {
         </div>
         <div className="flex flex-row items-start justify-start gap-4 max-w-full text-silver mq450:flex-wrap">
           <div className="flex flex-col items-start justify-start pt-2.5 px-0 pb-0">
-            <a className="[text-decoration:none] relative font-medium text-[inherit] inline-block min-w-[68px]">
-              Dashboard
-            </a>
+          <Link to='/dashboard' className="[text-decoration:none] relative text-xs font-medium font-poppins text-black-900 text-left inline-block min-w-[68px] z-[1]">Dashboard</Link>
           </div>
           <button className="cursor-pointer [border:none] pt-[11px] px-[22px] pb-2.5 bg-f2 rounded-md flex flex-row items-start justify-start whitespace-nowrap hover:bg-darkslategray-300">
             <div className="h-[39px] w-[116px] relative rounded-md bg-f2 hidden" />
             <div className="relative text-xs font-medium font-poppins text-light-mode-white-5-ffffff text-left inline-block min-w-[72px] z-[1]">
-              Pitch Listing
+            <Link to='/pitcth-listing' className="[text-decoration:none] relative text-xs font-medium font-poppins text-ghostwhite text-left inline-block min-w-[68px] z-[1]">Pitch Listing</Link>
             </div>
           </button>
           <div className="flex flex-col items-start justify-start pt-[11px] px-0 pb-0">
-            <div className="relative font-medium">Bookig Management</div>
+          <Link to='/booking-management' className="[text-decoration:none] relative text-xs font-medium font-poppins text-black-900 text-left inline-block min-w-[68px] z-[1]">Booking Management</Link>
           </div>
         </div>
         <div className="w-[250px] rounded-md bg-f2 border-dimgray-200 border-[1px] border-solid box-border flex flex-row items-start justify-start pt-[9px] px-[18px] pb-2 gap-2 text-smi">
