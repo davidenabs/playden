@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const WidgetContainer = ({ className = "" }) => {
   return (
     <div
-      className={`self-stretch flex flex-row items-start justify-start gap-14 max-w-full text-left text-mid text-light-mode-white-5-ffffff font-poppins mq800:gap-7 mq1350:flex-wrap ${className}`}
+      className={`self-stretch flex flex-row items-start justify-start gap-4 max-w-full text-left text-mid text-light-mode-white-5-ffffff font-poppins mq800:gap-7 mq1350:flex-wrap ${className}`}
     >
       <Widget
         generalHome7="/general--home-7.svg"
@@ -47,7 +47,7 @@ const WidgetContainer = ({ className = "" }) => {
           <div className="absolute top-[0px] left-[2px] w-full h-full">
             <div className="absolute top-[0px] left-[0px] rounded-[50%] border-gray-200 border-[0px] border-solid box-border w-[190px] h-[190px]" />
             <img
-              className="absolute top-[16px] left-[64px] w-6 h-6 overflow-hidden z-[1]"
+              className="absolute top-[23px] left-[68px] w-6 h-6 overflow-hidden z-[1]"
               loading="lazy"
               alt=""
               src="/arrowdown01sharp.svg"

@@ -23,19 +23,28 @@ const FrameComponent = ({ className = "", aare }) => {
               src="/artboard-12-1@2x.png"
             />
           </div>
-          <div className="flex-1 rounded-md bg-f2 border-darkslategray-200 border-[1px] border-solid flex flex-row items-start justify-between pt-1.5 pb-2 pl-3.5 pr-4 gap-5">
-            <div className="h-[38px] w-[145px] relative rounded-md bg-f2 border-darkslategray-200 border-[1px] border-solid box-border hidden" />
-            <div className="relative font-medium inline-block min-w-[44px] z-[1] text-ghostwhite">
-              Admin
-            </div>
-            <div className="flex flex-col items-start justify-start pt-2.5 px-0 pb-0">
-              <Img
-                className="w-[7px] h-1 relative rounded-12xs z-[1]"
-                alt=""
-                src="/admin-icon.svg"
-              />
-            </div>
-          </div>
+          <div className="flex-1 rounded-md bg-f border-none-200 border-[1px] border-none flex flex-row items-start justify-between pt-1.5 pb-2 pl-3.5 pr-1 gap-5">
+  <div className="h-[36px] w-[145px] relative rounded-md bg-f2 border-darkslategray-200 border-[1px] border-solid box-border hidden" />
+  
+  <select
+    className="relative text-base inline-block min-w-[44px] h-[36px] z-[1] rounded-md text-ghostwhite bg-f2 border-none outline-none pr-[65px]"
+    defaultValue="Admin"
+    style={{ appearance: "none", WebkitAppearance: "none", MozAppearance: "none" }}
+  >
+    <option value="Admin" className="text-base">Admin</option>
+    <option value="User">User</option>
+    <option value="Guest">Guest</option>
+  </select>
+  
+  <div className="flex flex-col items-start justify-start pt-2.5 px-0 pb-0">
+    <img
+      className="w-[7px] h-1 relative rounded-12xs z-[1]"
+      alt=""
+      src="/amin-icon.svg"
+    />
+  </div>
+</div>
+
         </div>
         <div className="w-[257px] flex flex-col items-start justify-end pt-0 px-0 pb-2 box-border text-xs text-black">
           <div className="self-stretch flex flex-row items-start justify-between gap-5">

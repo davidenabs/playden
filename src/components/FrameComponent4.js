@@ -11,7 +11,7 @@ const FrameComponent4 = ({ className = "" }) => {
         <div className="w-[116px] flex flex-col items-start justify-start pt-px px-0 pb-0 box-border">
           <button className="cursor-pointer [border:none] pt-[11px] px-[21px] pb-2.5 bg-f2 self-stretch rounded-md flex flex-row items-start justify-start hover:bg-darkslategray-300">
             <div className="h-[39px] w-[116px] relative rounded-md bg-f2 hidden" />
-            <Link to='/dashboard' className=" [text-decoration:none] relative text-xs font-medium font-poppins text-light-mode-white-5-ffffff text-left inline-block min-w-[68px] z-[1]">Dashboard</Link>
+            <Link to='/dashboard' className="[text-decoration:none] relative text-xs font-medium font-poppins text-light-mode-white-5-ffffff text-left inline-block min-w-[68px] z-[1] text-ghostwhite">Dashboard</Link>
           </button>
         </div>
         <div className="h-[39px] w-[97px] relative hidden">
@@ -41,9 +41,11 @@ const FrameComponent4 = ({ className = "" }) => {
             alt=""
             src="/search-logo@2x.png"
           />
-          <div className="relative inline-block min-w-[59px] z-[1]">
-            Search...
-          </div>
+           <input
+    type="text"
+    className="h-[10px] w-full rounded-md bg-f2 border-none focus:outline-none outline-none placeholder-silver text-silver"
+    placeholder="Search..."
+  />
         </div>
       </div>
     </section>
