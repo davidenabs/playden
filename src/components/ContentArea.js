@@ -113,7 +113,7 @@ const ContentArea = ({ className = "" }) => {
                     className="cursor-pointer [border:none] py-2 px-6 bg-icons flex-1 rounded-2xl flex flex-row items-start justify-start whitespace-nowrap z-[1] hover:bg-slategray-200"
                     onClick={onConfirmButtonClick}
                   >
-                    <div className="flex-1 relative text-base leading-[175%] font-inter text-light-mode-white-5-ffffff text-center">
+                    <div className="flex-1 relative text-base leading-[175%] font-inter text-ghostwhite text-center">
                       Confirm Booking
                     </div>
                   </button>
