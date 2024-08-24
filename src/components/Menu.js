@@ -16,7 +16,7 @@ const Menu = ({ className = "" }) => {
       <button className="cursor-pointer [border:none] pt-[11px] px-[22px] pb-2.5 bg-f2 rounded-md flex flex-row items-start justify-start whitespace-nowrap hover:bg-darkslategray-300">
         <div className="h-[39px] w-[116px] relative rounded-md bg-f2 hidden" />
         <div className="relative text-xs font-medium font-poppins text-light-mode-white-5-ffffff text-left inline-block min-w-[72px] z-[1]">
-        <Link to='/pitcth-listing' className="[text-decoration:none] relative text-xs font-medium font-poppins text-black-900 text-left inline-block min-w-[68px] z-[1]">Pitch Listing</Link>
+        <Link to='/pitcth-listing' className="[text-decoration:none] relative text-xs font-medium font-poppins text-ghostwhite text-left inline-block min-w-[68px] z-[1]">Pitch Listing</Link>
         </div>
       </button>
       <div className="h-[39px] w-[49px] relative hidden text-light-mode-white-5-ffffff">

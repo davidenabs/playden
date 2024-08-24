@@ -2,6 +2,27 @@ import FrameComponent from "../components/FrameComponent";
 import Menu from "../components/Menu";
 
 const PitchHistory = () => {
+
+  const transactions = [
+  {
+    name: "Hassan Abdul",
+    ref: "1203948384",
+    date: "June 4, 2020",
+    time: "05:34:45 AM",
+    amount: "₦10,000.00",
+    pitchName: "Plutous cluchouse field",
+  },
+  {
+    name: "Hassan Abdul",
+    ref: "1203948384",
+    date: "June 5, 2020",
+    time: "05:34:45 AM",
+    amount: "₦10,000.00",
+    pitchName: "Plutous cluchouse field",
+  },
+  //  more transaction objects as needed
+];
+
   return (
     <div className="w-full relative bg-light-mode-gray-10-f5f5f5 overflow-hidden flex flex-col items-start justify-start pt-0 px-0 pb-[38.1px] box-border leading-[normal] tracking-[normal]">
       <FrameComponent aare="/aare@2x.png" />
@@ -90,36 +111,40 @@ const PitchHistory = () => {
               <div className="self-stretch h-[0.7px] flex flex-row items-start justify-start py-0 px-1.5 box-border max-w-full">
                 <div className="self-stretch flex-1 relative rounded-12xs-7 bg-gainsboro-100 max-w-full z-[3]" />
               </div>
-              <div className="self-stretch flex flex-row items-start justify-start py-0 pl-[57px] pr-[55px] box-border max-w-full text-sm text-f2 font-inter mq1050:pl-7 mq1050:pr-[27px] mq1050:box-border">
+  
+              {transactions.map((transaction, index) => (
+                
+        <div
+          key={index} className="self-stretch flex flex-row items-start justify-start py-0 pl-[57px] pr-[55px] box-border max-w-full text-sm text-f2 font-inter mq1050:pl-7 mq1050:pr-[27px] mq1050:box-border">
                 <div className="flex-1 flex flex-col items-end justify-start gap-[21.6px] max-w-full">
                   <div className="self-stretch flex flex-row items-start justify-between gap-5 mq1000:flex-wrap">
                     <div className="flex flex-col items-start justify-start gap-[6.6px]">
                       <div className="relative inline-block min-w-[92px] z-[3]">
-                        Hassan Abdul
+                        {transaction.name}
                       </div>
                       <div className="relative text-xs text-gray-200 inline-block min-w-[104px] z-[3]">
-                        Ref# 1203948384
+                        {transaction.ref}
                       </div>
                     </div>
                     <div className="flex flex-col items-start justify-start pt-[1.4px] pb-0 pl-0 pr-1">
                       <div className="flex flex-col items-start justify-start gap-[7px]">
                         <div className="relative inline-block min-w-[88px] z-[3]">
-                          June 4, 2020
+                          {transaction.date}
                         </div>
                         <div className="relative text-xs text-gray-200 inline-block min-w-[75px] whitespace-nowrap z-[3]">
-                          05:34:45 AM
+                          {transaction.time}
                         </div>
                       </div>
                     </div>
                     <div className="w-36 flex flex-col items-start justify-start pt-[1.7px] pb-0 pl-0 pr-5 box-border">
                       <div className="relative inline-block min-w-[80px] whitespace-nowrap z-[3]">
                         <b>₦</b>
-                        <span>10,000.00</span>
+                        <span>{transaction.amount}</span>
                       </div>
                     </div>
                     <div className="w-[202.2px] flex flex-col items-start justify-start pt-[1.6px] pb-0 pl-0 pr-5 box-border text-base font-poppins">
                       <div className="relative tracking-[-0.5px] leading-[14px] z-[3]">
-                        Plutous cluchouse field
+                        {transaction.pitchName}
                       </div>
                     </div>
                     <div className="flex flex-col items-start justify-start pt-[1.6px] px-0 pb-0">
@@ -128,168 +153,16 @@ const PitchHistory = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="self-stretch flex flex-row items-start justify-between gap-5 mq1000:flex-wrap">
-                    <div className="flex flex-col items-start justify-start gap-[6.2px]">
-                      <div className="relative inline-block min-w-[92px] z-[3]">
-                        Hassan Abdul
-                      </div>
-                      <div className="relative text-xs text-gray-200 inline-block min-w-[104px] z-[3]">
-                        Ref# 1203948384
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-start justify-start pt-[3.3px] pb-0 pl-0 pr-[3px]">
-                      <div className="flex flex-col items-start justify-start gap-[7px]">
-                        <div className="relative inline-block min-w-[88px] z-[3]">
-                          June 5, 2020
-                        </div>
-                        <div className="relative text-xs text-gray-200 inline-block min-w-[75px] whitespace-nowrap z-[3]">
-                          05:34:45 AM
-                        </div>
-                      </div>
-                    </div>
-                    <div className="w-[143.6px] flex flex-col items-start justify-start pt-[2.7px] pb-0 pl-0 pr-5 box-border">
-                      <div className="relative inline-block min-w-[80px] whitespace-nowrap z-[3]">
-                        <b>₦</b>
-                        <span>10,000.00</span>
-                      </div>
-                    </div>
-                    <div className="w-[201.8px] flex flex-col items-start justify-start pt-[2.6px] pb-0 pl-0 pr-5 box-border text-base font-poppins">
-                      <div className="relative tracking-[-0.5px] leading-[14px] z-[3]">
-                        Plutous cluchouse field
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-start justify-start pt-[2.6px] px-0 pb-0">
-                      <div className="relative [text-decoration:underline] z-[3]">
-                        View Transaction Details
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch flex flex-col items-start justify-start gap-4">
-                    <div className="self-stretch flex flex-col items-start justify-start gap-[18.9px]">
-                      <div className="self-stretch flex flex-row items-start justify-between gap-5 mq1000:flex-wrap">
-                        <div className="flex flex-col items-start justify-start gap-[6.1px]">
-                          <div className="relative inline-block min-w-[92px] z-[3]">
-                            Hassan Abdul
-                          </div>
-                          <div className="flex flex-row items-start justify-start py-0 pl-[3px] pr-0 text-xs text-gray-200">
-                            <div className="relative inline-block min-w-[104px] z-[3]">
-                              Ref# 1203948384
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex flex-col items-start justify-start pt-[2.1px] pb-0 pl-0 pr-[3px]">
-                          <div className="flex flex-col items-start justify-start gap-[7px]">
-                            <div className="relative inline-block min-w-[88px] z-[3]">
-                              June 5, 2020
-                            </div>
-                            <div className="relative text-xs text-gray-200 inline-block min-w-[75px] whitespace-nowrap z-[3]">
-                              05:34:45 AM
-                            </div>
-                          </div>
-                        </div>
-                        <div className="w-[143.6px] flex flex-col items-start justify-start pt-[1.7px] pb-0 pl-0 pr-5 box-border">
-                          <div className="relative inline-block min-w-[80px] whitespace-nowrap z-[3]">
-                            <b>₦</b>
-                            <span>10,000.00</span>
-                          </div>
-                        </div>
-                        <div className="w-[201.8px] flex flex-col items-start justify-start pt-[1.6px] pb-0 pl-0 pr-5 box-border text-base font-poppins">
-                          <div className="relative tracking-[-0.5px] leading-[14px] z-[3]">
-                            Plutous cluchouse field
-                          </div>
-                        </div>
-                        <div className="flex flex-col items-start justify-start pt-[1.6px] px-0 pb-0">
-                          <div className="relative [text-decoration:underline] z-[3]">
-                            View Transaction Details
-                          </div>
-                        </div>
-                      </div>
-                      <div className="self-stretch flex flex-row items-start justify-between gap-5 mq1000:flex-wrap">
-                        <div className="flex flex-col items-start justify-start gap-[7px]">
-                          <div className="relative inline-block min-w-[92px] z-[3]">
-                            Hassan Abdul
-                          </div>
-                          <div className="flex flex-row items-start justify-start py-0 pl-[3px] pr-0 text-xs text-gray-200">
-                            <div className="relative inline-block min-w-[104px] z-[3]">
-                              Ref# 1203948384
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex flex-col items-start justify-start pt-[5.2px] pb-0 pl-0 pr-[3px]">
-                          <div className="flex flex-col items-start justify-start gap-[6.8px]">
-                            <div className="relative inline-block min-w-[88px] z-[3]">
-                              June 5, 2020
-                            </div>
-                            <div className="relative text-xs text-gray-200 inline-block min-w-[75px] whitespace-nowrap z-[3]">
-                              05:34:45 AM
-                            </div>
-                          </div>
-                        </div>
-                        <div className="w-[143.6px] flex flex-col items-start justify-start pt-[4.7px] pb-0 pl-0 pr-5 box-border">
-                          <div className="relative inline-block min-w-[80px] whitespace-nowrap z-[3]">
-                            <b>₦</b>
-                            <span>10,000.00</span>
-                          </div>
-                        </div>
-                        <div className="w-[201.8px] flex flex-col items-start justify-start pt-[4.6px] pb-0 pl-0 pr-5 box-border text-base font-poppins">
-                          <div className="relative tracking-[-0.5px] leading-[14px] z-[3]">
-                            Plutous cluchouse field
-                          </div>
-                        </div>
-                        <div className="flex flex-col items-start justify-start pt-[4.6px] px-0 pb-0">
-                          <div className="relative [text-decoration:underline] z-[3]">
-                            View Transaction Details
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="self-stretch flex flex-row items-start justify-between gap-5 mq1000:flex-wrap">
-                      <div className="flex flex-col items-start justify-start gap-[6.9px]">
-                        <div className="relative inline-block min-w-[92px] z-[3]">
-                          Hassan Abdul
-                        </div>
-                        <div className="flex flex-row items-start justify-start py-0 pl-[3px] pr-0 text-xs text-gray-200">
-                          <div className="relative inline-block min-w-[104px] z-[3]">
-                            Ref# 1203948384
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex flex-col items-start justify-start pt-[4.9px] pb-0 pl-0 pr-[3px]">
-                        <div className="flex flex-col items-start justify-start gap-[7px]">
-                          <div className="relative inline-block min-w-[88px] z-[3]">
-                            June 5, 2020
-                          </div>
-                          <div className="relative text-xs text-gray-200 inline-block min-w-[75px] whitespace-nowrap z-[3]">
-                            05:34:45 AM
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[143.6px] flex flex-col items-start justify-start pt-[5.7px] pb-0 pl-0 pr-5 box-border">
-                        <div className="relative inline-block min-w-[80px] whitespace-nowrap z-[3]">
-                          <b>₦</b>
-                          <span>10,000.00</span>
-                        </div>
-                      </div>
-                      <div className="w-[201.8px] flex flex-col items-start justify-start pt-[5.6px] pb-0 pl-0 pr-5 box-border text-base font-poppins">
-                        <div className="relative tracking-[-0.5px] leading-[14px] z-[3]">
-                          Plutous cluchouse field
-                        </div>
-                      </div>
-                      <div className="flex flex-col items-start justify-start pt-[5.6px] px-0 pb-0">
-                        <div className="relative [text-decoration:underline] z-[3]">
-                          View Transaction Details
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
+              ))}
             </footer>
           </div>
         </section>
       </main>
     </div>
-  );
+  )
 };
 
 export default PitchHistory;

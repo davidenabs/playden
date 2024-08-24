@@ -2,6 +2,27 @@ import FrameComponent from "../components/FrameComponent";
 import FrameComponent3 from "../components/FrameComponent3";
 
 const BookingManagement = () => {
+
+  const bookings = [
+    {
+      name: "Oyinkansola Soleye",
+      bookingId: "#445664",
+      number: "07066048648",
+      status: "Confirmed",
+      date: "8/8/2024",
+      time: "1:30pm",
+    },
+    {
+      name: "John Doe",
+      bookingId: "#445665",
+      number: "08012345678",
+      status: "Pending",
+      date: "8/9/2024",
+      time: "2:00pm",
+    },
+    // Add more transaction objects as needed
+  ];
+
   return (
     <div className="w-full relative bg-light-mode-gray-10-f5f5f5 overflow-hidden flex flex-col items-start justify-start pt-0 px-0 pb-[52px] box-border leading-[normal] tracking-[normal]">
       <FrameComponent aare="/aare2@2x.png" />
@@ -14,36 +35,11 @@ const BookingManagement = () => {
                 S/N
               </div>
               <div className="flex flex-col items-start justify-start gap-[46px] text-xs">
-                <div className="relative font-medium inline-block min-w-[5px]">
-                  1
-                </div>
-                <div className="relative font-medium inline-block min-w-[5px]">
-                  1
-                </div>
-                <div className="relative font-medium inline-block min-w-[5px]">
-                  1
-                </div>
-                <div className="relative font-medium inline-block min-w-[5px]">
-                  1
-                </div>
-                <div className="relative font-medium inline-block min-w-[5px]">
-                  1
-                </div>
-                <div className="relative font-medium inline-block min-w-[5px]">
-                  1
-                </div>
-                <div className="relative font-medium inline-block min-w-[5px]">
-                  1
-                </div>
-                <div className="relative font-medium inline-block min-w-[5px]">
-                  1
-                </div>
-                <div className="relative font-medium inline-block min-w-[5px]">
-                  1
-                </div>
-                <div className="relative font-medium inline-block min-w-[5px]">
-                  1
-                </div>
+              {bookings.map((_, index) => (
+                  <div key={index} className="relative font-medium inline-block min-w-[5px]">
+                    {index + 1}
+                  </div>
+                ))}
               </div>
             </div>
             <div className="w-[133px] flex flex-col items-start justify-start py-0 pl-0 pr-3.5 box-border gap-9">
@@ -54,7 +50,7 @@ const BookingManagement = () => {
               </div>
               <div className="flex flex-col items-start justify-start gap-[46px] text-xs">
                 <div className="relative font-medium inline-block min-w-[119px]">
-                  Oyinkansola Soleye
+                  {bookings.name}
                 </div>
                 <div className="relative font-medium inline-block min-w-[119px]">
                   Oyinkansola Soleye
