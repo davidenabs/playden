@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import FrameComponent from "../components/FrameComponent";
 import FrameComponent3 from "../components/FrameComponent3";
 
@@ -16,7 +17,7 @@ const BookingManagement = () => {
       name: "John Doe",
       bookingId: "#445665",
       number: "08012345678",
-      status: "Pending",
+      status: "Confirmed",
       date: "8/9/2024",
       time: "2:00pm",
     },
@@ -49,146 +50,35 @@ const BookingManagement = () => {
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start gap-[46px] text-xs">
-                <div className="relative font-medium inline-block min-w-[119px]">
-                  {bookings.name}
-                </div>
-                <div className="relative font-medium inline-block min-w-[119px]">
-                  Oyinkansola Soleye
-                </div>
-                <div className="relative font-medium inline-block min-w-[119px]">
-                  Oyinkansola Soleye
-                </div>
-                <div className="relative font-medium inline-block min-w-[119px]">
-                  Oyinkansola Soleye
-                </div>
-                <div className="relative font-medium inline-block min-w-[119px]">
-                  Oyinkansola Soleye
-                </div>
-                <div className="relative font-medium inline-block min-w-[119px]">
-                  Oyinkansola Soleye
-                </div>
-                <div className="relative font-medium inline-block min-w-[119px]">
-                  Oyinkansola Soleye
-                </div>
-                <div className="relative font-medium inline-block min-w-[119px]">
-                  Oyinkansola Soleye
-                </div>
-                <div className="relative font-medium inline-block min-w-[119px]">
-                  Oyinkansola Soleye
-                </div>
-                <div className="relative font-medium inline-block min-w-[119px]">
-                  Oyinkansola Soleye
-                </div>
+                {bookings.map((booking, index) => (
+                  <div key={index} className="relative font-medium inline-block min-w-[119px]">
+                    {booking.name}
+                  </div>
+                ))}
               </div>
             </div>
             <div className="w-[137.5px] flex flex-col items-start justify-start py-0 pl-0 pr-5 box-border gap-9 text-xs">
               <div className="relative text-base font-medium inline-block min-w-[94px]">
                 BOOKING ID
               </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-3 pb-2.5">
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  #445664
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-3 pb-2.5">
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  #445664
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-3 pb-2.5">
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  #445664
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-3 pb-2.5">
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  #445664
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-3 pb-2.5">
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  #445664
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-3 pb-2.5">
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  #445664
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-3 pb-2.5">
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  #445664
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-3 pb-2.5">
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  #445664
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-3 pb-2.5">
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  #445664
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start py-0 px-3">
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  #445664
-                </div>
+              <div className="flex flex-col items-start justify-start gap-[46px]">
+                {bookings.map((booking, index) => (
+                  <div key={index} className="relative font-medium inline-block min-w-[57px]">
+                    {booking.bookingId}
+                  </div>
+                ))}
               </div>
             </div>
             <div className="w-[155.5px] flex flex-col items-start justify-start py-0 pl-0 pr-5 box-border gap-9 text-xs">
               <div className="relative text-base font-medium inline-block min-w-[123px]">
                 PHONE NUMBER
               </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-[13px] pb-2.5">
-                <div className="relative font-medium inline-block min-w-[84px]">
-                  07066048648
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-[13px] pb-2.5">
-                <div className="relative font-medium inline-block min-w-[84px]">
-                  07066048648
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-[13px] pb-2.5">
-                <div className="relative font-medium inline-block min-w-[84px]">
-                  07066048648
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-[13px] pb-2.5">
-                <div className="relative font-medium inline-block min-w-[84px]">
-                  07066048648
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-[13px] pb-2.5">
-                <div className="relative font-medium inline-block min-w-[84px]">
-                  07066048648
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-[13px] pb-2.5">
-                <div className="relative font-medium inline-block min-w-[84px]">
-                  07066048648
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-[13px] pb-2.5">
-                <div className="relative font-medium inline-block min-w-[84px]">
-                  07066048648
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-[13px] pb-2.5">
-                <div className="relative font-medium inline-block min-w-[84px]">
-                  07066048648
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start pt-0 px-[13px] pb-2.5">
-                <div className="relative font-medium inline-block min-w-[84px]">
-                  07066048648
-                </div>
-              </div>
-              <div className="flex flex-row items-start justify-start py-0 px-[13px]">
-                <div className="relative font-medium inline-block min-w-[84px]">
-                  07066048648
-                </div>
+              <div className="flex flex-col items-start justify-start gap-[46px]">
+                {bookings.map((booking, index) => (
+                  <div key={index} className="relative font-medium inline-block min-w-[84px]">
+                    {booking.number}
+                  </div>
+                ))}
               </div>
             </div>
             <div className="flex flex-col items-start justify-start py-0 pl-0 pr-3.5 gap-[26px] text-xs text-light-mode-white-5-ffffff">
@@ -197,55 +87,19 @@ const BookingManagement = () => {
                   STATUS
                 </div>
               </div>
-              <div className="rounded-13xl bg-darkolivegreen flex flex-row items-start justify-start p-2.5">
-                <div className="relative font-medium inline-block min-w-[65px]">
-                  Confirmed
-                </div>
-              </div>
-              <div className="rounded-13xl bg-darkolivegreen flex flex-row items-start justify-start p-2.5">
-                <div className="relative font-medium inline-block min-w-[65px]">
-                  Confirmed
-                </div>
-              </div>
-              <div className="rounded-13xl bg-darkolivegreen flex flex-row items-start justify-start p-2.5">
-                <div className="relative font-medium inline-block min-w-[65px]">
-                  Confirmed
-                </div>
-              </div>
-              <div className="rounded-13xl bg-darkolivegreen flex flex-row items-start justify-start p-2.5">
-                <div className="relative font-medium inline-block min-w-[65px]">
-                  Confirmed
-                </div>
-              </div>
-              <div className="rounded-13xl bg-darkolivegreen flex flex-row items-start justify-start p-2.5">
-                <div className="relative font-medium inline-block min-w-[65px]">
-                  Confirmed
-                </div>
-              </div>
-              <div className="rounded-13xl bg-darkolivegreen flex flex-row items-start justify-start p-2.5">
-                <div className="relative font-medium inline-block min-w-[65px]">
-                  Confirmed
-                </div>
-              </div>
-              <div className="rounded-13xl bg-darkolivegreen flex flex-row items-start justify-start p-2.5">
-                <div className="relative font-medium inline-block min-w-[65px]">
-                  Confirmed
-                </div>
-              </div>
-              <div className="rounded-13xl bg-darkolivegreen flex flex-row items-start justify-start p-2.5">
-                <div className="relative font-medium inline-block min-w-[65px]">
-                  Confirmed
-                </div>
-              </div>
-              <div className="rounded-13xl bg-darkolivegreen flex flex-row items-start justify-start p-2.5">
-                <div className="relative font-medium inline-block min-w-[65px]">
-                  Confirmed
-                </div>
-              </div>
-              <div className="rounded-13xl bg-darkolivegreen flex flex-row items-start justify-start p-2.5">
-                <div className="relative font-medium inline-block min-w-[65px]">
-                  Confirmed
-                </div>
+              <div className="flex flex-col items-start justify-start gap-[26px]">
+                {bookings.map((booking, index) => (
+                  <div
+                    key={index}
+                    className={`rounded-13xl ${
+                      booking.status === "Confirmed" ? "bg-darkolivegreen" : "bg-yellow-500"
+                    } flex flex-row items-start justify-start p-2.5`}
+                  >
+                    <div className="relative font-medium inline-block min-w-[65px]">
+                      {booking.status}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
             <div className="flex flex-col items-start justify-start py-0 pl-0 pr-[52px] gap-9">
@@ -255,36 +109,11 @@ const BookingManagement = () => {
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start gap-[46px] text-xs">
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  8/8/2024
-                </div>
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  8/8/2024
-                </div>
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  8/8/2024
-                </div>
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  8/8/2024
-                </div>
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  8/8/2024
-                </div>
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  8/8/2024
-                </div>
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  8/8/2024
-                </div>
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  8/8/2024
-                </div>
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  8/8/2024
-                </div>
-                <div className="relative font-medium inline-block min-w-[57px]">
-                  8/8/2024
-                </div>
+                {bookings.map((booking, index) => (
+                  <div key={index} className="relative font-medium inline-block min-w-[57px]">
+                    {booking.date}
+                  </div>
+                ))}
               </div>
             </div>
             <div className="flex flex-col items-start justify-start py-0 pl-0 pr-14 gap-9">
@@ -294,16 +123,11 @@ const BookingManagement = () => {
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start gap-[46px] text-xs">
-                <div className="relative font-medium inline-block min-w-[43px]">{`1:30pm `}</div>
-                <div className="relative font-medium inline-block min-w-[43px]">{`1:30pm `}</div>
-                <div className="relative font-medium inline-block min-w-[43px]">{`1:30pm `}</div>
-                <div className="relative font-medium inline-block min-w-[43px]">{`1:30pm `}</div>
-                <div className="relative font-medium inline-block min-w-[43px]">{`1:30pm `}</div>
-                <div className="relative font-medium inline-block min-w-[43px]">{`1:30pm `}</div>
-                <div className="relative font-medium inline-block min-w-[43px]">{`1:30pm `}</div>
-                <div className="relative font-medium inline-block min-w-[43px]">{`1:30pm `}</div>
-                <div className="relative font-medium inline-block min-w-[43px]">{`1:30pm `}</div>
-                <div className="relative font-medium inline-block min-w-[43px]">{`1:30pm `}</div>
+                {bookings.map((booking, index) => (
+                  <div key={index} className="relative font-medium inline-block min-w-[43px]">
+                    {booking.time}
+                  </div>
+                ))}
               </div>
             </div>
             <div className="flex flex-col items-start justify-start gap-9">
@@ -313,36 +137,11 @@ const BookingManagement = () => {
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start gap-[46px] text-xs">
-                <div className="relative [text-decoration:underline] font-medium inline-block min-w-[73px]">
-                  View details
-                </div>
-                <div className="relative [text-decoration:underline] font-medium inline-block min-w-[73px]">
-                  View details
-                </div>
-                <div className="relative [text-decoration:underline] font-medium inline-block min-w-[73px]">
-                  View details
-                </div>
-                <div className="relative [text-decoration:underline] font-medium inline-block min-w-[73px]">
-                  View details
-                </div>
-                <div className="relative [text-decoration:underline] font-medium inline-block min-w-[73px]">
-                  View details
-                </div>
-                <div className="relative [text-decoration:underline] font-medium inline-block min-w-[73px]">
-                  View details
-                </div>
-                <div className="relative [text-decoration:underline] font-medium inline-block min-w-[73px]">
-                  View details
-                </div>
-                <div className="relative [text-decoration:underline] font-medium inline-block min-w-[73px]">
-                  View details
-                </div>
-                <div className="relative [text-decoration:underline] font-medium inline-block min-w-[73px]">
-                  View details
-                </div>
-                <div className="relative [text-decoration:underline] font-medium inline-block min-w-[73px]">
-                  View details
-                </div>
+                {bookings.map((_, index) => (
+                  <div key={index} className="relative [text-decoration:underline] font-medium inline-block min-w-[73px]">
+                      <Link to='/booking-details'
+                  </div>
+                ))}
               </div>
             </div>
           </div>
