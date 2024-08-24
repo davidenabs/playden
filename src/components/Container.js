@@ -6,7 +6,7 @@ const Container = ({ className = "", image8 }) => {
   const navigate = useNavigate();
 
   const onViewClick = useCallback(() => {
-    navigate("/dashboard");
+    navigate("/pitch-history");
   }, [navigate]);
 
   return (
@@ -40,7 +40,7 @@ const Container = ({ className = "", image8 }) => {
           className="cursor-pointer [border:none] py-2 px-6 bg-icons self-stretch rounded-2xl flex flex-row items-start justify-start whitespace-nowrap hover:bg-slategray-200"
           onClick={onViewClick}
         >
-          <div className="flex-1 relative text-base leading-[175%] font-inter text-light-mode-white-5-ffffff text-center">
+          <div className="flex-1 relative text-base leading-[175%] font-inter text-ghostwhite text-center">
             View details
           </div>
         </button>
