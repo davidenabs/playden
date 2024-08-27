@@ -28,8 +28,8 @@ const PitchHistory = () => {
       <FrameComponent aare="/aare@2x.png" />
       <main className="self-stretch flex flex-col items-end justify-start gap-[24.1px] max-w-full">
         <Menu />
-        <section className="self-stretch flex flex-row items-start justify-center py-0 pl-[21px] pr-5 box-border max-w-full text-center text-base text-text font-poppins">
-          <div className="w-[1145px] rounded-lg bg-light-mode-white-5-ffffff flex flex-col items-start justify-start py-5 px-[34px] box-border gap-[35px] max-w-full mq725:gap-[17px]">
+        <section className="self-stretch flex flex-row items-start justify-center py-0 pl-[21px] mq450:pl-[0px] pr-5 box-border max-w-full text-center text-base text-text font-poppins">
+          <div className="w-[1145px] rounded-lg bg-light-mode-white-5-ffffff flex flex-col items-start justify-start py-5 px-[34px] mq450:px-[27px] box-border gap-[35px] max-w-full mq725:gap-[17px]">
             <div className="w-[652px] flex flex-row items-start justify-start py-0 px-0.5 box-border max-w-full">
               <div className="flex-1 flex flex-row items-start justify-start gap-8 max-w-full mq725:gap-4 mq725:flex-wrap">
                 <img
@@ -47,7 +47,7 @@ const PitchHistory = () => {
                       <div className="relative tracking-[-0.5px] leading-[14px]">{`PITCH MANAGER: Ahmed Salisu `}</div>
                       <div className="relative tracking-[-0.5px] leading-[14px] inline-block min-w-[123px]">{`PRIZE: N10,000/hr `}</div>
                     </div>
-                    <b className="relative text-xl tracking-[-0.5px] leading-[14px] whitespace-pre-wrap mq450:text-base mq450:leading-[11px]">{`TOTAL REVENUE:  ₦10,000,000.00 `}</b>
+                    <b className="relative text-xl tracking-[-0.5px] leading-[14px] whitespace-pre-wrap mq450:text-base mq450:leading-[19px]">{`TOTAL REVENUE:  ₦10,000,000.00 `}</b>
                   </div>
                 </div>
               </div>

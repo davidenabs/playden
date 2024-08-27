@@ -137,7 +137,7 @@ export default function SignUp() {
                       name="tick"
                       label="&nbsp;I agree with the terms of use"
                       id="tick"
-                      className="gap-2 mq450:my-4  py-0.5 font-inter text-[16px] text-gray-900 border-black"
+                      className="gap-2 mq450:my-4 md:mt-4 py-0.5 font-inter text-[16px] text-gray-900 border-black"
                       required
                     />
                     </div>
