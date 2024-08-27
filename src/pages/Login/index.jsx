@@ -23,7 +23,7 @@ export default function LoginPage() {
       </Helmet>
       <div className="flex w-full h-screen items-center bg-light_mode-white-5_ffffff md:flex-col overflow-hidden">
         {/* Login Form */}
-        <div className="flex w-[150%] md:w-[89px] lg:w-1/2 md:h-[50px] h-[500px] flex-col items-center px-4 md:px-1">
+        <div className="flex w-[130%] md:w-[89px] lg:w-1/2 md:h-[50px] h-[500px] flex-col items-center px-4 md:px-1">
           <div className="flex w-[564px] max-w-md lg:max-w-sm h-[679px] lg:h-[10%] md:w-[100%] flex-col items-center justify-center gap-1 rounded-lg bg-light_mode-white-5_ffffff px-8 py-[1px] mt-[1px] md:px-5 md:py-1 shadow-xl md:shadow-none">
             <div className="flex flex-col items-center gap-1 w-full">
               <div className="flex flex-col items-center justify-center gap-1 w-full">
@@ -67,7 +67,7 @@ export default function LoginPage() {
                       id="rememberme"
                       className="gap-2 font-inter text-[16px] text-blue_gray-300"
                     />
-                    <Link to="/forgotpassword" className="text-right">
+                    <Link to="/forgotpassword" className="text-right no-underline">
                       <Text as="p" className="!text-black-900_01">
                         Forgot Password
                       </Text>
