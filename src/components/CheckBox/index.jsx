@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const variants = {
-    primary: "shadow-sm checked:border-2 ",
+    primary: "shadow-sm checked:border-2",
 };
 const sizes = {
     xs: "h-[16px] w-[16px]",
@@ -29,22 +29,22 @@ const CheckBox = React.forwardRef(
 
         return (
             <>
-            <div className={className + "flex items-center gap-[5px] cursor-pointer"}>
-                <input
-                className={` ${(size && sizes[size]) || ""} ${(variant && variants[variants]) || ""}`}
-                ref={ref}
-                type = "checkbox"
-                name={name}
-                onChange={handleChange}
-                id={id}
-                {...restProps}
-                />
-                {!!label && <label htmlFor={id}>{label}</label>}
+                <div className={`${className} flex items-center gap-[5px] cursor-pointer`}>
+                    <input
+                        className={`${sizes[size] || ""} ${variants[variant] || ""}`}
+                        ref={ref}
+                        type="checkbox"
+                        name={name}
+                        onChange={handleChange}
+                        id={id}
+                        {...restProps}
+                    />
+                    {!!label && <label htmlFor={id}>{label}</label>}
                 </div>
                 {children}
-                </>
+            </>
         );
-    },
+    }
 );
 
 CheckBox.propTypes = {
