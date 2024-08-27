@@ -198,7 +198,7 @@ const FrameComponent5 = ({ className = "" }) => {
           </div>
         </div>
       </div>
-      <div className="w-[250px] rounded-lg bg-light-mode-white-5-ffffff flex flex-col items-start justify-start pt-6 px-[7px] pb-[27.2px] box-border gap-4 shrink-0 z-[1] text-base text-darkslategray-100 font-be-vietnam mq450:pt-5 mq450:pb-5 mq450:box-border">
+      <div className="w-[250px] rounded-lg bg-light-mode-white-5-ffffff flex flex-col items-start justify-start pt-6 ml-[45px] px-[7px] pb-[27.2px] box-border gap-4 shrink-0 z-[1] text-base text-darkslategray-100 font-be-vietnam mq450:pt-5 mq450:pb-5 mq450:box-border">
         <div className="w-[250px] h-[368px] relative rounded-lg bg-light-mode-white-5-ffffff hidden" />
         <div className="relative font-semibold inline-block min-w-[72px] z-[1]">
           Calendar

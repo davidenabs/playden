@@ -24,10 +24,10 @@ export default function SignUp() {
       <div className="flex w-full h-screen items-center bg-light_mode-white-5_ffffff md:flex-col overflow-hidden">
         {/* Login Form */}
         <div className="flex w-full md:w-full lg:w-1/2 h-full flex-col items-center px-4 md:px-1 md:overflow-y-auto">
-          <div className="flex w-[80%] max-w-[70%] lg:max-w-[90%] h-[90%] lg:h-[10%] md:w-[100%] flex-col items-center justify-center gap-2 rounded-lg bg-light_mode-white-5_ffffff px-8 py-12 my-12 md:px-0 md:my-[40%] md:py-5 shadow-strong md:shadow-none">
+          <div className="flex w-[80%] max-w-[70%] lg:max-w-[90%] h-[90%] lg:h-[10%] md:w-[100%] flex-col items-center justify-center gap-2 rounded-lg bg-light_mode-white-5_ffffff px-8 py-12 mt-2 md:px-0 md:my-[40%] md:py-5 md:pt-[12px] shadow-strong md:shadow-none">
             <div className="flex flex-col items-center gap-4 w-full">
               <div className="flex flex-col items-center justify-center gap-5 w-full">
-                <Link to="Login" rel="noreferrer">
+                <Link to="/login" rel="noreferrer">
                   <Heading size="heading2xl" as="h1" className="font-worksans text-black-900_01 text-center">
                     Sign Up
                   </Heading>
@@ -122,7 +122,7 @@ export default function SignUp() {
                 </Link>
               </div>
               <div className="flex">
-            <Link to=""  className="text-center">
+            <Link to="/login"  className="text-center">
               <Text as="p" className="self-end !text-black-900_02">
                 <span className="text-blue_gray-900">Already have an account</span>
                 <span className="text-f2">&nbsp; Sign In</span>

@@ -12,6 +12,7 @@ import PitchHistory from "./pages/PitchHistory";
 import PitchListing from "./pages/PitchListing";
 import BookingDetails from "./pages/BookingDetails";
 import SignUp from "./pages/SignUp";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const action = useNavigationType();
@@ -74,6 +75,7 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signUp" element={<SignUp />} />
       <Route path="/booking-details" element={<BookingDetails />} />
+      <Route path="*" element={<NotFound />} />
       
     </Routes>
   );

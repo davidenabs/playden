@@ -28,7 +28,7 @@ export default function LoginPage() {
             <div className="flex flex-col items-center gap-4 w-full">
               <div className="flex flex-col items-center justify-center gap-5 w-full">
                 <Link to="Login" rel="noreferrer">
-                  <Heading size="heading2xl" as="h1" className="font-worksans text-black-900_01 text-center">
+                  <Heading size="heading2xl" as="h1" className="font-worksans text-black-900_01 text-center [text-decoration: none]">
                     Login
                   </Heading>
                 </Link>
@@ -67,21 +67,21 @@ export default function LoginPage() {
                       id="rememberme"
                       className="gap-2 font-inter text-[16px] text-blue_gray-300"
                     />
-                    <Link to="#" className="text-right">
+                    <Link to="/forgotpassword" className="text-right">
                       <Text as="p" className="!text-black-900_01">
                         Forgot Password
                       </Text>
                     </Link>
                   </div>
                 </div>
-                <Link to="">
+                <Link to="/dashboard">
                   <Button color="gray_800" size="lg" shape="round" className="min-w-[188px] font-worksans" style={{ color: 'white' }}>
                     Login
                   </Button>
                 </Link>
               </div>
             </div>
-            <Link to="" className="text-center">
+            <Link to="/signUp" className="text-center">
               <Text as="p" className="!text-black-900_02">
                 <span className="text-blue_gray-900">Don't have an account?&nbsp;</span>
                 <span className="text-black-900_01">Click here to sign up</span>
@@ -91,8 +91,8 @@ export default function LoginPage() {
         </div>
         {/* Side Image */}
         <div className=" md:hidden lg:block w-[80%] h-full relative">
-          <img src="side-image.png" alt="Side Image" className="h-full w-full object-cover" />
-          <img src="logo.png" alt="Centered Image" className="absolute top-1/2 left-1/2 w-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+          <img src="/side-image.png" alt="Side Image" className="h-full w-full object-cover" />
+          <img src="/logo.png" alt="Centered Image" className="absolute top-1/2 left-1/2 w-1/2 transform -translate-x-1/2 -translate-y-1/2" />
         </div>
       </div>
     </>
