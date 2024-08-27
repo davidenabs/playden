@@ -1,11 +1,13 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Img, Text, Button, CheckBox, Input, Heading } from "../../components";
 import React, { useState } from "react";
 
 export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -15,6 +17,21 @@ export default function SignUp() {
     setPassword(event.target.value);
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Replace with 
+    console.log('login successful');
+    
+    if (true) {
+      // Navigate to the dashboard after successful login
+      navigate('/login');
+    } else {
+      // Handle login failure 
+      alert('Invalid login credentials');
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -23,7 +40,7 @@ export default function SignUp() {
       </Helmet>
       <div className="flex w-full h-screen items-center bg-light_mode-white-5_ffffff md:flex-col overflow-hidden">
         {/* Login Form */}
-        <div className="flex w-full md:w-full lg:w-1/2 h-full flex-col items-center px-4 md:px-1 md:overflow-y-auto md:mt-0">
+        <form onSubmit={handleSubmit} className="flex w-full md:w-full lg:w-1/2 h-full flex-col items-center px-4 md:px-1 md:overflow-y-auto md:mt-0">
           <div className="flex w-[564px] max-w-[70%] lg:max-w-[90%] h-[90%] lg:h-[10%] md:w-[100%] flex-col items-center justify-center gap-2 rounded-lg bg-light_mode-white-5_ffffff px-8 py-12 mt-2 md:px-0 md:my-[40%] md:py-5 md:pt-[12px] shadow-strong md:shadow-none">
             <div className="flex flex-col items-center gap-4 w-full mt-0">
               <div className="flex flex-col items-center justify-center gap-5 w-full mt-0">
@@ -125,11 +142,11 @@ export default function SignUp() {
                     />
                     </div>
                 </div>
-                <Link to="/login" className="no-underline">
+                
                   <Button color="gray_800" size="lg" shape="round" className="min-w-[188px] font-worksans text-ghostwhite">
                     Sign Up
                   </Button>
-                </Link>
+                
               </div>
               <div className="flex">
             <Link to="/login"  className="text-center no-underline">
@@ -141,7 +158,7 @@ export default function SignUp() {
             </div>
               </div>
             </div>
-        </div>
+        </form>
         {/* Side Image */}
         <div className=" md:hidden lg:block w-[80%] h-full relative">
           <img src="/side-image.png" alt="Side Image" className="h-full w-full object-cover" />
