@@ -93,7 +93,7 @@ export default function SignUp() {
                       name="password"
                       type="password"
                       className="w-full border border-black-900_01 rounded p-2"
-                      value={email}
+                      value={password}
                       onChange={handlePasswordChange}
                     />
                   </div>
