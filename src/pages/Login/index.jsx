@@ -52,7 +52,7 @@ export default function LoginPage() {
                 <Text as="p" className="text-center">Sign in to stay connected.</Text>
               </div>
               <div className="flex flex-col items-center gap-6 w-full">
-                <div className="flex flex-col gap-4 w-full">
+                <div className="flex flex-col gap-[1px] w-full">
                   <div className="flex flex-col items-start gap-2.5 w-full">
                     <Text as="p">Email</Text>
                     <input

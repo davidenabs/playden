@@ -9,6 +9,9 @@
 @tailwind utilities;
 body {
   @apply leading-[normal] m-0;
+  font-family: "Work Sans", sans-serif;
+  font-style: normal;
+  font-optical-sizing: auto;
 }
 *,
 ::before,
