@@ -40,7 +40,7 @@ export default function SignUp() {
       </Helmet>
       <div className="flex w-full h-screen items-center bg-light_mode-white-5_ffffff md:flex-col overflow-hidden">
         {/* Login Form */}
-        <form onSubmit={handleSubmit} className="flex w-full md:w-full lg:w-1/2 h-full flex-col items-center px-4 md:px-1 md:overflow-y-auto md:mt-0">
+        <form onSubmit={handleSubmit} className="flex mq450:w-[100%] mq450:pt-[100px] mq450:pr-[19px] w-full md:w-full lg:w-1/2 h-full flex-col items-center px-[2px] md:px-1 md:overflow-y-auto md:mt-0">
           <div className="flex w-[564px] max-w-[70%] lg:max-w-[90%] h-[90%] lg:h-[10%] md:w-[100%] flex-col items-center justify-center gap-2 rounded-lg bg-light_mode-white-5_ffffff px-8 py-12 mt-2 md:px-0 md:my-[40%] md:py-5 md:pt-[12px] shadow-strong md:shadow-none">
             <div className="flex flex-col items-center gap-4 w-full mt-0">
               <div className="flex flex-col items-center justify-center gap-5 w-full mt-0">
@@ -53,8 +53,8 @@ export default function SignUp() {
               </div>
               <div className="flex flex-col items-center gap-1 w-full ">
                 <div className="flex flex-col gap-1 w-full ">
-                    <div className="flex gap-4 self-stretch sm:flex-col ">
-                  <div className="flex flex-col items-start gap-[1px] w-full">
+                    <div className="flex gap-4 mq450:gap-[1px] self-stretch sm:flex-col ">
+                  <div className="flex flex-col items-start gap-[1px] w-full mq450:mt-[1px]">
                     <Text as="p">First Name</Text>
                     <input
                       size="md"
@@ -66,7 +66,7 @@ export default function SignUp() {
                     />
                   </div>
                   &nbsp;
-                  <div className="flex flex-col items-start gap-[1px] w-full">
+                  <div className="flex flex-col items-start gap-[1px] w-full mq450:mt-[1px]">
                     <Text as="p">Last Name</Text>
                     <input
                       size="md"
@@ -78,8 +78,8 @@ export default function SignUp() {
                     />
                   </div>
                   </div>
-                  <div className="flex gap-4 self-stretch sm:flex-col">
-                  <div className="flex flex-col items-start gap-[1px] w-full">
+                  <div className="flex gap-4 mq450:gap-[1px] self-stretch sm:flex-col">
+                  <div className="flex flex-col items-start gap-[1px] w-full mq450:mt-[1px]">
                     <Text as="p">Email</Text>
                     <input
                       size="md"
@@ -93,7 +93,7 @@ export default function SignUp() {
                     />
                   </div>
                   &nbsp;
-                  <div className="flex flex-col items-start gap-[1px] w-full">
+                  <div className="flex flex-col items-start gap-[1px] w-full mq450:mt-[1px]">
                     <Text as="p">Phone No.</Text>
                     <input
                       size="md"
@@ -105,8 +105,8 @@ export default function SignUp() {
                     />
                   </div>
                   </div>
-                  <div className="flex gap-4 self-stretch sm:flex-col">
-                  <div className="flex flex-col items-start gap-[1px] w-full">
+                  <div className="flex gap-4 mq450:gap-[1px] self-stretch sm:flex-col">
+                  <div className="flex flex-col items-start gap-[1px] w-full mq450:mt-[1px]">
                     <Text as="p">Password</Text>
                     <input
                       size="md"
@@ -137,7 +137,7 @@ export default function SignUp() {
                       name="tick"
                       label="&nbsp;I agree with the terms of use"
                       id="tick"
-                      className="gap-2 py-0.5 font-inter text-[16px] text-gray-900 border-black"
+                      className="gap-2 mq450:my-4  py-0.5 font-inter text-[16px] text-gray-900 border-black"
                       required
                     />
                     </div>

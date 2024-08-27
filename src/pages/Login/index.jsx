@@ -40,7 +40,7 @@ export default function LoginPage() {
       </Helmet>
       <div className="flex w-full h-screen items-center bg-light_mode-white-5_ffffff md:flex-col overflow-hidden">
         {/* Login Form */}
-        <form onSubmit={handleSubmit} className="flex w-[130%] md:w-[89px] lg:w-1/2 md:h-[50px] h-[500px] flex-col items-center px-4 md:px-1">
+        <form onSubmit={handleSubmit} className="flex mq450:w-[70%] mq450:mt-5 w-[130%] md:w-[89px] lg:w-1/2 md:h-[50px] h-[500px] flex-col items-center px-4 md:px-1">
           <div className="flex w-[564px] max-w-md lg:max-w-sm h-[679px] lg:h-[10%] md:w-[100%] flex-col items-center justify-center gap-1 rounded-lg bg-light_mode-white-5_ffffff px-8 py-[1px] mt-[1px] md:px-5 md:py-1 shadow-xl md:shadow-none">
             <div className="flex flex-col items-center gap-1 w-full">
               <div className="flex flex-col items-center justify-center gap-1 w-full">
