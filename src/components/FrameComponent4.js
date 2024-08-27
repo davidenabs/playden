@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const FrameComponent4 = ({ className = "" }) => {
   return (
     <section
-      className={`self-stretch flex flex-row items-start justify-start pt-0 px-0 pb-5 box-border max-w-full text-left text-xs text-light-mode-white-5-ffffff font-poppins ${className}`}
+      className={`self-stretch flex flex-row items-start justify-start pt-0 px-0 pb-3 box-border max-w-full text-left text-xs text-light-mode-white-5-ffffff font-poppins ${className}`}
     >
       <div className="flex-1 bg-light-mode-white-5-ffffff overflow-hidden flex flex-row items-start justify-start flex-wrap content-start pt-[22px] px-16 pb-[21px] box-border gap-[25px] max-w-full z-[1] mq800:pl-8 mq800:pr-8 mq800:box-border">
         <div className="w-[116px] flex flex-col items-start justify-start pt-px px-0 pb-0 box-border">
