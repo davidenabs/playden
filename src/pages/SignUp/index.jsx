@@ -45,6 +45,7 @@ export default function SignUp() {
                       name="fName"
                       type="text"
                       className="w-full border border-black-900_01 rounded p-2 "
+                      required
                     />
                   </div>
                   &nbsp;
@@ -56,6 +57,7 @@ export default function SignUp() {
                       name="lName"
                       type="text"
                       className="w-full border border-black-900_01 rounded p-2"
+                      required
                     />
                   </div>
                   </div>
@@ -70,6 +72,7 @@ export default function SignUp() {
                       className="w-full border border-black-900_01 rounded p-2"
                       value={email}
                       onChange={handleEmailChange}
+                      required
                     />
                   </div>
                   &nbsp;
@@ -81,6 +84,7 @@ export default function SignUp() {
                       name="number"
                       type="tel"
                       className="w-full border border-black-900_01 rounded p-2"
+                      required
                     />
                   </div>
                   </div>
@@ -95,6 +99,7 @@ export default function SignUp() {
                       className="w-full border border-black-900_01 rounded p-2"
                       value={password}
                       onChange={handlePasswordChange}
+                      required
                     />
                   </div>
                   &nbsp;
@@ -106,6 +111,7 @@ export default function SignUp() {
                       name="cPassword"
                       type="password"
                       className="w-full border border-black-900_01 rounded p-2"
+                      required
                     />
                   </div>
                   </div>
@@ -115,6 +121,7 @@ export default function SignUp() {
                       label="&nbsp;I agree with the terms of use"
                       id="tick"
                       className="gap-2 py-0.5 font-inter text-[16px] text-gray-900 border-black"
+                      required
                     />
                     </div>
                 </div>
