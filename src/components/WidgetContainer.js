@@ -22,7 +22,7 @@ const WidgetContainer = ({ className = "" }) => {
       />
       <div className="w-[400px] rounded-xl bg-dimgray-100 overflow-hidden shrink-0 flex flex-row items-start justify-start pt-[33px] px-[29px] pb-[35px] box-border gap-[33px] max-w-full z-[1] text-13xl font-work-sans mq800:flex-wrap mq450:gap-4">
         <div className="flex flex-col items-start justify-start gap-[4.5px] min-w-[243px] mq800:flex-1">
-          <div className="w-[52px] h-[52px] rounded-13xl bg-gray-100 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2.5 box-border">
+          <div className="w-[52px] h-[52px] rounded-13xl bg-gray-500 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2.5 box-border">
             <img
               className="h-[32.5px] w-[29.3px] relative"
               loading="lazy"
