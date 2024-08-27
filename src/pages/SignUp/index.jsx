@@ -28,7 +28,7 @@ export default function SignUp() {
             <div className="flex flex-col items-center gap-4 w-full">
               <div className="flex flex-col items-center justify-center gap-5 w-full">
                 <Link to="/login" rel="noreferrer">
-                  <Heading size="heading2xl" as="h1" className="font-worksans text-black-900_01 text-center">
+                  <Heading size="heading2xl" as="h1" className="font-worksans text-black-900_01 text-center no-underline">
                     Sign Up
                   </Heading>
                 </Link>
@@ -115,7 +115,7 @@ export default function SignUp() {
                     />
                     </div>
                 </div>
-                <Link to="">
+                <Link to="/dashboard">
                   <Button color="gray_800" size="lg" shape="round" className="min-w-[188px] font-worksans">
                     Sign Up
                   </Button>

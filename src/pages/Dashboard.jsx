@@ -16,7 +16,7 @@ const Dashboard = () => {
       <section className="self-stretch flex flex-row items-start justify-start py-0 px-16 box-border max-w-full mq800:pl-8 mq800:pr-8 mq800:box-border">
         <div className="flex-1 flex flex-col items-start justify-start gap-5 max-w-full">
           <WidgetContainer />
-          <FrameComponent5 />
+          {/* <FrameComponent5 /> */}
         </div>
       </section>
     </div>
