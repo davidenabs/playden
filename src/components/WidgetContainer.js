@@ -41,7 +41,7 @@ const WidgetContainer = ({ className = "" }) => {
           </div>
         </div>
         <div className="mt-[-44px] h-[110px] w-28 relative min-w-[112px] text-white shrink-0 text-sm font-be-vietnam mq800:flex-1">
-          <b className="absolute top-[23px] left-[0px] tracking-[-0.02em] leading-[24px] text-white inline-block min-w-[66px] z-[1]">
+          <b className="absolute top-[23px] left-[0px] tracking-[-0.02em] leading-[24px] text-white-a700_bf inline-block min-w-[66px] z-[1]">
             This Week
           </b>
           <div className="absolute top-[0px] left-[2px] w-full h-full">
