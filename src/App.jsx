@@ -77,7 +77,7 @@ function App() {
       <Route path="/pitch-history" element={<PitchHistory/>} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signUp" element={<SignUp />} />
-      <Route path="/forgetpassword" element={<ForgetPassword />} />
+      <Route path="/forgotpassword" element={<ForgetPassword />} />
       <Route path="/reset" element={<ResetOTP/>} />
       <Route path="/booking-details" element={<BookingDetails />} />
       <Route path="*" element={<NotFound />} />
