@@ -38,10 +38,10 @@ export default function LoginPage() {
         <title>PlayDen</title>
         <meta name="description" content="Web site created using create-react-app" />
       </Helmet>
-      <div className="flex w-full h-screen items-center bg-light_mode-white-5_ffffff md:flex-col overflow-hidden">
+      <div className="flex w-full h-screen items-center bg-gray-100 md:flex-col overflow-hidden">
         {/* Login Form */}
         <form onSubmit={handleSubmit} className="flex mq450:w-[70%] mq450:mt-5 w-[130%] md:w-[89px] lg:w-1/2 md:h-[50px] h-[500px] flex-col items-center px-4 md:px-1">
-          <div className="flex w-[564px] max-w-md lg:max-w-sm h-[679px] lg:h-[10%] md:w-[100%] flex-col items-center justify-center gap-1 rounded-lg bg-light_mode-white-5_ffffff px-8 py-[1px] mt-[1px] md:px-5 md:py-1 shadow-xl md:shadow-none">
+          <div className="flex w-[564px] max-w-md lg:max-w-sm h-[679px] lg:h-[10%] md:w-[100%] flex-col items-center justify-center gap-1 rounded-lg bg-white-a700_bf px-8 py-[1px] mt-[1px] md:px-5 md:py-1 shadow-xl md:shadow-none">
             <div className="flex flex-col items-center gap-1 w-full">
               <div className="flex flex-col items-center justify-center gap-1 w-full">
                 <Link to="/login" rel="noreferrer" className="no-underline">
