@@ -28,8 +28,8 @@ const PitchHistory = () => {
       <FrameComponent aare="/aare@2x.png" />
       <main className="self-stretch flex flex-col items-end justify-start gap-[24.1px] max-w-full">
         <Menu />
-        <section className="self-stretch flex flex-row items-start justify-center py-0 pl-[21px] mq450:pl-[0px] pr-5 box-border max-w-full text-center text-base text-text font-poppins">
-          <div className="w-[1145px] rounded-lg bg-light-mode-white-5-ffffff flex flex-col items-start justify-start py-5 px-[34px] mq450:px-[27px] box-border gap-[35px] max-w-full mq725:gap-[17px]">
+        <section className="self-stretch flex flex-row items-start justify-center bg-gray-300 py-0 pl-[21px] mq450:pl-[0px] pr-5 box-border max-w-full text-center text-base text-text font-poppins">
+          <div className="w-[1145px] rounded-lg bg-white-a700_bf flex flex-col items-start justify-start py-5 px-[34px] mt-[20px] mq450:px-[27px] box-border gap-[35px] max-w-full mq725:gap-[17px]">
             <div className="w-[652px] flex flex-row items-start justify-start py-0 px-0.5 box-border max-w-full">
               <div className="flex-1 flex flex-row items-start justify-start gap-8 max-w-full mq725:gap-4 mq725:flex-wrap">
                 <img

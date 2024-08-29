@@ -77,7 +77,7 @@ module.exports = {
           "200_01": "#d29ab8"
         },
         white: {
-          a700_bf: "#ffffffbf"
+          a700_bf: "#fff"
         },
         // Additional colors from the second config
         gainsboro: {

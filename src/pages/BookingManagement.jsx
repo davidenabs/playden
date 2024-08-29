@@ -28,8 +28,8 @@ const BookingManagement = () => {
     <div className="w-full relative bg-light-mode-gray-10-f5f5f5 overflow-hidden flex flex-col items-start justify-start pt-0 px-0 pb-[52px] box-border leading-[normal] tracking-[normal]">
       <FrameComponent aare="/aare2@2x.png" />
       <FrameComponent3 />
-      <section className="self-stretch flex flex-row items-start justify-start py-0 px-[70px] box-border max-w-full text-left text-base text-f2 font-poppins mq750:pl-[35px] mq750:pr-[35px] mq750:box-border">
-        <div className="flex-1 rounded-lg bg-light-mode-white-5-ffffff flex flex-row items-start justify-start py-5 px-8 box-border max-w-full">
+      <section className="self-stretch flex flex-row bg-gray-300 items-start justify-start py-0 px-[70px] box-border max-w-full text-left text-base text-f2 font-poppins mq750:pl-[35px] mq750:pr-[35px] mq750:box-border">
+        <div className="flex-1 rounded-lg bg-white-a700_bf mt-[20px] flex flex-row items-start justify-start py-5 px-8 box-border max-w-full">
           <div className="flex-1 flex flex-row items-start justify-between flex-wrap content-start max-w-full gap-5">
             <div className="flex flex-col items-start justify-start gap-9">
               <div className="relative font-medium inline-block min-w-[30px]">

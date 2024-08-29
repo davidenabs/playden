@@ -11,7 +11,7 @@ const Container = ({ className = "", image8 }) => {
 
   return (
     <div
-      className={`self-stretch bg-light-mode-white-5-ffffff flex flex-row items-start justify-between py-0 pl-0 pr-6 box-border max-w-full gap-5 text-center text-base text-text font-poppins mq1000:flex-wrap mq1000:p-5 mq1000:box-border ${className}`}
+      className={`self-stretch bg-white-a700_bf flex flex-row items-start justify-between py-0 pl-0 pr-6 box-border max-w-full gap-5 text-center text-base text-text font-poppins mq1000:flex-wrap mq1000:p-5 mq1000:box-border ${className}`}
     >
       <div className="w-[614px] flex flex-row items-start justify-start gap-[23px] max-w-full mq725:flex-wrap">
         <img
