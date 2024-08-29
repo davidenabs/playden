@@ -68,6 +68,7 @@ function App() {
 
   return (
     <Routes>
+      <Route path="/" element={<Dashboard />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/booking-management" element={<BookingManagement />} />
       <Route path="/pitch-listing" element={<PitchListing />} />
