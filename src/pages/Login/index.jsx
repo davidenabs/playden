@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Img, Text, Button, CheckBox, Input, Heading } from "../../components";
 import React, { useState } from "react";
+import 'animate.css';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); 
+  const [loading, setLoading] = useState(false);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -17,18 +19,42 @@ export default function LoginPage() {
     setPassword(event.target.value);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Replace with actual login logic
-    const isLoginSuccessful = email === "user@example.com" && password === "password"; // Dummy condition
+    setLoading(true);
 
-    if (isLoginSuccessful) {
-      // Navigate to the dashboard after successful login
-      navigate('/dashboard');
-    } else {
-      // Handle login failure 
-      alert('Invalid login credentials');
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/v1/auth/login', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'X-API-Key': '', 
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        //  API returns  user data upon successful login
+        console.log('Login successful:', data);
+        // Save token to local storage or context
+        // localStorage.setItem('token', data.token);
+        // Navigate to the dashboard
+        navigate('/dashboard');
+      } else {
+        // Handle login failure 
+        alert(data.message || 'Invalid login credentials');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      alert('An error occurred. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -95,8 +121,10 @@ export default function LoginPage() {
                   </div>
                 </div>
                 
-                  <Button color="gray_800" size="lg" shape="round" className="min-w-[188px] font-worksans" style={{ color: 'white' }}>
-                    Login
+                  <Button
+                   color="gray_800" size="lg" shape="round" className="min-w-[188px] font-worksans" style={{ color: 'white' }}>
+                    {loading ? 'Logging in...' : 'Login'}
+                    
                   </Button>
                 
               </div>
@@ -110,9 +138,9 @@ export default function LoginPage() {
           </div>
         </form>
         {/* Side Image */}
-        <div className=" md:hidden lg:block w-[80%] h-full relative">
+        <div className=" md:hidden lg:block w-[80%] h-full relative animate__animated animate__bounceInDown transform">
           <img src="/side-image.png" alt="Side Image" className="h-full w-full object-cover" />
-          <img src="/logo.png" alt="Centered Image" className="absolute top-1/2 left-1/2 w-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+          <img src="/logo.png" alt="Centered Image" className="absolute top-1/2 left-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2" />
         </div>
       </div>
     </>

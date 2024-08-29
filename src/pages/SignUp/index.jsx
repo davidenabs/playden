@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Img, Text, Button, CheckBox, Input, Heading } from "../../components";
 import React, { useState } from "react";
+import 'animate.css';
 
 export default function SignUp() {
   const [email, setEmail] = useState('');
@@ -38,10 +39,10 @@ export default function SignUp() {
         <title>PlayDen</title>
         <meta name="description" content="Web site created using create-react-app" />
       </Helmet>
-      <div className="flex w-full h-screen items-center bg-light_mode-white-5_ffffff md:flex-col overflow-hidden">
+      <div className="flex w-full h-screen items-center bg-gray-100 md:flex-col overflow-hidden">
         {/* Login Form */}
         <form onSubmit={handleSubmit} className="flex mq450:w-[100%] mq450:pt-[100px] mq450:pr-[19px] w-full md:w-full lg:w-1/2 h-full flex-col items-center px-[2px] md:px-1 md:overflow-y-auto md:mt-0">
-          <div className="flex w-[564px] max-w-[70%] lg:max-w-[90%] h-[90%] lg:h-[10%] md:w-[100%] flex-col items-center justify-center gap-2 rounded-lg bg-light_mode-white-5_ffffff px-8 py-12 mt-2 md:px-0 md:my-[40%] md:py-5 md:pt-[12px] shadow-strong md:shadow-none">
+          <div className="flex w-[564px] max-w-[70%] lg:max-w-[90%] h-[90%] lg:h-[10%] md:w-[100%] bg-white-a700_bf flex-col items-center justify-center gap-2 rounded-lg bg-light_mode-white-5_ffffff px-8 py-12 mt-2 md:px-0 md:my-[40%] md:py-5 md:pt-[12px] shadow-strong md:shadow-none">
             <div className="flex flex-col items-center gap-4 w-full mt-0">
               <div className="flex flex-col items-center justify-center gap-5 w-full mt-0">
                 <Link to="/login" rel="noreferrer" className="no-underline">
@@ -160,7 +161,7 @@ export default function SignUp() {
             </div>
         </form>
         {/* Side Image */}
-        <div className=" md:hidden lg:block w-[80%] h-full relative">
+        <div className=" md:hidden lg:block w-[80%] h-full relative animate__animated animate__bounceInDown transform">
           <img src="/side-image.png" alt="Side Image" className="h-full w-full object-cover" />
           <img src="/logo.png" alt="Centered Image" className="absolute top-1/2 left-1/2 w-1/2 transform -translate-x-1/2 -translate-y-1/2" />
         </div>
