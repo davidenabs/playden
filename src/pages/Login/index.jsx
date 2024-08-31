@@ -4,16 +4,22 @@ import { Link } from "react-router-dom";
 import { Img, Text, Button, CheckBox, Input, Heading } from "../../components";
 import React, { useState } from "react";
 import 'animate.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); 
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   }
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -78,7 +84,7 @@ export default function LoginPage() {
                 <Text as="p" className="text-center mt-0">Sign in to stay connected.</Text>
               </div>
               <div className="flex flex-col items-center gap-2 mq450:w-[300px] md:w-[406px]">
-                <div className="flex flex-col gap-[1px] w-full">
+                <div className="flex flex-col gap-[1px] w-[130%] mq450:w-[100%] mq450:mr-[16px]">
                   <div className="flex flex-col items-start gap-0.5 w-full">
                     <Text as="p">Email</Text>
                     <input
