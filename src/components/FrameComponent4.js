@@ -26,11 +26,11 @@ const FrameComponent4 = ({ className = "" }) => {
           <div className="flex flex-row items-start justify-start gap-6">
             <div className="relative font-medium inline-block min-w-[72px]">
             
-            <Link to='/pitch-listing' className=" [text-decoration:none] relative text-xs font-medium font-poppins text-black-900 text-left inline-block min-w-[68px] z-[1]">Pitch Listing</Link>
+            <Link to='/pitch-listing' className=" [text-decoration:none] relative text-xs font-medium font-poppins text-gray-200 text-left inline-block min-w-[68px] z-[1]">Pitch Listing</Link>
              
             </div>
             <div className="relative font-medium">
-            <Link to='/booking-management' className="no-underline text-black-900">Booking Management</Link>
+            <Link to='/booking-management' className="no-underline text-gray-200">Booking Management</Link>
             </div>
           </div>
         </div>

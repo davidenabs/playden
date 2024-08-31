@@ -17,7 +17,7 @@ const FrameComponent2 = ({ className = "" }) => {
         </div>
         <div className="flex flex-row items-start justify-start gap-4 max-w-full text-silver mq450:flex-wrap">
           <div className="flex flex-col items-start justify-start pt-2.5 px-0 pb-0">
-          <Link to='/dashboard' className="[text-decoration:none] relative text-xs font-medium font-poppins text-black-900 text-left inline-block min-w-[68px] z-[1]">Dashboard</Link>
+          <Link to='/dashboard' className="[text-decoration:none] relative text-xs font-medium font-poppins text-gray-200 text-left inline-block min-w-[68px] z-[1]">Dashboard</Link>
           </div>
           <button className="cursor-pointer [border:none] pt-[11px] px-[22px] pb-2.5 bg-f2 rounded-md flex flex-row items-start justify-start whitespace-nowrap hover:bg-darkslategray-300">
             <div className="h-[39px] w-[116px] relative rounded-md bg-f2 hidden" />
@@ -26,7 +26,7 @@ const FrameComponent2 = ({ className = "" }) => {
             </div>
           </button>
           <div className="flex flex-col items-start justify-start pt-[11px] px-0 pb-0">
-          <Link to='/booking-management' className="[text-decoration:none] relative text-xs font-medium font-poppins text-black-900 text-left inline-block min-w-[68px] z-[1]">Booking Management</Link>
+          <Link to='/booking-management' className="[text-decoration:none] relative text-xs font-medium font-poppins text-gray-200 text-left inline-block min-w-[68px] z-[1]">Booking Management</Link>
           </div>
         </div>
         <div className="w-[250px] rounded-md bg-f2 border-dimgray-200 border-[1px] border-solid box-border flex flex-row items-start justify-start pt-[9px] px-[18px] pb-2 gap-2 text-smi">
