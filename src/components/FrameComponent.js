@@ -16,7 +16,7 @@ const FrameComponent = memo(({ className = "", aare }) => {
     </div>
     <div className="absolute top-[22.9px] left-[64px] top-[40px] mq450:left-[10px] right-[10px] flex flex-row items-end justify-between gap-5 max-w-full mq725:flex-wrap">
       <div className="flex flex-row items-end justify-start gap-4">
-        <div className="flex flex-col items-start justify-end pt-0 pb-[3px]">
+        <div className="flex flex-col items-start justify-end pt-0 pb-[7px]">
           <Img
             className="w-[50px] h-[50px] relative object-cover"
             loading="lazy"
