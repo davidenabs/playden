@@ -66,7 +66,7 @@ export default function LoginPage() {
       </Helmet>
       <div className="flex w-full h-screen items-center bg-gray-100 md:flex-col overflow-hidden">
         {/* Login Form */}
-        <form onSubmit={handleSubmit} className="flex mq450:w-[70%] mq450:mt-5 w-[130%] md:w-[89px] lg:w-1/2 md:h-[50px] h-[500px] flex-col items-center px-4 md:px-1 mb-[50px]">
+        <form onSubmit={handleSubmit} className="flex mq450:w-[85%] mq450:mt-5 w-[130%] md:w-[89px] lg:w-1/2 md:h-[50px] h-[500px] flex-col items-center px-4 md:px-1 mb-[50px]">
           <div className="flex w-[564px] max-w-md lg:max-w-sm h-[679px] lg:h-[10%] md:w-[100%] flex-col items-center justify-center gap-0 rounded-lg bg-white-a700_bf px-2 py-[1px] pr-7 mt-[1px] md:px-5 md:py-1 shadow-xl md:shadow-none">
             <div className="flex flex-col items-center gap-1 w-[436px] h-[450px]">
               <div className="flex flex-col items-center justify-center gap-[1px] w-[197px] mt-[40px]">
@@ -77,7 +77,7 @@ export default function LoginPage() {
                 </Link>
                 <Text as="p" className="text-center mt-0">Sign in to stay connected.</Text>
               </div>
-              <div className="flex flex-col items-center gap-2 w-[406px]">
+              <div className="flex flex-col items-center gap-2 mq450:w-[300px] md:w-[406px]">
                 <div className="flex flex-col gap-[1px] w-full">
                   <div className="flex flex-col items-start gap-0.5 w-full">
                     <Text as="p">Email</Text>
