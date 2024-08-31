@@ -1,7 +1,6 @@
 import FrameComponent from "../components/FrameComponent";
 import FrameComponent4 from "../components/FrameComponent4";
 import WidgetContainer from "../components/WidgetContainer";
-import FrameComponent5 from "../components/FrameComponent5";
 
 const Dashboard = () => {
   return (

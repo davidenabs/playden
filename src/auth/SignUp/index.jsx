@@ -3,11 +3,16 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Img, Text, Button, CheckBox, Input, Heading } from "../../components";
 import React, { useState } from "react";
+import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import 'animate.css';
 
-export default function SignUp() {
+const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const signIn = useSignIn();
   const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
@@ -18,20 +23,62 @@ export default function SignUp() {
     setPassword(event.target.value);
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    // Replace with 
-    console.log('login successful');
-    
-    if (true) {
-      // Navigate to the dashboard after successful login
-      navigate('/login');
-    } else {
-      // Handle login failure 
-      alert('Invalid login credentials');
+  const handleFirstNameChange = (event) => {
+    setFirstName(event.target.value);
+  }
+
+  const handleLastNameChange = (event) => {
+    setLastName(event.target.value);
+  }
+
+  const handlePhoneNumberChange = (event) => {
+    setPhoneNumber(event.target.value);
+  }
+
+  const handleSignUp = async (e) => {
+    const requestBody = {
+      email,
+      username,
+      address,
+      phone_number: phoneNumber,
+      password,
+    };
+
+    try {
+      const response = await fetch(process.env.REACT_APP_API_URL, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        
+        if (signIn({
+          token: data.token, 
+          expiresIn: 3600, 
+          tokenType: 'Bearer', 
+          authState: { email: data.email, username: data.username }, 
+        })) {
+          // Redirect to the login page after successful sign-up
+          navigate('/login');
+        } else {
+          alert('Sign-In failed. Please try again.');
+        }
+      } else {
+        const errorData = await response.json();
+        alert(`Sign-Up failed: ${errorData.message || 'Please try again.'}`);
+      }
+    } catch (error) {
+      console.error('Error during sign-up:', error);
+      alert('An error occurred. Please try again.');
     }
   };
+
 
   return (
     <>
@@ -41,7 +88,7 @@ export default function SignUp() {
       </Helmet>
       <div className="flex w-full h-screen items-center bg-gray-100 md:flex-col overflow-hidden">
         {/* Login Form */}
-        <form onSubmit={handleSubmit} className="flex scale-[0.8] mt-3 mq450:w-[160%] mq450:mt-[0px] mq450:pr-[4px] w-[130%] lg:w-1/2 mq450:h-full h-[750px] flex-col items-center px-[2px] md:px-1 md:overflow-y-auto md:mt-0">
+        <form onSubmit={handleSignUp} className="flex scale-[0.8] mt-3 mq450:w-[160%] mq450:mt-[0px] mq450:pr-[4px] w-[130%] lg:w-1/2 mq450:h-full h-[750px] flex-col items-center px-[2px] md:px-1 md:overflow-y-auto md:mt-0">
           <div className="flex w-[590px] max-w-[70%] lg:max-w-[90%] h-[70%] lg:h-[10%] md:w-[100%] bg-white-a700_bf flex-col items-center justify-center gap-2 rounded-lg bg-light_mode-white-5_ffffff mq450:h-[600%] mq450:pr-[10px] px-8 py-9 my-[1px] pt-[150px] mq450:pt-[1px] mq450:px-0 mq450:mt-[5px] md:py-5 mq450:pt-[40px] shadow-strong md:shadow-none">
             <div className="flex flex-col items-center gap-4 w-full mt-0">
               <div className="flex flex-col items-center justify-center gap-[1px] w-full mt-0">
@@ -62,6 +109,7 @@ export default function SignUp() {
                       shape="round"
                       name="fName"
                       type="text"
+                      onChange={handleFirstNameChange}
                       className="w-full border border-black-900_01 rounded p-2 "
                       required
                     />
@@ -74,6 +122,7 @@ export default function SignUp() {
                       shape="round"
                       name="lName"
                       type="text"
+                      onChange={handleLastNameChange}
                       className="w-full border border-black-900_01 rounded p-2"
                       required
                     />
@@ -101,6 +150,7 @@ export default function SignUp() {
                       shape="round"
                       name="number"
                       type="tel"
+                      onChange={handlePhoneNumberChange}
                       className="w-full border border-black-900_01 rounded p-2"
                       required
                     />
@@ -169,3 +219,5 @@ export default function SignUp() {
     </>
   );
 }
+
+export default SignUp;

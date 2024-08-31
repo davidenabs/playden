@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   Routes,
   Route,
@@ -7,16 +7,16 @@ import {
 } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import BookingManagement from "./pages/BookingManagement";
-import LoginPage from "./pages/Login";
+import LoginPage from "./auth/Login";
 import PitchHistory from "./pages/PitchHistory";
 import PitchListing from "./pages/PitchListing";
 import BookingDetails from "./pages/BookingDetails";
-import SignUp from "./pages/SignUp";
+import SignUp from "./auth/SignUp";
 import NotFound from "./pages/NotFound";
-import ForgetPassword from "./pages/forgottenPassword/forgetPassword";
-import ResetOTP from "./pages/forgottenPassword/resetOtp";
+import ForgetPassword  from "./auth/forgetPassword";
+import ResetOTP from "./auth/resetOtp";
 
-function App() {
+const App = () => {
   const action = useNavigationType();
   const location = useLocation();
   const pathname = location.pathname;
@@ -77,7 +77,7 @@ function App() {
       <Route path="/pitch-history" element={<PitchHistory/>} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signUp" element={<SignUp />} />
-      <Route path="/forgotpassword" element={<ForgetPassword />} />
+      <Route path="/forgetpassword" element={<ForgetPassword />} />
       <Route path="/reset" element={<ResetOTP/>} />
       <Route path="/booking-details" element={<BookingDetails />} />
       <Route path="*" element={<NotFound />} />

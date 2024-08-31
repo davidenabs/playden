@@ -21,7 +21,7 @@ const BookingManagement = () => {
       date: "8/9/2024",
       time: "2:00pm",
     },
-    // Add more transaction objects as needed
+    //  more transaction objects if needed
   ];
 
   return (

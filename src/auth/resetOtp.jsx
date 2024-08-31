@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
-import { Text, Button, Heading } from "../../components";
+import { Text, Button, Heading } from "../components";
 import 'animate.css';
 
-export default function ResetOTP() {
+const ResetOTP = () => {
   const [otp, setOtp] = useState(new Array(6).fill(""));
   const navigate = useNavigate();
   const inputRefs = useRef([]);
@@ -36,35 +36,7 @@ export default function ResetOTP() {
   }, [otp]);
 
   const handleSubmit = async () => {
-    const otpValue = otp.join('');
-    console.log('Submitting OTP:', otpValue);
-
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/v1/auth/verify-otp', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'X-API-Key': '', 
-        },
-        body: JSON.stringify({
-          otp: otpValue,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log('OTP verification successful:', data);
-        navigate('/dashboard');
-      } else {
-        alert(data.message || 'Invalid OTP');
-        setOtp(new Array(6).fill("")); // Clear OTP on failure
-      }
-    } catch (error) {
-      console.error('Error during OTP verification:', error);
-      alert('An error occurred. Please try again.');
-    }
+    
   };
 
   return (
@@ -118,4 +90,6 @@ export default function ResetOTP() {
       </div>
     </>
   );
-}
+};
+
+export default ResetOTP;
