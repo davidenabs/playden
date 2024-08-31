@@ -98,18 +98,25 @@ export default function LoginPage() {
                       required
                     />
                   </div>
-                  <div className="flex flex-col items-start gap-0.5 w-full">
+                  <div className="flex flex-col relative items-start gap-0.5 w-full">
                     <Text as="p">Password</Text>
                     <input
                       size="md"
                       shape="round"
                       name="password"
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       className="w-full border border-black-900_01 rounded p-2"
                       value={password}
                       onChange={handlePasswordChange}
                       required
                     />
+                     <button
+          type="button"
+          onClick={toggleShowPassword}
+          className="absolute right-1 top-[75px] transform -translate-y-1/2"
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </button>
                   </div>
                   <div className="flex items-center justify-between w-full">
                     <CheckBox

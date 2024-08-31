@@ -41,10 +41,10 @@ export default function SignUp() {
       </Helmet>
       <div className="flex w-full h-screen items-center bg-gray-100 md:flex-col overflow-hidden">
         {/* Login Form */}
-        <form onSubmit={handleSubmit} className="flex mq450:w-[100%] mq450:pt-[100px] mq450:pr-[19px] w-full md:w-full lg:w-1/2 h-full flex-col items-center px-[2px] md:px-1 md:overflow-y-auto md:mt-0">
-          <div className="flex w-[564px] max-w-[70%] lg:max-w-[90%] h-[90%] lg:h-[10%] md:w-[100%] bg-white-a700_bf flex-col items-center justify-center gap-2 rounded-lg bg-light_mode-white-5_ffffff px-8 py-12 mt-2 md:px-0 md:my-[40%] md:py-5 md:pt-[12px] shadow-strong md:shadow-none">
+        <form onSubmit={handleSubmit} className="flex scale-[0.8] mt-3 mq450:w-[160%] mq450:mt-[0px] mq450:pr-[4px] w-[130%] lg:w-1/2 mq450:h-full h-[750px] flex-col items-center px-[2px] md:px-1 md:overflow-y-auto md:mt-0">
+          <div className="flex w-[590px] max-w-[70%] lg:max-w-[90%] h-[70%] lg:h-[10%] md:w-[100%] bg-white-a700_bf flex-col items-center justify-center gap-2 rounded-lg bg-light_mode-white-5_ffffff mq450:h-[600%] mq450:pr-[10px] px-8 py-9 my-[1px] pt-[150px] mq450:pt-[1px] mq450:px-0 mq450:mt-[5px] md:py-5 mq450:pt-[40px] shadow-strong md:shadow-none">
             <div className="flex flex-col items-center gap-4 w-full mt-0">
-              <div className="flex flex-col items-center justify-center gap-5 w-full mt-0">
+              <div className="flex flex-col items-center justify-center gap-[1px] w-full mt-0">
                 <Link to="/login" rel="noreferrer" className="no-underline">
                   <Heading size="heading2xl" as="h1" className="font-worksans text-black-900_01 text-center no-underline">
                     Sign Up
@@ -52,10 +52,10 @@ export default function SignUp() {
                 </Link>
                 <Text as="p" className="text-center mt-0">Create your PlayDen account.</Text>
               </div>
-              <div className="flex flex-col items-center gap-1 w-full ">
-                <div className="flex flex-col gap-1 w-full ">
-                    <div className="flex gap-4 mq450:gap-[1px] self-stretch sm:flex-col ">
-                  <div className="flex flex-col items-start gap-[1px] w-full mq450:mt-[1px]">
+              <div className="flex flex-col items-center gap-0.5 w-[75%] ">
+                <div className="flex flex-col gap-0.5 w-full ">
+                    <div className="flex gap-4 mq450:gap-0.5 self-stretch sm:flex-col ">
+                  <div className="flex flex-col items-start gap-0 w-full mq450:mt-[1px]">
                     <Text as="p">First Name</Text>
                     <input
                       size="md"
@@ -79,8 +79,8 @@ export default function SignUp() {
                     />
                   </div>
                   </div>
-                  <div className="flex gap-4 mq450:gap-[1px] self-stretch sm:flex-col">
-                  <div className="flex flex-col items-start gap-[1px] w-full mq450:mt-[1px]">
+                  <div className="flex gap-4 mq450:gap-0.5 self-stretch sm:flex-col">
+                  <div className="flex flex-col items-start gap-0.5 w-full mq450:mt-[1px]">
                     <Text as="p">Email</Text>
                     <input
                       size="md"
@@ -94,7 +94,7 @@ export default function SignUp() {
                     />
                   </div>
                   &nbsp;
-                  <div className="flex flex-col items-start gap-[1px] w-full mq450:mt-[1px]">
+                  <div className="flex flex-col items-start gap-0.5 w-full mq450:mt-[1px]">
                     <Text as="p">Phone No.</Text>
                     <input
                       size="md"
@@ -106,8 +106,8 @@ export default function SignUp() {
                     />
                   </div>
                   </div>
-                  <div className="flex gap-4 mq450:gap-[1px] self-stretch sm:flex-col">
-                  <div className="flex flex-col items-start gap-[1px] w-full mq450:mt-[1px]">
+                  <div className="flex gap-4 mq450:gap-0.5 self-stretch sm:flex-col">
+                  <div className="flex flex-col items-start gap-0.5 w-full mq450:mt-[1px]">
                     <Text as="p">Password</Text>
                     <input
                       size="md"
@@ -121,7 +121,7 @@ export default function SignUp() {
                     />
                   </div>
                   &nbsp;
-                  <div className="flex flex-col items-start gap-[1px] w-full">
+                  <div className="flex flex-col items-start gap-0.5 w-full">
                     <Text as="p">Confirm Password</Text>
                     <input
                       size="md"
@@ -138,7 +138,7 @@ export default function SignUp() {
                       name="tick"
                       label="&nbsp;I agree with the terms of use"
                       id="tick"
-                      className="gap-2 mq450:my-4 md:mt-4 py-0.5 font-inter text-[16px] text-gray-900 border-black"
+                      className="gap-2 mq450:my-4 md:mt-4 py-[24px] font-inter text-[16px] text-gray-900 border-black"
                       required
                     />
                     </div>
@@ -149,7 +149,7 @@ export default function SignUp() {
                   </Button>
                 
               </div>
-              <div className="flex">
+              <div className="flex mb-[126px]">
             <Link to="/login"  className="text-center no-underline">
               <Text as="p" className="self-end !text-black-900_02">
                 <span className="text-blue_gray-900">Already have an account</span>
