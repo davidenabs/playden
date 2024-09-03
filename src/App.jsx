@@ -7,14 +7,14 @@ import {
 } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import BookingManagement from "./pages/BookingManagement";
-import LoginPage from "./auth/Login";
+import LoginPage from "./pages/auth/Login";
 import PitchHistory from "./pages/PitchHistory";
 import PitchListing from "./pages/PitchListing";
 import BookingDetails from "./pages/BookingDetails";
-import SignUp from "./auth/SignUp";
+import SignUp from "./pages/auth/SignUp";
 import NotFound from "./pages/NotFound";
-import ForgetPassword  from "./auth/forgetPassword";
-import ResetOTP from "./auth/resetOtp";
+import ForgetPassword  from "./pages/auth/forgetPassword";
+import ResetOTP from "./pages/auth/resetOtp";
 
 const App = () => {
   const action = useNavigationType();

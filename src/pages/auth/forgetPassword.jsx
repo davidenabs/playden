@@ -1,13 +1,13 @@
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Img, Text, Button, CheckBox, Input, Heading } from "../components";
+import { Img, Text, Button, CheckBox, Input, Heading } from "../../components";
 import React, { useState } from "react";
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [otp, setOtp] = useState('');
 
   const handleEmailChange = (event) => {
@@ -19,7 +19,7 @@ const ForgetPassword = () => {
   }
 
   const handleSubmit = (e) => {
-  
+
   };
 
   return (
@@ -57,11 +57,11 @@ const ForgetPassword = () => {
                     />
                   </div>
                 </div>
-                
-                  <Button color="gray_800" size="lg" shape="round" className="min-w-[188px] font-worksans" style={{ color: 'white' }}>
+
+                <Button color="gray_800" size="lg" shape="round" className="min-w-[188px] font-worksans" style={{ color: 'white' }}>
                   {otp ? 'Generating OTP...' : 'Generate OTP'}
-                  </Button>
-                
+                </Button>
+
               </div>
             </div>
           </div>

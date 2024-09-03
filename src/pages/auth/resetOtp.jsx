@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
-import { Text, Button, Heading } from "../components";
+import { Text, Button, Heading } from "../../components";
 import 'animate.css';
 
 const ResetOTP = () => {
@@ -36,7 +36,7 @@ const ResetOTP = () => {
   }, [otp]);
 
   const handleSubmit = async () => {
-    
+
   };
 
   return (
@@ -68,7 +68,7 @@ const ResetOTP = () => {
                 />
               ))}
             </div>
-            
+
             <Button
               color="gray_800"
               size="lg"

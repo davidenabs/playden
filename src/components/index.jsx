@@ -6,4 +6,4 @@ import { Input } from "./Input";
 import { SelectBox } from "./SelectBox";
 import { Text } from "./Text";
 
-export { Button, CheckBox, Heading, Img, Input, SelectBox, Text};
+export { Button, CheckBox, Heading, Img, Input, SelectBox, Text };

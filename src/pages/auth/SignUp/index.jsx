@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Img, Text, Button, CheckBox, Input, Heading } from "../../components";
+import { Img, Text, Button, CheckBox, Input, Heading } from "../../../components";
 import React, { useState } from "react";
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import 'animate.css';
@@ -57,12 +57,12 @@ const SignUp = () => {
       if (response.ok) {
         const data = await response.json();
 
-        
+
         if (signIn({
-          token: data.token, 
-          expiresIn: 3600, 
-          tokenType: 'Bearer', 
-          authState: { email: data.email, username: data.username }, 
+          token: data.token,
+          expiresIn: 3600,
+          tokenType: 'Bearer',
+          authState: { email: data.email, username: data.username },
         })) {
           // Redirect to the login page after successful sign-up
           navigate('/login');
@@ -101,87 +101,87 @@ const SignUp = () => {
               </div>
               <div className="flex flex-col items-center gap-0.5 w-[75%] ">
                 <div className="flex flex-col gap-0.5 w-full ">
-                    <div className="flex gap-4 mq450:gap-0.5 self-stretch sm:flex-col ">
-                  <div className="flex flex-col items-start gap-0 w-full mq450:mt-[1px]">
-                    <Text as="p">First Name</Text>
-                    <input
-                      size="md"
-                      shape="round"
-                      name="fName"
-                      type="text"
-                      onChange={handleFirstNameChange}
-                      className="w-full border border-black-900_01 rounded p-2 "
-                      required
-                    />
-                  </div>
-                  &nbsp;
-                  <div className="flex flex-col items-start gap-[1px] w-full mq450:mt-[1px]">
-                    <Text as="p">Last Name</Text>
-                    <input
-                      size="md"
-                      shape="round"
-                      name="lName"
-                      type="text"
-                      onChange={handleLastNameChange}
-                      className="w-full border border-black-900_01 rounded p-2"
-                      required
-                    />
-                  </div>
-                  </div>
-                  <div className="flex gap-4 mq450:gap-0.5 self-stretch sm:flex-col">
-                  <div className="flex flex-col items-start gap-0.5 w-full mq450:mt-[1px]">
-                    <Text as="p">Email</Text>
-                    <input
-                      size="md"
-                      shape="round"
-                      name="email"
-                      type="email"
-                      className="w-full border border-black-900_01 rounded p-2"
-                      value={email}
-                      onChange={handleEmailChange}
-                      required
-                    />
-                  </div>
-                  &nbsp;
-                  <div className="flex flex-col items-start gap-0.5 w-full mq450:mt-[1px]">
-                    <Text as="p">Phone No.</Text>
-                    <input
-                      size="md"
-                      shape="round"
-                      name="number"
-                      type="tel"
-                      onChange={handlePhoneNumberChange}
-                      className="w-full border border-black-900_01 rounded p-2"
-                      required
-                    />
-                  </div>
+                  <div className="flex gap-4 mq450:gap-0.5 self-stretch sm:flex-col ">
+                    <div className="flex flex-col items-start gap-0 w-full mq450:mt-[1px]">
+                      <Text as="p">First Name</Text>
+                      <input
+                        size="md"
+                        shape="round"
+                        name="fName"
+                        type="text"
+                        onChange={handleFirstNameChange}
+                        className="w-full border border-black-900_01 rounded p-2 "
+                        required
+                      />
+                    </div>
+                    &nbsp;
+                    <div className="flex flex-col items-start gap-[1px] w-full mq450:mt-[1px]">
+                      <Text as="p">Last Name</Text>
+                      <input
+                        size="md"
+                        shape="round"
+                        name="lName"
+                        type="text"
+                        onChange={handleLastNameChange}
+                        className="w-full border border-black-900_01 rounded p-2"
+                        required
+                      />
+                    </div>
                   </div>
                   <div className="flex gap-4 mq450:gap-0.5 self-stretch sm:flex-col">
-                  <div className="flex flex-col items-start gap-0.5 w-full mq450:mt-[1px]">
-                    <Text as="p">Password</Text>
-                    <input
-                      size="md"
-                      shape="round"
-                      name="password"
-                      type="password"
-                      className="w-full border border-black-900_01 rounded p-2"
-                      value={password}
-                      onChange={handlePasswordChange}
-                      required
-                    />
+                    <div className="flex flex-col items-start gap-0.5 w-full mq450:mt-[1px]">
+                      <Text as="p">Email</Text>
+                      <input
+                        size="md"
+                        shape="round"
+                        name="email"
+                        type="email"
+                        className="w-full border border-black-900_01 rounded p-2"
+                        value={email}
+                        onChange={handleEmailChange}
+                        required
+                      />
+                    </div>
+                    &nbsp;
+                    <div className="flex flex-col items-start gap-0.5 w-full mq450:mt-[1px]">
+                      <Text as="p">Phone No.</Text>
+                      <input
+                        size="md"
+                        shape="round"
+                        name="number"
+                        type="tel"
+                        onChange={handlePhoneNumberChange}
+                        className="w-full border border-black-900_01 rounded p-2"
+                        required
+                      />
+                    </div>
                   </div>
-                  &nbsp;
-                  <div className="flex flex-col items-start gap-0.5 w-full">
-                    <Text as="p">Confirm Password</Text>
-                    <input
-                      size="md"
-                      shape="round"
-                      name="cPassword"
-                      type="password"
-                      className="w-full border border-black-900_01 rounded p-2"
-                      required
-                    />
-                  </div>
+                  <div className="flex gap-4 mq450:gap-0.5 self-stretch sm:flex-col">
+                    <div className="flex flex-col items-start gap-0.5 w-full mq450:mt-[1px]">
+                      <Text as="p">Password</Text>
+                      <input
+                        size="md"
+                        shape="round"
+                        name="password"
+                        type="password"
+                        className="w-full border border-black-900_01 rounded p-2"
+                        value={password}
+                        onChange={handlePasswordChange}
+                        required
+                      />
+                    </div>
+                    &nbsp;
+                    <div className="flex flex-col items-start gap-0.5 w-full">
+                      <Text as="p">Confirm Password</Text>
+                      <input
+                        size="md"
+                        shape="round"
+                        name="cPassword"
+                        type="password"
+                        className="w-full border border-black-900_01 rounded p-2"
+                        required
+                      />
+                    </div>
                   </div>
                   <div className="flex justify-center items-center">
                     <CheckBox
@@ -191,24 +191,24 @@ const SignUp = () => {
                       className="gap-2 mq450:my-4 md:mt-4 py-[24px] font-inter text-[16px] text-gray-900 border-black"
                       required
                     />
-                    </div>
+                  </div>
                 </div>
-                
-                  <Button color="gray_800" size="lg" shape="round" className="min-w-[188px] font-worksans text-ghostwhite">
-                    Sign Up
-                  </Button>
-                
+
+                <Button color="gray_800" size="lg" shape="round" className="min-w-[188px] font-worksans text-ghostwhite">
+                  Sign Up
+                </Button>
+
               </div>
               <div className="flex mb-[126px]">
-            <Link to="/login"  className="text-center no-underline">
-              <Text as="p" className="self-end !text-black-900_02">
-                <span className="text-blue_gray-900">Already have an account</span>
-                <span className="text-f2">&nbsp; Sign In</span>
-              </Text>
-            </Link>
-            </div>
+                <Link to="/login" className="text-center no-underline">
+                  <Text as="p" className="self-end !text-black-900_02">
+                    <span className="text-blue_gray-900">Already have an account</span>
+                    <span className="text-f2">&nbsp; Sign In</span>
+                  </Text>
+                </Link>
               </div>
             </div>
+          </div>
         </form>
         {/* Side Image */}
         <div className=" md:hidden lg:block w-[80%] h-full relative animate__animated animate__bounceInDown transform">

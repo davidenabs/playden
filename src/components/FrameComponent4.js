@@ -11,7 +11,12 @@ const FrameComponent4 = ({ className = "" }) => {
         <div className="w-[116px] flex flex-col items-start justify-start pt-px px-0 pb-0 box-border">
           <button className="cursor-pointer [border:none] pt-[11px] px-[21px] pb-2.5 bg-f2 self-stretch rounded-md flex flex-row items-start justify-start hover:bg-darkslategray-300">
             <div className="h-[39px] w-[116px] relative rounded-md bg-f2 hidden" />
-            <Link to='/dashboard' className="[text-decoration:none] relative text-xs font-medium font-poppins text-light-mode-white-5-ffffff text-left inline-block min-w-[68px] z-[1] text-ghostwhite">Dashboard</Link>
+            <Link
+              to="/dashboard"
+              className="[text-decoration:none] relative text-xs font-medium font-poppins text-light-mode-white-5-ffffff text-left inline-block min-w-[68px] z-[1] text-ghostwhite"
+            >
+              Dashboard
+            </Link>
           </button>
         </div>
         <div className="h-[39px] w-[97px] relative hidden">
@@ -25,12 +30,20 @@ const FrameComponent4 = ({ className = "" }) => {
         <div className="flex-1 flex flex-col items-start justify-start pt-[13px] px-0 pb-0 box-border min-w-[582px] max-w-full text-silver mq800:min-w-full">
           <div className="flex flex-row items-start justify-start gap-6">
             <div className="relative font-medium inline-block min-w-[72px]">
-            
-            <Link to='/pitch-listing' className=" [text-decoration:none] relative text-xs font-medium font-poppins text-gray-200 text-left inline-block min-w-[68px] z-[1]">Pitch Listing</Link>
-             
+              <Link
+                to="/pitch-listing"
+                className=" [text-decoration:none] relative text-xs font-medium font-poppins text-gray-200 text-left inline-block min-w-[68px] z-[1]"
+              >
+                Pitch Listing
+              </Link>
             </div>
             <div className="relative font-medium">
-            <Link to='/booking-management' className="no-underline text-gray-200">Booking Management</Link>
+              <Link
+                to="/booking-management"
+                className="no-underline text-gray-200"
+              >
+                Booking Management
+              </Link>
             </div>
           </div>
         </div>
@@ -41,11 +54,11 @@ const FrameComponent4 = ({ className = "" }) => {
             alt=""
             src="/search-logo@2x.png"
           />
-           <input
-    type="text"
-    className="h-[10px] w-full rounded-md bg-f2 border-none focus:outline-none outline-none placeholder-silver text-silver"
-    placeholder="Search..."
-  />
+          <input
+            type="text"
+            className="h-[10px] w-full rounded-md bg-f2 border-none focus:outline-none outline-none placeholder-silver text-silver"
+            placeholder="Search..."
+          />
         </div>
       </div>
     </section>
