@@ -9,7 +9,7 @@ import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
+  const [user_id, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); 
   const [loading, setLoading] = useState(false);
@@ -32,13 +32,13 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       // Replace with your API endpoint and data
-      const response = await fetch(process.env.REACT_APP_API_URL, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/auth/login`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ user_id, password }),
       });
 
       if (response.ok) {
@@ -49,7 +49,7 @@ const LoginPage = () => {
           token: data.token,
           expiresIn: 3600, // Set expiration time for the session
           tokenType: 'Bearer',
-          authState: { email: data.email }, // Additional state data
+          authState: { user_id: data.user_id }, // Additional state data
         })) {
           // Redirect to the dashboard or any other page after successful login
           navigate('/dashboard');
@@ -96,7 +96,7 @@ const LoginPage = () => {
                       name="email"
                       type="email"
                       className="w-full border border-black-900_01 rounded p-2"
-                      value={email}
+                      value={user_id}
                       onChange={handleEmailChange}
                       required
                     />

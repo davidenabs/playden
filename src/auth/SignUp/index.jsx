@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Img, Text, Button, CheckBox, Input, Heading } from "../../components";
 import React, { useState } from "react";
+import { toast } from 'react-toastify';
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import 'animate.css';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [address, setAddress] = useState('');
+  const [username, setFirstName] = useState('');
+  const [phone_number, setPhoneNumber] = useState('');
   const signIn = useSignIn();
   const navigate = useNavigate();
 
@@ -27,58 +29,70 @@ const SignUp = () => {
     setFirstName(event.target.value);
   }
 
-  const handleLastNameChange = (event) => {
-    setLastName(event.target.value);
+  const handleAddressChange = (event) => {
+    setAddress(event.target.value);
   }
 
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
   }
 
+  const handleConfirmpassword = (e) => {
+    setConfirmPassword(e.target.value)
+  }
+
   const handleSignUp = async (e) => {
-    const requestBody = {
-      email,
-      username,
-      address,
-      phone_number: phoneNumber,
-      password,
-    };
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match!");
+      return;  // Prevent form submission if passwords don't match
+    }
+// console.log({
+//   email,
+//   username,
+//   address,
+//   phone_number,
+//   password,
+// });
+//     return;
 
     try {
-      const response = await fetch(process.env.REACT_APP_API_URL, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/auth/register`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(requestBody),
+        body: JSON.stringify({
+          email,
+          username,
+          address,
+          phone_number,
+          password,
+        }),
       });
 
       if (response.ok) {
         const data = await response.json();
-
         
-        if (signIn({
-          token: data.token, 
-          expiresIn: 3600, 
-          tokenType: 'Bearer', 
-          authState: { email: data.email, username: data.username }, 
-        })) {
-          // Redirect to the login page after successful sign-up
-          navigate('/login');
-        } else {
-          alert('Sign-In failed. Please try again.');
-        }
+
+        // If the API returns a token after successful sign-up, you can store it or navigate to login
+        toast.success('Sign-Up successful! Please log in.');
+        navigate('/login'); // Redirect to login page after successful sign-up
+
       } else {
         const errorData = await response.json();
-        alert(`Sign-Up failed: ${errorData.message || 'Please try again.'}`);
+        console.log('Error data:', errorData); 
+        toast.error(`Sign-Up failed: ${errorData.message || 'Please try again.'}`);
       }
     } catch (error) {
+      console.log(error);
+      
       console.error('Error during sign-up:', error);
-      alert('An error occurred. Please try again.');
+      toast.error('An error occurred. Please try again.');
     }
   };
-
 
   return (
     <>
@@ -103,12 +117,13 @@ const SignUp = () => {
                 <div className="flex flex-col gap-0.5 w-full ">
                     <div className="flex gap-4 mq450:gap-0.5 self-stretch sm:flex-col ">
                   <div className="flex flex-col items-start gap-0 w-full mq450:mt-[1px]">
-                    <Text as="p">First Name</Text>
+                    <Text as="p">Full Name</Text>
                     <input
                       size="md"
                       shape="round"
                       name="fName"
                       type="text"
+                      value={username}
                       onChange={handleFirstNameChange}
                       className="w-full border border-black-900_01 rounded p-2 "
                       required
@@ -116,13 +131,14 @@ const SignUp = () => {
                   </div>
                   &nbsp;
                   <div className="flex flex-col items-start gap-[1px] w-full mq450:mt-[1px]">
-                    <Text as="p">Last Name</Text>
+                    <Text as="p">Address</Text>
                     <input
                       size="md"
                       shape="round"
-                      name="lName"
+                      name="address"
                       type="text"
-                      onChange={handleLastNameChange}
+                      value={address}
+                      onChange={handleAddressChange}
                       className="w-full border border-black-900_01 rounded p-2"
                       required
                     />
@@ -150,6 +166,7 @@ const SignUp = () => {
                       shape="round"
                       name="number"
                       type="tel"
+                      value={phone_number}
                       onChange={handlePhoneNumberChange}
                       className="w-full border border-black-900_01 rounded p-2"
                       required
@@ -178,6 +195,8 @@ const SignUp = () => {
                       shape="round"
                       name="cPassword"
                       type="password"
+                      value={confirmPassword}
+                      onChange={handleConfirmpassword}
                       className="w-full border border-black-900_01 rounded p-2"
                       required
                     />
@@ -189,12 +208,12 @@ const SignUp = () => {
                       label="&nbsp;I agree with the terms of use"
                       id="tick"
                       className="gap-2 mq450:my-4 md:mt-4 py-[24px] font-inter text-[16px] text-gray-900 border-black"
-                      required
+                      
                     />
                     </div>
                 </div>
                 
-                  <Button color="gray_800" size="lg" shape="round" className="min-w-[188px] font-worksans text-ghostwhite">
+                  <Button type='submit' color="gray_800" size="lg" shape="round" className="min-w-[188px] font-worksans text-ghostwhite">
                     Sign Up
                   </Button>
                 
