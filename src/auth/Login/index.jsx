@@ -127,7 +127,7 @@ const LoginPage = () => {
                       label="&nbsp;Remember me?"
                       id="rememberme"
                       className="gap-2 font-inter text-[16px] text-blue_gray-300"
-                      required
+                      
                     />
                     <Link to="/forgotpassword" className="text-right no-underline">
                       <Text as="p" className="!text-black-900_01">
