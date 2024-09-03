@@ -113,13 +113,13 @@ const LoginPage = () => {
                       onChange={handlePasswordChange}
                       required
                     />
-                     <button
-          type="submit"
+                     <span
+          
           onClick={toggleShowPassword}
           className="absolute right-1 top-[75px] transform -translate-y-1/2"
         >
           {showPassword ? <FaEyeSlash /> : <FaEye />}
-        </button>
+        </span>
                   </div>
                   <div className="flex items-center justify-between w-full">
                     <CheckBox
