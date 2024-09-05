@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 import { Img, Text, Button, CheckBox, Input, Heading } from "../components";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import 'animate.css';
 
 const OTPVerification = ({ userId, token }) => {
     const [otp, setOtp] = useState('');
-    const navigate = useNavigate();  // To redirect the user
+    const navigate = useNavigate();  //  redirect the user
   
     // Function to handle OTP input change
     const handleOTPChange = (e) => {
@@ -33,7 +34,7 @@ const OTPVerification = ({ userId, token }) => {
         });
   
         if (response.ok) {
-          // If the OTP is verified successfully, redirect to the login page
+          //  OTP is verified successfully, redirect to the login page
           toast.success('OTP verified successfully!');
           navigate('/login');  // Redirect to the login page
         } else {
@@ -92,7 +93,7 @@ const OTPVerification = ({ userId, token }) => {
           </div>
         </form>
         {/* Side Image */}
-        <div className=" md:hidden lg:block w-[80%] h-full relative">
+        <div className=" md:hidden lg:block w-[80%] h-full relative animate__animated animate__bounceInDown transform">
           <img src="/side-image.png" alt="Side Image" className="h-full w-full object-cover" />
           <img src="/logo.png" alt="Centered Image" className="absolute top-1/2 left-1/2 w-1/2 transform -translate-x-1/2 -translate-y-1/2" />
         </div>
