@@ -1,14 +1,19 @@
 import { Helmet } from "react-helmet";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Img, Text, Button, CheckBox, Input, Heading } from "../components";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import 'animate.css';
 
-const OTPVerification = ({ userId, token }) => {
+const OTPVerification = () => {
     const [otp, setOtp] = useState('');
-    const navigate = useNavigate();  //  redirect the user
+    const location = useLocation();
+    const navigate = useNavigate();
+  
+    // Retrieve userId and token from location state
+    const userId = location.state?.userId;
+    const token = location.state?.token;
   
     // Function to handle OTP input change
     const handleOTPChange = (e) => {
@@ -20,7 +25,8 @@ const OTPVerification = ({ userId, token }) => {
       e.preventDefault();
   
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/auth/verify-otp`, {
+        console.log(token);
+        const response = await fetch(`https://e78e-2c0f-2a80-56-9e10-35ba-690a-48a3-8288.ngrok-free.app/api/v1/auth/verify-otp`, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -34,7 +40,7 @@ const OTPVerification = ({ userId, token }) => {
         });
   
         if (response.ok) {
-          //  OTP is verified successfully, redirect to the login page
+          // OTP is verified successfully, redirect to the login page
           toast.success('OTP verified successfully!');
           navigate('/login');  // Redirect to the login page
         } else {
