@@ -25,7 +25,7 @@ const OTPVerification = () => {
       e.preventDefault();
   
       try {
-        console.log(token);
+        
         const response = await fetch(`https://e78e-2c0f-2a80-56-9e10-35ba-690a-48a3-8288.ngrok-free.app/api/v1/auth/verify-otp`, {
           method: 'POST',
           headers: {
