@@ -26,7 +26,7 @@ const OTPVerification = () => {
   
       try {
         
-        const response = await fetch(`https://e78e-2c0f-2a80-56-9e10-35ba-690a-48a3-8288.ngrok-free.app/api/v1/auth/verify-otp`, {
+        const response = await fetch(`${REACT_APP_API_URL}/api/v1/auth/verify-otp`, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
