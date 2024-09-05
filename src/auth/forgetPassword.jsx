@@ -14,10 +14,6 @@ const ForgetPassword = () => {
     setEmail(event.target.value);
   }
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  }
-
   const handleSubmit = (e) => {
   
   };

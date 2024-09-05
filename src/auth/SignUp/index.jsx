@@ -91,11 +91,30 @@ const SignUp = () => {
 
         if (response.ok) {
           const data = await response.json();
+          console.log('API response:', data);
 
 
           // If the API returns a token after successful sign-up, store it or navigate to login
-          toast.success('Sign-Up successful! Please log in.');
-          navigate('/login'); // Redirect to login page after successful sign-up
+          const userId = data.data.user.id;  // Assuming 'id' is the user ID
+          const token = data.data.user.token;  // Token
+    
+          if (userId && token) {
+            toast.success('Sign-Up successful! OTP has been sent.');
+            
+            // Redirect to verify OTP page after successful sign-up
+            navigate('/verify-otp', {
+              state: {
+                userId: userId, // Use the correct key from the response
+                token: token    // Ensure token is being passed
+              }
+            }); // Redirect to verify otp page after successful sign-up
+
+
+      } else {
+        // Handle the case where 'user_id' or 'token' is missing
+        toast.error('Sign-Up failed: Missing user ID or token.');
+      }
+
 
         } else {
           const errorData = await response.json();

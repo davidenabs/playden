@@ -15,6 +15,7 @@ import SignUp from "./auth/SignUp";
 import NotFound from "./pages/NotFound";
 import ForgetPassword  from "./auth/forgetPassword";
 import ResetOTP from "./auth/resetOtp";
+import OTPVerification from "./auth/VerifyPhoneNumber";
 
 const App = () => {
   const action = useNavigationType();
@@ -77,7 +78,8 @@ const App = () => {
       <Route path="/pitch-history" element={<PitchHistory/>} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signUp" element={<SignUp />} />
-      <Route path="/forgetpassword" element={<ForgetPassword />} />
+      <Route path="/forgotpassword" element={<ForgetPassword />} />
+      <Route path="/verify-otp" element={<OTPVerification />} />
       <Route path="/reset" element={<ResetOTP/>} />
       <Route path="/booking-details" element={<BookingDetails />} />
       <Route path="*" element={<NotFound />} />
