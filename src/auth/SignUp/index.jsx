@@ -48,6 +48,8 @@ const SignUp = () => {
       toast.error("Passwords do not match!");
       return;  // Prevent form submission if passwords don't match
     }
+
+    if (pass)
 // console.log({
 //   email,
 //   username,
@@ -84,7 +86,7 @@ const SignUp = () => {
       } else {
         const errorData = await response.json();
         console.log('Error data:', errorData); 
-        toast.error(`Sign-Up failed: ${errorData.message || 'Please try again.'}`);
+        toast.error(`Sign-Up failed: ${errorData.data || 'Please try again.'}`);
       }
     } catch (error) {
       console.log(error);
