@@ -41,61 +41,73 @@ const SignUp = () => {
     setConfirmPassword(e.target.value)
   }
 
-  const validatePassword(password)
+  const validatePassword = (password) => {
+
+    // Regular expression to check if password contains at least one special character
+    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+
+    if (password < 8) {
+      toast.error('Password must be atleast 8 characters long!');
+      return false;
+    }
+
+    // Check if password contains at least one special character
+    if (!specialCharRegex.test(password)) {
+      toast.error('Password must contain atleast one special symbol.');
+      return false;
+    }
+
+    return true; // If both conditions are met, the password is valid
+  };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+
+    // Validate the password first
+    if (!validatePassword(password)) {
+      return;  // Stop the sign-up process if the password is invalid
+    }
 
     if (password !== confirmPassword) {
       toast.error("Passwords do not match!");
       return;  // Prevent form submission if passwords don't match
     }
 
-    if (pass)
-// console.log({
-//   email,
-//   username,
-//   address,
-//   phone_number,
-//   password,
-// });
-//     return;
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/auth/register`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email,
+            username,
+            address,
+            phone_number,
+            password,
+          }),
+        });
 
-    try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/auth/register`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          username,
-          address,
-          phone_number,
-          password,
-        }),
-      });
+        if (response.ok) {
+          const data = await response.json();
 
-      if (response.ok) {
-        const data = await response.json();
-        
 
-        // If the API returns a token after successful sign-up, you can store it or navigate to login
-        toast.success('Sign-Up successful! Please log in.');
-        navigate('/login'); // Redirect to login page after successful sign-up
+          // If the API returns a token after successful sign-up, store it or navigate to login
+          toast.success('Sign-Up successful! Please log in.');
+          navigate('/login'); // Redirect to login page after successful sign-up
 
-      } else {
-        const errorData = await response.json();
-        console.log('Error data:', errorData); 
-        toast.error(`Sign-Up failed: ${errorData.data || 'Please try again.'}`);
+        } else {
+          const errorData = await response.json();
+          console.log('Error data:', errorData);
+          toast.error(`Sign-Up failed: ${errorData.data || 'Please try again.'}`);
+        }
+      } catch (error) {
+        console.log(error);
+
+        console.error('Error during sign-up:', error);
+        toast.error('An error occurred. Please try again.');
       }
-    } catch (error) {
-      console.log(error);
-      
-      console.error('Error during sign-up:', error);
-      toast.error('An error occurred. Please try again.');
-    }
   };
 
   return (
@@ -119,92 +131,92 @@ const SignUp = () => {
               </div>
               <div className="flex flex-col items-center gap-0.5 w-[75%] ">
                 <div className="flex flex-col gap-0.5 w-full ">
-                    <div className="flex gap-4 mq450:gap-0.5 self-stretch sm:flex-col ">
-                  <div className="flex flex-col items-start gap-0 w-full mq450:mt-[1px]">
-                    <Text as="p">Full Name</Text>
-                    <input
-                      size="md"
-                      shape="round"
-                      name="fName"
-                      type="text"
-                      value={username}
-                      onChange={handleFirstNameChange}
-                      className="w-full border border-black-900_01 rounded p-2 "
-                      required
-                    />
-                  </div>
-                  &nbsp;
-                  <div className="flex flex-col items-start gap-[1px] w-full mq450:mt-[1px]">
-                    <Text as="p">Address</Text>
-                    <input
-                      size="md"
-                      shape="round"
-                      name="address"
-                      type="text"
-                      value={address}
-                      onChange={handleAddressChange}
-                      className="w-full border border-black-900_01 rounded p-2"
-                      required
-                    />
-                  </div>
-                  </div>
-                  <div className="flex gap-4 mq450:gap-0.5 self-stretch sm:flex-col">
-                  <div className="flex flex-col items-start gap-0.5 w-full mq450:mt-[1px]">
-                    <Text as="p">Email</Text>
-                    <input
-                      size="md"
-                      shape="round"
-                      name="email"
-                      type="email"
-                      className="w-full border border-black-900_01 rounded p-2"
-                      value={email}
-                      onChange={handleEmailChange}
-                      required
-                    />
-                  </div>
-                  &nbsp;
-                  <div className="flex flex-col items-start gap-0.5 w-full mq450:mt-[1px]">
-                    <Text as="p">Phone No.</Text>
-                    <input
-                      size="md"
-                      shape="round"
-                      name="number"
-                      type="tel"
-                      value={phone_number}
-                      onChange={handlePhoneNumberChange}
-                      className="w-full border border-black-900_01 rounded p-2"
-                      required
-                    />
-                  </div>
+                  <div className="flex gap-4 mq450:gap-0.5 self-stretch sm:flex-col ">
+                    <div className="flex flex-col items-start gap-0 w-full mq450:mt-[1px]">
+                      <Text as="p">Full Name</Text>
+                      <input
+                        size="md"
+                        shape="round"
+                        name="fName"
+                        type="text"
+                        value={username}
+                        onChange={handleFirstNameChange}
+                        className="w-full border border-black-900_01 rounded p-2 "
+                        required
+                      />
+                    </div>
+                    &nbsp;
+                    <div className="flex flex-col items-start gap-[1px] w-full mq450:mt-[1px]">
+                      <Text as="p">Address</Text>
+                      <input
+                        size="md"
+                        shape="round"
+                        name="address"
+                        type="text"
+                        value={address}
+                        onChange={handleAddressChange}
+                        className="w-full border border-black-900_01 rounded p-2"
+                        required
+                      />
+                    </div>
                   </div>
                   <div className="flex gap-4 mq450:gap-0.5 self-stretch sm:flex-col">
-                  <div className="flex flex-col items-start gap-0.5 w-full mq450:mt-[1px]">
-                    <Text as="p">Password</Text>
-                    <input
-                      size="md"
-                      shape="round"
-                      name="password"
-                      type="password"
-                      className="w-full border border-black-900_01 rounded p-2"
-                      value={password}
-                      onChange={handlePasswordChange}
-                      required
-                    />
+                    <div className="flex flex-col items-start gap-0.5 w-full mq450:mt-[1px]">
+                      <Text as="p">Email</Text>
+                      <input
+                        size="md"
+                        shape="round"
+                        name="email"
+                        type="email"
+                        className="w-full border border-black-900_01 rounded p-2"
+                        value={email}
+                        onChange={handleEmailChange}
+                        required
+                      />
+                    </div>
+                    &nbsp;
+                    <div className="flex flex-col items-start gap-0.5 w-full mq450:mt-[1px]">
+                      <Text as="p">Phone No.</Text>
+                      <input
+                        size="md"
+                        shape="round"
+                        name="number"
+                        type="tel"
+                        value={phone_number}
+                        onChange={handlePhoneNumberChange}
+                        className="w-full border border-black-900_01 rounded p-2"
+                        required
+                      />
+                    </div>
                   </div>
-                  &nbsp;
-                  <div className="flex flex-col items-start gap-0.5 w-full">
-                    <Text as="p">Confirm Password</Text>
-                    <input
-                      size="md"
-                      shape="round"
-                      name="cPassword"
-                      type="password"
-                      value={confirmPassword}
-                      onChange={handleConfirmpassword}
-                      className="w-full border border-black-900_01 rounded p-2"
-                      required
-                    />
-                  </div>
+                  <div className="flex gap-4 mq450:gap-0.5 self-stretch sm:flex-col">
+                    <div className="flex flex-col items-start gap-0.5 w-full mq450:mt-[1px]">
+                      <Text as="p">Password</Text>
+                      <input
+                        size="md"
+                        shape="round"
+                        name="password"
+                        type="password"
+                        className="w-full border border-black-900_01 rounded p-2"
+                        value={password}
+                        onChange={handlePasswordChange}
+                        required
+                      />
+                    </div>
+                    &nbsp;
+                    <div className="flex flex-col items-start gap-0.5 w-full">
+                      <Text as="p">Confirm Password</Text>
+                      <input
+                        size="md"
+                        shape="round"
+                        name="cPassword"
+                        type="password"
+                        value={confirmPassword}
+                        onChange={handleConfirmpassword}
+                        className="w-full border border-black-900_01 rounded p-2"
+                        required
+                      />
+                    </div>
                   </div>
                   <div className="flex justify-center items-center">
                     <CheckBox
@@ -212,26 +224,26 @@ const SignUp = () => {
                       label="&nbsp;I agree with the terms of use"
                       id="tick"
                       className="gap-2 mq450:my-4 md:mt-4 py-[24px] font-inter text-[16px] text-gray-900 border-black"
-                      
+
                     />
-                    </div>
+                  </div>
                 </div>
-                
-                  <Button type='submit' color="gray_800" size="lg" shape="round" className="min-w-[188px] font-worksans text-ghostwhite">
-                    Sign Up
-                  </Button>
-                
+
+                <Button type='submit' color="gray_800" size="lg" shape="round" className="min-w-[188px] font-worksans text-ghostwhite">
+                  Sign Up
+                </Button>
+
               </div>
               <div className="flex mb-[126px]">
-            <Link to="/login"  className="text-center no-underline">
-              <Text as="p" className="self-end !text-black-900_02">
-                <span className="text-blue_gray-900">Already have an account</span>
-                <span className="text-f2">&nbsp; Sign In</span>
-              </Text>
-            </Link>
-            </div>
+                <Link to="/login" className="text-center no-underline">
+                  <Text as="p" className="self-end !text-black-900_02">
+                    <span className="text-blue_gray-900">Already have an account</span>
+                    <span className="text-f2">&nbsp; Sign In</span>
+                  </Text>
+                </Link>
               </div>
             </div>
+          </div>
         </form>
         {/* Side Image */}
         <div className=" md:hidden lg:block w-[80%] h-full relative animate__animated animate__bounceInDown transform">
