@@ -20,7 +20,7 @@ const OTPVerification = ({ userId, token }) => {
       e.preventDefault();
   
       try {
-        const response = await fetch('https://api.playdenapp.com/api/v1/auth/verify-otp', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/auth/verify-otp`, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
