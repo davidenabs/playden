@@ -41,6 +41,8 @@ const SignUp = () => {
     setConfirmPassword(e.target.value)
   }
 
+  const validatePassword(password)
+
   const handleSignUp = async (e) => {
     e.preventDefault();
 
