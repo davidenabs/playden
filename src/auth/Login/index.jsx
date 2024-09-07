@@ -53,7 +53,9 @@ const LoginPage = () => {
         console.log('API response data:', data);
 
         // Store the token and user_id in localStorage after a successful login
-        setSession(data.token, data.user_id);
+        setSession(data.data.user.token, data.data.user.id);
+        localStorage.setItem('authToken', data.data.user.token);
+       
 
         // Redirect to dashboard
         navigate('/dashboard');
