@@ -1,17 +1,66 @@
-import { useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Link } from 'react-router-dom';
 
 const ContentArea = ({ className = "" }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { booking } = location.state || {};
+  const [booking, setBooking] = useState(location.state?.booking || null);
+  const [error, setError] = useState(null);
+  
+  // Extract bookingId from location state if available
+  const bookingId = location.state?.bookingId;
 
   console.log('Booking Data:', booking);  // Log the booking data to confirm
 
-  const onConfirmButtonClick = useCallback(() => {
-    navigate("/dashboard");
-  }, [navigate]);
+    // Fetch booking details from API if not available in location state
+    useEffect(() => {
+      const token = localStorage.getItem("authToken"); // Retrieve token outside fetchBookingData
+  
+      if (!booking && token && bookingId) {
+        const fetchBookingData = async () => {
+          try {
+            const response = await fetch(
+              `${process.env.REACT_APP_API_URL}api/v1/pitch-owner/bookings/${bookingId}`,
+              {
+                method: "GET",
+                headers: {
+                  'Accept': "application/json",
+                  "Content-Type": "application/json",
+                  'Authorization': `Bearer ${token}`,
+                  "ngrok-skip-browser-warning": "true", // Skip ngrok warning
+                },
+              }
+            );
+  
+            if (!response.ok) {
+              throw new Error(`Error: ${response.status}`);
+            }
+  
+            const data = await response.json();
+  
+            if (data.success) {
+              setBooking(data.data);
+            } else {
+              setError(data.message || "Failed to fetch booking details");
+            }
+          } catch (err) {
+            setError("An error occurred while fetching booking details.");
+            console.error(err);
+          }
+        };
+  
+        fetchBookingData();
+      } else if (!token) {
+        setError("No token found. Please log in.");
+      }
+    }, [booking, bookingId]);
+  
+    const onConfirmButtonClick = useCallback(() => {
+      navigate("/dashboard");
+    }, [navigate]);
+
 
   return (
     <div
@@ -23,7 +72,7 @@ const ContentArea = ({ className = "" }) => {
           <div className="flex flex-row items-start justify-start gap-[6.5px]">
             <div className="flex flex-col items-start justify-start pt-px px-0 pb-0">
               <div className="relative leading-[17px] z-[1]">
-                Booking confirmation
+                <Link to='/booking-management' className="no-underline text-gray-500">Booking Confirmation</Link>
               </div>
             </div>
             <div className="relative text-base leading-[120%] text-saddlebrown inline-block min-w-[10px] z-[1]">{`>`}</div>

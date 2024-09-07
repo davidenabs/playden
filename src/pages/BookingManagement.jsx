@@ -70,6 +70,9 @@ const BookingManagement = () => {
       <section className="self-stretch flex flex-row bg-gray-300 items-start justify-start py-0 px-[70px] box-border max-w-full text-left text-base text-f2 font-poppins mq750:pl-[35px] mq750:pr-[35px] mq750:box-border mq450:w-[140%] pb-[40px]">
         <div className="flex-1 rounded-lg bg-white-a700_bf mt-[20px] flex flex-row items-start justify-start py-5 px-8 box-border max-w-full">
           <div className="flex-1 flex flex-row items-start justify-between flex-wrap content-start max-w-full gap-5">
+
+            {bookings.length > 0 ? (
+              <>
             <div className="flex flex-col items-start justify-start gap-9">
               <div className="relative font-medium inline-block min-w-[30px]">
                 S/N
@@ -183,6 +186,10 @@ const BookingManagement = () => {
                 ))}
               </div>
             </div>
+            </>
+            ) : (
+              <div className="flex-1 text-center text-lg font-bold">No bookings yet!</div>
+            )}
           </div>
         </div>
       </section>

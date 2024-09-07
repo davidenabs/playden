@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Container from "./Container";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
+import { getImageUrl } from '../utills/imageUtils';
 
 const Content = ({ className = "" }) => {
   const [pitches, setPitches] = useState([]);
@@ -16,7 +17,7 @@ const Content = ({ className = "" }) => {
         setLoading(false);
         return;
       }
-  
+
       try {
         const response = await fetch(
           `${process.env.REACT_APP_API_URL}api/v1/pitch-owner/pitches?sort_order=desc`,
@@ -25,37 +26,32 @@ const Content = ({ className = "" }) => {
             headers: {
               'Accept': "application/json",
               "Content-Type": "application/json",
-              'Authorization': `Bearer ${token}`, // Include the token
-              'ngrok-skip-browser-warning': 'true'  // ngrok header
+              'Authorization': `Bearer ${token}`,
+              'ngrok-skip-browser-warning': 'true'
             },
           }
         );
-  
+
         const contentType = response.headers.get("content-type");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-  
-        // Check if the response is JSON
+
         if (!contentType || !contentType.includes("application/json")) {
-          const textResponse = await response.text(); // Read as text to debug
+          const textResponse = await response.text();
           console.error("Non-JSON response:", textResponse);
           throw new Error("Received non-JSON response from the API.");
         }
-  
-        // Parse JSON response
+
         const data = await response.json();
         console.log("Fetched pitches data:", data);
 
-            // Log the parsed JSON
-    // console.log("Parsed JSON data:", data);
-  
         if (data && data.data && Array.isArray(data.data)) {
-          setPitches(data.data); // Set pitches data from API response
+          setPitches(data.data);
         } else {
           toast.info("No items found.");
         }
-  
+
         setLoading(false);
       } catch (error) {
         console.error("Error fetching pitches:", error);
@@ -64,17 +60,14 @@ const Content = ({ className = "" }) => {
         toast.error("Failed to load pitches. Please try again later.");
       }
     };
-  
+
     fetchPitches();
   }, []);
-  
 
-  // Show loading message while pitches are being fetched
   if (loading) {
     return <div>Loading pitches...</div>;
   }
 
-  // Show error message if fetching pitches failed
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -82,22 +75,23 @@ const Content = ({ className = "" }) => {
   return (
     <div
       className={`flex-1 flex flex-col items-start justify-start gap-[15.3px] max-w-full mt-[20px] text-center text-base text-text font-poppins ${className}`}
-    >{pitches.length > 0 ? (
-      pitches.map((pitch) => (
-        <Container
-          key={pitch.id}
-          image8={pitch.image_url || "/default-image.png"} // Fallback to a default image if not available
-          sport={`SPORT: ${pitch.sport || "Football"}`} // Fallback to "Football" if sport is undefined
-          size={`PITCH SIZE: ${pitch.size || "5x5"}`} // Fallback to "5x5" if size is undefined
-          manager={`PITCH MANAGER: ${pitch.manager_name || "Not available"}`} // Fallback if manager_name is undefined
-          price={`PRICE: N${pitch.price || "0"}/hr`} // Fallback to "0" if price is undefined
-        />
-      ))
-    ) : (
-      <div>No pitches available for this user.</div>
-    )}
-  </div>
-);
+    >
+      {pitches.length > 0 ? (
+        pitches.map((pitch) => (
+          <Container
+            key={pitch.id}
+            image8={getImageUrl(pitch.image) || "/default-image.png"} // Use the image URL from the API or fallback
+            sport={`SPORT: ${pitch.sport || "Football"}`} // Use pitch.sport if available
+            size={`PITCH SIZE: ${pitch.size || "Unknown"}`} // Use pitch.size from the API
+            manager={`PITCH MANAGER: ${pitch.manager_name || "Not available"}`} // Use pitch.manager_name if available
+            price={`PRICE: N${pitch.amount_per_hour || "0"}/hr`} // Use pitch.amount_per_hour for price
+          />
+        ))
+      ) : (
+        <div>No pitches available for this user.</div>
+      )}
+    </div>
+  );
 };
 
 Content.propTypes = {

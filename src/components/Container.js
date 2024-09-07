@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Container = ({ className = "", image8 }) => {
+const Container = ({ className = "", image8, size, amount_per_hour }) => {
   const navigate = useNavigate();
 
   const onViewClick = useCallback(() => {
@@ -24,13 +24,13 @@ const Container = ({ className = "", image8 }) => {
           <div className="flex flex-col items-start justify-start gap-[9px]">
             <div className="relative tracking-[-0.5px] leading-[14px] inline-block min-w-[114px]">{`SPORT: Football `}</div>
             <div className="flex flex-row items-start justify-start py-0 px-px">
-              <div className="relative tracking-[-0.5px] leading-[14px] inline-block min-w-[110px]">{`PITCH SIZE: 5X5 `}</div>
+              <div className="relative tracking-[-0.5px] leading-[14px] inline-block min-w-[110px]">{`PITCH SIZE: ${size} `}</div>
             </div>
             <div className="flex flex-row items-start justify-start py-0 pl-px pr-0">
               <div className="relative tracking-[-0.5px] leading-[14px]">{`PITCH MANAGER: Ahmed Salisu `}</div>
             </div>
             <div className="flex flex-row items-start justify-start py-0 px-0.5">
-              <div className="relative tracking-[-0.5px] leading-[14px] inline-block min-w-[123px]">{`PRIZE: N10,000/hr `}</div>
+              <div className="relative tracking-[-0.5px] leading-[14px] inline-block min-w-[123px]">{`PRIZE:${amount_per_hour}/hr `}</div>
             </div>
           </div>
         </div>
@@ -50,8 +50,11 @@ const Container = ({ className = "", image8 }) => {
 };
 
 Container.propTypes = {
-  className: PropTypes.string,
   image8: PropTypes.string,
+  sport: PropTypes.string,
+  size: PropTypes.string,
+  manager: PropTypes.string,
+  price: PropTypes.string,
 };
 
 export default Container;
