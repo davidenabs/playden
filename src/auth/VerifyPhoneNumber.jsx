@@ -26,7 +26,7 @@ const OTPVerification = () => {
   
       try {
         
-        const response = await fetch(`${REACT_APP_API_URL}/api/v1/auth/verify-otp`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}api/v1/auth/verify-otp`, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -61,7 +61,7 @@ const OTPVerification = () => {
       </Helmet>
       <div className="flex w-full h-screen items-center bg-light_mode-white-5_ffffff md:flex-col mq450:mt-[85px] mq450:pr-[0px] overflow-hidden">
         {/* Verify OTPForm */}
-        <form onSubmit={handleOTPSubmit} className="flex mq450:w-[85%] mq450:ml-[3px] mq450:mt-5 w-[130%] md:w-[89px] lg:w-1/2 md:h-[50px] h-[500px] flex-col items-center px-4 md:px-1 mq450:h-[70%] mq450:w-[80%] mq450:shadow-xs">
+        <form onSubmit={handleOTPSubmit} method="post" className="flex mq450:w-[85%] mq450:ml-[3px] mq450:mt-5 w-[130%] md:w-[89px] lg:w-1/2 md:h-[50px] h-[500px] flex-col items-center px-4 md:px-1 mq450:h-[70%] mq450:w-[80%] mq450:shadow-xs">
           <div className="flex w-[564px] max-w-md lg:max-w-sm h-[679px] lg:h-[10%] md:w-[100%] flex-col items-center justify-center gap-1 rounded-lg bg-light_mode-white-5_ffffff px-8 py-[1px] mt-[1px] md:px-5 md:py-1 shadow-xl md:shadow-none">
             <div className="flex flex-col items-center gap-1 w-full">
               <div className="flex flex-col items-center justify-center gap-1 w-full">

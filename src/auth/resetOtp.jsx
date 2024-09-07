@@ -47,14 +47,14 @@ const ResetOTP = () => {
       </Helmet>
       <div className="flex w-full h-screen items-center bg-gray-100 md:flex-col overflow-hidden">
         {/* OTP Form */}
-        <form className="flex flex-col items-center justify-center w-full h-full">
-          <div className="flex flex-col items-center bg-white-a700_bf h-[380px] shadow-xl px-3 gap-2">
+        <form method='post' className="flex flex-col items-center justify-center w-full h-full">
+          <div className="flex flex-col items-center bg-white-a700_bf h-[380px] shadow-xl px-3 gap-2 mq450:pt-[60px]">
             <Heading size="heading2xl" as="h1" className="font-worksans text-black-900_01 text-center">
               OTP Verification
             </Heading>
-            <Text as="p" className="text-center mt-0">Enter the 6-digit OTP sent to your email.</Text>
+            <Text as="p" className="text-center mt-0 mq450:mb-12">Enter the 6-digit OTP sent to your email.</Text>
 
-            <div className="flex gap-2">
+            <div className="flex gap-2 mq450:gap-[5px]">
               {otp.map((data, index) => (
                 <input
                   key={index}
@@ -73,7 +73,7 @@ const ResetOTP = () => {
               color="gray_800"
               size="lg"
               shape="round"
-              className="mt-[100px] min-w-[188px] font-worksans"
+              className="mt-[100px] mq450:mt-[30px] min-w-[188px] font-worksans"
               style={{ color: 'white' }}
               onClick={handleSubmit}
               disabled={otp.some(digit => digit === "")} // Disable button if any input is empty

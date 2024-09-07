@@ -8,6 +8,12 @@ import { toast } from 'react-toastify';
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
+// A utility function to handle token and user state management
+const setSession = (token, user_id) => {
+  localStorage.setItem('token', token);
+  localStorage.setItem('user_id', user_id);
+};
+
 const LoginPage = () => {
   const [user_id, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -30,9 +36,10 @@ const LoginPage = () => {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       // Replace with your API endpoint and data
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/auth/login`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}api/v1/auth/login`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -43,20 +50,14 @@ const LoginPage = () => {
 
       if (response.ok) {
         const data = await response.json();
+        console.log('API response data:', data);
 
-        // Assuming the API returns a token after successful sign-in
-        if (signIn({
-          token: data.token,
-          expiresIn: 3600, // Set expiration time for the session
-          tokenType: 'Bearer',
-          authState: { user_id: data.user_id }, // Additional state data
-        })) {
-          // Redirect to the dashboard or any other page after successful login
-          navigate('/dashboard');
-          console.log('Sign up successful');
-        } else {
-          toast.error('Sign-In failed. Please try again.');
-        }
+        // Store the token and user_id in localStorage after a successful login
+        setSession(data.token, data.user_id);
+
+        // Redirect to dashboard
+        navigate('/dashboard');
+        toast.success('Sign-In successful!');
       } else {
         const errorData = await response.json();
         toast.error(`Sign-In failed: ${errorData.message || 'Please try again.'}`);
@@ -64,6 +65,8 @@ const LoginPage = () => {
     } catch (error) {
       console.error('Error during sign-in:', error);
       toast.error('An error occurred. Please try again.');
+    } finally {
+      setLoading(false); // Set loading to false when the request completes
     }
   };
 
@@ -75,7 +78,7 @@ const LoginPage = () => {
       </Helmet>
       <div className="flex w-full h-screen items-center bg-gray-100 md:flex-col overflow-hidden">
         {/* Login Form */}
-        <form onSubmit={handleSignIn} className="flex mq450:w-[85%] mq450:mt-10 w-[130%] md:w-[89px] lg:w-1/2 md:h-[50px] h-[500px] flex-col items-center px-4 md:px-1 mb-[50px]">
+        <form onSubmit={handleSignIn} method="post" className="flex mq450:w-[85%] mq450:mt-10 w-[130%] md:w-[89px] lg:w-1/2 md:h-[50px] h-[500px] flex-col items-center px-4 md:px-1 mb-[50px]">
           <div className="flex w-[564px] max-w-md lg:max-w-sm h-[679px] lg:h-[10%] md:w-[100%] flex-col items-center justify-center gap-0 rounded-lg bg-white-a700_bf px-2 py-[1px] pr-7 mt-[1px] md:px-5 md:py-1 shadow-xl md:shadow-none">
             <div className="flex flex-col items-center gap-1 w-[436px] h-[450px]">
               <div className="flex flex-col items-center justify-center gap-[1px] w-[197px] mt-[40px]">
