@@ -1,29 +1,68 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import FrameComponent from "../components/FrameComponent";
 import FrameComponent3 from "../components/FrameComponent3";
+import { toast } from "react-toastify"; // To display error messages if necessary
 
 const BookingManagement = () => {
+  const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const bookings = [
-    {
-      name: "Oyinkansola Soleye",
-      bookingId: "#445664",
-      number: "07066048648",
-      status: "Confirmed",
-      date: "8/8/2024",
-      time: "1:30pm",
-    },
-    {
-      name: "John Doe",
-      bookingId: "#445665",
-      number: "08012345678",
-      status: "Confirmed",
-      date: "8/9/2024",
-      time: "2:00pm",
-    },
-    //  more transaction objects if needed
-  ];
+  useEffect(() => {
+    // Fetch bookings from the API
+    const fetchBookings = async () => {
+      const token = localStorage.getItem("authToken"); // Make sure the token is stored correctly
 
+      if (!token) {
+        setError("No token found. Please log in.");
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}api/v1/pitch-owner/bookings/`,
+          {
+            method: "GET",
+            headers: {
+              "Accept": "application/json",
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
+              "ngrok-skip-browser-warning": "true", // Skip ngrok warning
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        if (data.success) {
+          setBookings(data.data.bookings); // Set the fetched bookings
+        } else {
+          throw new Error("Failed to fetch bookings");
+        }
+      } catch (error) {
+        console.error("Error fetching bookings:", error);
+        setError(error.message);
+        toast.error("Failed to load bookings. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBookings();
+  }, []);
+
+  if (loading) {
+    return <div>Loading bookings...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
   return (
     <div className="w-full relative bg-light-mode-gray-10-f5f5f5 overflow-hidden flex flex-col items-start justify-start pt-0 px-0 pb-[52px] box-border leading-[normal] tracking-[normal]">
       <FrameComponent aare="/aare2@2x.png" />
