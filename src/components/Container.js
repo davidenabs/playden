@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Container = ({ className = "", image8, size, amount_per_hour }) => {
+const Container = ({ className = "", image8, name, size, amount_per_hour, manager_name }) => {
   const navigate = useNavigate();
 
   const onViewClick = useCallback(() => {
@@ -22,9 +22,9 @@ const Container = ({ className = "", image8, size, amount_per_hour }) => {
         />
         <div className="flex flex-col items-start justify-start pt-[33px] px-0 pb-0 box-border min-w-[231px] mq725:flex-1">
           <div className="flex flex-col items-start justify-start gap-[9px]">
-            <div className="relative tracking-[-0.5px] leading-[14px] inline-block min-w-[114px]">{`SPORT: Football `}</div>
+            <div className="relative tracking-[-0.5px] leading-[14px] inline-block min-w-[114px]">{` ${name} `}</div>
             <div className="flex flex-row items-start justify-start py-0 px-px">
-              <div className="relative tracking-[-0.5px] leading-[14px] inline-block min-w-[110px]">{`PITCH SIZE: ${size} `}</div>
+              <div className="relative tracking-[-0.5px] leading-[14px] inline-block min-w-[110px]">{` ${size} `}</div>
             </div>
             <div className="flex flex-row items-start justify-start py-0 pl-px pr-0">
               <div className="relative tracking-[-0.5px] leading-[14px]">{`PITCH MANAGER: Ahmed Salisu `}</div>
@@ -51,10 +51,14 @@ const Container = ({ className = "", image8, size, amount_per_hour }) => {
 
 Container.propTypes = {
   image8: PropTypes.string,
+  name: PropTypes.string,
   sport: PropTypes.string,
   size: PropTypes.string,
-  manager: PropTypes.string,
-  price: PropTypes.string,
+  manager_name: PropTypes.string,
+  amount_per_hour: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ])
 };
 
 export default Container;

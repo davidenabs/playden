@@ -28,7 +28,7 @@ const ForgetPassword = () => {
     }
   
     try {
-      const response = await fetch(`https://4c9d-2c0f-2a80-db-1010-f9de-2419-b82b-bc34.ngrok-free.app/api/v1/auth/forgot-password`, {
+      const response = await fetch(`${REACT_APP_API_URL}api/v1/auth/forgot-password`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

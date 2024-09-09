@@ -48,9 +48,16 @@ const Content = ({ className = "" }) => {
 
         if (data && data.data && Array.isArray(data.data)) {
           setPitches(data.data);
+          const pitchId = data[0].id;  // Fetching the first pitch's ID, or whichever pitch you need
+      console.log("Pitch ID:", pitchId);
+
+      // Optionally, store the pitch ID in localStorage
+      localStorage.setItem("pitchId", pitchId);
+      
+      // Now you can use this pitchId for other operations
         } else {
-          toast.info("No items found.");
-        }
+      console.log("No pitches found for this user.");
+    }
 
         setLoading(false);
       } catch (error) {
@@ -81,10 +88,10 @@ const Content = ({ className = "" }) => {
           <Container
             key={pitch.id}
             image8={getImageUrl(pitch.image) || "/default-image.png"} // Use the image URL from the API or fallback
-            sport={`SPORT: ${pitch.sport || "Football"}`} // Use pitch.sport if available
+            name={`Pitch Name: ${pitch.name || "Football"}`} // Use pitch.sport if available
             size={`PITCH SIZE: ${pitch.size || "Unknown"}`} // Use pitch.size from the API
             manager={`PITCH MANAGER: ${pitch.manager_name || "Not available"}`} // Use pitch.manager_name if available
-            price={`PRICE: N${pitch.amount_per_hour || "0"}/hr`} // Use pitch.amount_per_hour for price
+            amount_per_hour={` N${pitch.amount_per_hour || "0"}`} // Use pitch.amount_per_hour for price
           />
         ))
       ) : (
