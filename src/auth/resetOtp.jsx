@@ -1,14 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Helmet } from "react-helmet";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Text, Button, Heading } from "../components";
 import 'animate.css';
 
 const ResetOTP = () => {
-  const [otp, setOtp] = useState(new Array(6).fill(""));
+  const [otp, setOtp] = useState(new Array(4).fill(""));
+  const [error, setError] = useState(null); // For handling errors
+  const [loading, setLoading] = useState(false); // For button loading state
   const navigate = useNavigate();
   const inputRefs = useRef([]);
+  const location = useLocation();
+  const phone_number = location.state?.phone_number; // Retrieve phone number from location.state
 
+  // Handle OTP change
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return;
 
@@ -17,26 +22,60 @@ const ResetOTP = () => {
     ]);
 
     // Move to the next input if the current one is filled
-    if (element.value && index < 5) {
+    if (element.value && index < 3) {
       inputRefs.current[index + 1].focus();
     }
   };
 
+  // Handle backspace navigation
   const handleKeyDown = (e, index) => {
     if (e.key === 'Backspace' && !otp[index] && index > 0) {
       inputRefs.current[index - 1].focus();
     }
   };
 
+  // Automatically submit when all inputs are filled
   useEffect(() => {
-    // Automatically submit when all inputs are filled
     if (otp.every(digit => digit !== "")) {
       handleSubmit();
     }
   }, [otp]);
 
+  // Handle OTP submission
   const handleSubmit = async () => {
-    
+    setError(null); // Clear previous errors
+    setLoading(true); // Set loading state
+    const otpCode = otp.join(""); // Join the 4 digits into a single string
+
+    try {
+      // Send OTP and phone number to the verification API
+      const response = await fetch(`${process.env.REACT_APP_API_URL}api/v1/auth/confirm-password-reset-otp`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          phone_number: phone_number, // Include phone number here
+          otp: otpCode,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // OTP is valid, navigate to the password reset page
+        navigate('/reset-password', { state: { phone_number: phone_number } });
+      } else {
+        // Handle invalid OTP or any other error from the server
+        setError(data.message || 'Invalid OTP. Please try again.');
+      }
+    } catch (error) {
+      // Handle any network errors
+      setError('An error occurred while verifying the OTP. Please try again.');
+    } finally {
+      setLoading(false); // Stop loading state
+    }
   };
 
   return (
@@ -52,7 +91,7 @@ const ResetOTP = () => {
             <Heading size="heading2xl" as="h1" className="font-worksans text-black-900_01 text-center">
               OTP Verification
             </Heading>
-            <Text as="p" className="text-center mt-0 mq450:mb-12">Enter the 6-digit OTP sent to your email.</Text>
+            <Text as="p" className="text-center mt-0 mq450:mb-12">Enter the 4-digit OTP sent to your phone.</Text>
 
             <div className="flex gap-2 mq450:gap-[5px]">
               {otp.map((data, index) => (
@@ -68,7 +107,11 @@ const ResetOTP = () => {
                 />
               ))}
             </div>
-            
+
+            {/* Error message */}
+            {error && <Text as="p" className="text-red-500 mt-2">{error}</Text>}
+
+            {/* Button */}
             <Button
               color="gray_800"
               size="lg"
@@ -76,9 +119,9 @@ const ResetOTP = () => {
               className="mt-[100px] mq450:mt-[30px] min-w-[188px] font-worksans"
               style={{ color: 'white' }}
               onClick={handleSubmit}
-              disabled={otp.some(digit => digit === "")} // Disable button if any input is empty
+              disabled={loading || otp.some(digit => digit === "")} // Disable button if OTP is incomplete or loading
             >
-              Verify OTP
+              {loading ? "Verifying..." : "Verify OTP"}
             </Button>
           </div>
         </form>

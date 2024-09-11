@@ -1,10 +1,5 @@
-import React, { useEffect } from "react";
-import {
-  Routes,
-  Route,
-  useNavigationType,
-  useLocation,
-} from "react-router-dom";
+import React, { useEffect } from 'react';
+import { Routes, Route, useNavigationType, useLocation } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import BookingManagement from "./pages/BookingManagement";
 import LoginPage from "./auth/Login";
@@ -13,8 +8,9 @@ import PitchListing from "./pages/PitchListing";
 import BookingDetails from "./pages/BookingDetails";
 import SignUp from "./auth/SignUp";
 import NotFound from "./pages/NotFound";
-import ForgetPassword  from "./auth/forgetPassword";
+import ForgetPassword from "./auth/forgetPassword";
 import ResetOTP from "./auth/resetOtp";
+import ResetPassword from './auth/change-password';
 import OTPVerification from "./auth/VerifyPhoneNumber";
 
 const App = () => {
@@ -75,16 +71,18 @@ const App = () => {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/booking-management" element={<BookingManagement />} />
       <Route path="/pitch-listing" element={<PitchListing />} />
-      <Route path="/pitch-history" element={<PitchHistory/>} />
+      {/* Update the PitchHistory route to accept a dynamic pitchId */}
+      <Route path="/pitch-history/:pitchId" element={<PitchHistory />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signUp" element={<SignUp />} />
       <Route path="/forgotpassword" element={<ForgetPassword />} />
       <Route path="/verify-otp" element={<OTPVerification />} />
-      <Route path="/reset" element={<ResetOTP/>} />
+      <Route path="/reset" element={<ResetOTP />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/booking-details" element={<BookingDetails />} />
       <Route path="*" element={<NotFound />} />
-      
     </Routes>
   );
-}
+};
+
 export default App;

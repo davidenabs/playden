@@ -1,26 +1,30 @@
 import React, { useState, useEffect } from "react";
-import FrameComponent from "../components/FrameComponent";
-import Menu from "../components/Menu";
-import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const PitchHistory = () => {
+  const { pitchId } = useParams(); // Get the pitchId from the URL
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchTransactions = async (pitchId) => {
-      const token = localStorage.getItem("authToken");
+    const fetchTransactions = async () => {
+      const token = localStorage.getItem("authToken"); // Retrieve the token
+
       if (!token) {
         setError("No token found. Please log in.");
         setLoading(false);
         return;
       }
 
+      console.log("Pitch ID:", pitchId);
+      console.log("Fetching from URL:", `${process.env.REACT_APP_API_URL}api/v1/pitch-owner/pitches/${pitchId}`);
+
+
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}api/v1/pitch-owner/pitches/${pitchId}`, // Adjust the endpoint if necessary
+          `${process.env.REACT_APP_API_URL}api/v1/pitch-owner/pitches/${pitchId}`,
           {
             method: "GET",
             headers: {
@@ -38,7 +42,7 @@ const PitchHistory = () => {
 
         const data = await response.json();
         if (data && data.data) {
-          setTransactions(data.data.transactions || []); // Adjust based on the actual API response structure
+          setTransactions(data.data.transactions || []); // Assuming `transactions` are in `data.data`
         } else {
           toast.info("No transactions found.");
         }
@@ -52,15 +56,17 @@ const PitchHistory = () => {
       }
     };
 
-    fetchTransactions();
-  }, []);
+    if (pitchId) {
+      fetchTransactions(); // Fetch transactions only if pitchId exists
+    }
+  }, [pitchId]);
 
   if (loading) {
-    return <div>Loading pitch booking history...</div>;
+    return <div className="text-center fontSize-xl">Loading pitch booking history...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="text-center fontSize-xl">Error: {error}</div>;
   }
 
   return (
@@ -70,6 +76,11 @@ const PitchHistory = () => {
         <Menu />
         <section className="self-stretch flex flex-row items-start justify-center bg-gray-300 py-0 pl-[21px] mq450:pl-[0px] pr-5 box-border max-w-full text-center text-base text-text font-poppins">
           <div className="w-[1145px] rounded-lg bg-white-a700_bf flex flex-col items-start justify-start py-5 px-[34px] mt-[20px] mq450:px-[27px] box-border gap-[35px] max-w-full mq725:gap-[17px]">
+            <header className="self-stretch">
+              <h3>{`Pitch Name: ${name}`}</h3>
+              <p>{`Size: ${size}`}</p>
+              <p>{`Amount per hour: ${amount_per_hour}`}</p>
+            </header>
             <footer className="self-stretch shadow-[0px_1.8px_3.69px_rgba(243,_246,_249,_0.8)] rounded-2xl bg-light-mode-white-5-ffffff flex flex-col items-start justify-start pt-3.5 px-0 pb-[17.5px] box-border gap-[7.7px] max-w-full z-[2] text-left text-xl text-darkslategray-500 font-work-sans">
               <div className="self-stretch flex flex-row items-start justify-end pt-0 px-[47px] pb-[5.3px] box-border max-w-full text-icons mq1050:pl-[23px] mq1050:pr-[23px] mq1050:box-border">
                 <div className="w-[969px] flex flex-row items-start justify-between gap-5 max-w-full mq450:flex-wrap">
@@ -85,7 +96,7 @@ const PitchHistory = () => {
               </div>
 
               {transactions.length > 0 ? (
-                transactions.map((transaction, index) => (
+        transactions.map((transaction, index) => (
                   <div
                     key={index}
                     className="self-stretch flex flex-row items-start justify-start py-0 pl-[57px] pr-[55px] box-border max-w-full text-sm text-f2 font-inter mq1050:pl-7 mq1050:pr-[27px] mq1050:box-border"
@@ -131,7 +142,7 @@ const PitchHistory = () => {
                   </div>
                 ))
               ) : (
-                <div>No transactions available</div>
+                <div>No transactions available yet!</div>
               )}
             </footer>
           </div>
@@ -139,10 +150,6 @@ const PitchHistory = () => {
       </main>
     </div>
   );
-};
-
-PitchHistory.propTypes = {
-  className: PropTypes.string,
 };
 
 export default PitchHistory;

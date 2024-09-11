@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import { getImageUrl } from '../utills/imageUtils';
 
+
 const Content = ({ className = "" }) => {
   const [pitches, setPitches] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -48,13 +49,7 @@ const Content = ({ className = "" }) => {
 
         if (data && data.data && Array.isArray(data.data)) {
           setPitches(data.data);
-          const pitchId = data[0].id;  // Fetching the first pitch's ID, or whichever pitch you need
-      console.log("Pitch ID:", pitchId);
-
-      // Optionally, store the pitch ID in localStorage
-      localStorage.setItem("pitchId", pitchId);
       
-      // Now you can use this pitchId for other operations
         } else {
       console.log("No pitches found for this user.");
     }
@@ -71,12 +66,13 @@ const Content = ({ className = "" }) => {
     fetchPitches();
   }, []);
 
+
   if (loading) {
-    return <div>Loading pitches...</div>;
+    return <div className='text-center fontSize-xl'>Loading pitches...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className='text-center font fontSize-xl'>Error: {error}</div>;
   }
 
   return (
@@ -87,15 +83,15 @@ const Content = ({ className = "" }) => {
         pitches.map((pitch) => (
           <Container
             key={pitch.id}
-            image8={getImageUrl(pitch.image) || "/default-image.png"} // Use the image URL from the API or fallback
-            name={`Pitch Name: ${pitch.name || "Football"}`} // Use pitch.sport if available
-            size={`PITCH SIZE: ${pitch.size || "Unknown"}`} // Use pitch.size from the API
-            manager={`PITCH MANAGER: ${pitch.manager_name || "Not available"}`} // Use pitch.manager_name if available
-            amount_per_hour={` N${pitch.amount_per_hour || "0"}`} // Use pitch.amount_per_hour for price
+            image8={getImageUrl(pitch.image) || "/default-image.png"} // image URL from the API or fallback
+            name={`Pitch Name: ${pitch.name || "Football"}`} //  pitch.sport if available
+            size={`Pitch Size: ${pitch.size || "Unknown"}`} //  pitch.size from the API
+            // manager={`PITCH MANAGER: ${pitch.manager_name || "Not available"}`} //  pitch.manager_name if available
+            amount_per_hour={`Per Hour: ₦${pitch.amount_per_hour || "0"}`} //  pitch.amount_per_hour for price
           />
         ))
       ) : (
-        <div>No pitches available for this user.</div>
+        <div>No pitches available for this particlar user yet!.</div>
       )}
     </div>
   );
