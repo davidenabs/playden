@@ -77,32 +77,32 @@ const ResetPassword = () => {
       <div className="flex w-full h-screen items-center bg-gray-100 md:flex-col overflow-hidden">
         {/* Reset Password Form */}
         <form onSubmit={handleSubmit} method="post" className="flex flex-col items-center justify-center w-full h-full">
-          <div className="flex flex-col items-center bg-white shadow-xl px-3 gap-2 mq450:pt-[60px]">
+          <div className="flex flex-col items-center bg-white-a700_bf shadow-xl px-3 gap-2 mq450:pt-[60px] w-[480px] h-[480px]">
             <Heading size="heading2xl" as="h1" className="font-worksans text-black-900_01 text-center">
               Reset Password
             </Heading>
             <Text as="p" className="text-center mt-0 mq450:mb-12">Enter and confirm your new password.</Text>
 
             <div className="flex flex-col items-center gap-6 w-full">
-              <div className="flex flex-col gap-2 w-full">
+              <div className="flex flex-col gap-[1px] w-full ml-[30px]">
                 <Text as="p" className="text-left">New Password</Text>
                 <input
                   type="password"
                   value={newPassword}
                   onChange={handleNewPasswordChange}
-                  className="w-full border border-gray-400 rounded p-2"
+                  className="w-[90%] border border-gray-400 rounded p-2"
                   placeholder="Enter new password"
                   required
                 />
               </div>
 
-              <div className="flex flex-col gap-2 w-full">
+              <div className="flex flex-col gap-[1px] w-full ml-[30px]">
                 <Text as="p" className="text-left">Confirm New Password</Text>
                 <input
                   type="password"
                   value={confirmPassword}
                   onChange={handleConfirmPasswordChange}
-                  className="w-full border border-gray-400 rounded p-2"
+                  className="w-[90%] border border-gray-400 rounded p-2"
                   placeholder="Confirm new password"
                   required
                 />

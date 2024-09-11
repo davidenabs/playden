@@ -8,6 +8,8 @@ const ResetOTP = () => {
   const [otp, setOtp] = useState(new Array(4).fill(""));
   const [error, setError] = useState(null); // For handling errors
   const [loading, setLoading] = useState(false); // For button loading state
+  const [resendAvailable, setResendAvailable] = useState(false); // Track if resend button is enabled
+  const [timer, setTimer] = useState(60); // Timer for resend button countdown (60 seconds)
   const navigate = useNavigate();
   const inputRefs = useRef([]);
   const location = useLocation();
@@ -78,6 +80,53 @@ const ResetOTP = () => {
     }
   };
 
+  // Resend OTP handler
+  const handleResendOTP = async () => {
+    setLoading(true); // Set loading while resending OTP
+
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}api/v1/auth/resend-otp-forgot-password`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          phone_number: phone_number, // phone number here
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setError(null); // Clear previous error
+        setResendAvailable(false); // Disable resend button
+        setTimer(60); // Reset timer to 60 seconds
+      } else {
+        setError(data.message || 'Failed to resend OTP. Please try again.');
+      }
+    } catch (error) {
+      setError('An error occurred while resending the OTP. Please try again.');
+    } finally {
+      setLoading(false); // Stop loading state
+    }
+  };
+
+  // Timer logic for Resend OTP button
+  useEffect(() => {
+    let interval = null;
+
+    if (timer > 0) {
+      interval = setInterval(() => {
+        setTimer(prevTimer => prevTimer - 1);
+      }, 1000);
+    } else {
+      setResendAvailable(true); // Enable resend button when timer reaches 0
+    }
+
+    return () => clearInterval(interval); // Clear interval when component unmounts or timer changes
+  }, [timer]);
+
   return (
     <>
       <Helmet>
@@ -109,20 +158,33 @@ const ResetOTP = () => {
             </div>
 
             {/* Error message */}
-            {error && <Text as="p" className="text-red-500 mt-2">{error}</Text>}
+            {error && <Text as="p" className="text-red-500 mt-1">{error}</Text>}
 
             {/* Button */}
             <Button
               color="gray_800"
               size="lg"
               shape="round"
-              className="mt-[100px] mq450:mt-[30px] min-w-[188px] font-worksans"
+              className="mt-[40px] mq450:mt-[30px] min-w-[188px] font-worksans"
               style={{ color: 'white' }}
               onClick={handleSubmit}
               disabled={loading || otp.some(digit => digit === "")} // Disable button if OTP is incomplete or loading
             >
               {loading ? "Verifying..." : "Verify OTP"}
             </Button>
+
+            {/* Resend OTP */}
+            <div className="mt-4">
+              <Button
+                color="gray_600"
+                size="sm"
+                shape="round"
+                onClick={handleResendOTP}
+                disabled={!resendAvailable || loading} // Disable until timer reaches 0 or it's loading
+              >
+                {resendAvailable ? "Resend OTP" : `Get OTP in ${timer}s`}
+              </Button>
+            </div>
           </div>
         </form>
         {/* Side Image */}
