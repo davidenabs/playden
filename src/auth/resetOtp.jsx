@@ -158,14 +158,14 @@ const ResetOTP = () => {
             </div>
 
             {/* Error message */}
-            {error && <Text as="p" className="text-red-500 mt-1">{error}</Text>}
+            {error && <Text as="p" className="text-red-500 mt-[2px]">{error}</Text>}
 
             {/* Button */}
             <Button
               color="gray_800"
               size="lg"
               shape="round"
-              className="mt-[40px] mq450:mt-[30px] min-w-[188px] font-worksans"
+              className="mt-[20px] mq450:mt-[30px] min-w-[188px] font-worksans"
               style={{ color: 'white' }}
               onClick={handleSubmit}
               disabled={loading || otp.some(digit => digit === "")} // Disable button if OTP is incomplete or loading

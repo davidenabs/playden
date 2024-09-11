@@ -7,6 +7,7 @@ import { Button, Text, Heading } from "../components";
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false); // Track loading state
   const navigate = useNavigate();
   const location = useLocation();
   const phone_number = location.state?.phone_number; // Retrieve phone number from state
@@ -22,10 +23,20 @@ const ResetPassword = () => {
 
   // Validate passwords
   const validatePasswords = () => {
+
     if (newPassword.length < 6) {
       toast.error("Password must be at least 6 characters.");
       return false;
     }
+
+    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+
+    // Check if password contains at least one special character
+    if (!specialCharRegex.test(newPassword)) {
+        toast.error('Password must contain atleast one special symbol.');
+        return false;
+      }
+      
     if (newPassword !== confirmPassword) {
       toast.error("Passwords do not match.");
       return false;
@@ -39,8 +50,10 @@ const ResetPassword = () => {
 
     if (!validatePasswords()) return;
 
+    setLoading(true); // Set loading state to true during submission
+
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}api/v1/auth/reset-password`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}api/v1/auth/change-new-password`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -49,6 +62,7 @@ const ResetPassword = () => {
         body: JSON.stringify({
           phone_number: phone_number,
           password: newPassword,
+          password_confirm: confirmPassword
         })
       });
 
@@ -56,6 +70,7 @@ const ResetPassword = () => {
 
       if (!response.ok) {
         console.error('Error response:', data);
+        toast.error(data.message || "An error occurred. Please try again.");
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
@@ -65,6 +80,8 @@ const ResetPassword = () => {
     } catch (error) {
       console.error('Error during fetch:', error.message);
       toast.error("An error occurred. Please try again.");
+    } finally {
+      setLoading(false); // Reset loading state after submission
     }
   };
 
@@ -114,9 +131,9 @@ const ResetPassword = () => {
                 shape="round"
                 className="min-w-[188px] font-worksans"
                 style={{ color: 'white' }}
-                disabled={newPassword === "" || confirmPassword === ""} // Disable button if passwords are empty
+                disabled={newPassword === "" || confirmPassword === "" || loading} // Disable button if passwords are empty or during loading
               >
-                Reset Password
+                {loading ? "Resetting..." : "Reset Password"}
               </Button>
             </div>
           </div>
