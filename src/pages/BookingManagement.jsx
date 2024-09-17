@@ -40,7 +40,8 @@ const BookingManagement = () => {
 
         const data = await response.json();
         if (data.success) {
-          setBookings(data.data.bookings); // Set the fetched bookings
+          setBookings(data.data.bookings); 
+          console.log(data);// Set the fetched bookings
         } else {
           throw new Error("Failed to fetch bookings");
         }
@@ -88,13 +89,13 @@ const BookingManagement = () => {
             <div className="w-[133px] flex flex-col items-start justify-start py-0 pl-0 pr-3.5 box-border gap-9">
               <div className="self-stretch flex flex-row items-start justify-end py-0 px-[29px]">
                 <div className="relative font-medium inline-block min-w-[46px]">
-                  NAME
+                  USERNAME
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start gap-[46px] text-xs">
                 {bookings.map((booking, index) => (
                   <div key={index} className="relative font-medium inline-block min-w-[119px]">
-                    {booking.name}
+                    {booking.user.username}
                   </div>
                 ))}
               </div>
@@ -106,7 +107,7 @@ const BookingManagement = () => {
               <div className="flex flex-col items-start justify-start gap-[46px]">
                 {bookings.map((booking, index) => (
                   <div key={index} className="relative font-medium inline-block min-w-[57px]">
-                    {booking.bookingId}
+                    {booking.booking_code}
                   </div>
                 ))}
               </div>
@@ -118,7 +119,7 @@ const BookingManagement = () => {
               <div className="flex flex-col items-start justify-start gap-[46px]">
                 {bookings.map((booking, index) => (
                   <div key={index} className="relative font-medium inline-block min-w-[84px]">
-                    {booking.number}
+                    +{booking.user.phone_number}
                   </div>
                 ))}
               </div>
@@ -167,7 +168,7 @@ const BookingManagement = () => {
               <div className="flex flex-col items-start justify-start gap-[46px] text-xs">
                 {bookings.map((booking, index) => (
                   <div key={index} className="relative font-medium inline-block min-w-[43px]">
-                    {booking.time}
+                    {booking.end_time}
                   </div>
                 ))}
               </div>
