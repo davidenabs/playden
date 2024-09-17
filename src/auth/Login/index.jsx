@@ -63,6 +63,7 @@ const LoginPage = () => {
       } else {
         const errorData = await response.json();
         toast.error(`Sign-In failed: ${errorData.message || 'Please try again.'}`);
+        console.error(errorData.message);
       }
     } catch (error) {
       console.error('Error during sign-in:', error);
