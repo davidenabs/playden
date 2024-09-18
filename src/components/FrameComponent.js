@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { Img } from "./Img";
 import { memo } from "react";
 
-const FrameComponent = memo(({ className = "", aare, username }) => {
+const FrameComponent = memo(({ className = "", aare}) => {
   return (
     <header
     className={`self-stretch h-[130px] mq450:h-[60px] relative bg-icons overflow-hidden shrink-0 max-w-full text-left text-smi text-light-mode-white-5-ffffff font-poppins mq725:h-auto mq725:min-h-[131px] ${className}`}
@@ -52,7 +52,7 @@ const FrameComponent = memo(({ className = "", aare, username }) => {
               <div className="self-stretch relative font-medium text-ghostwhite">
                     <span>Hi</span>
                     <span className="text-2xs">,</span>
-                    <span className="text-smi">{username || 'User'}</span>
+                    <span className="text-smi">Zak</span>
                   </div>
                 </div>
                 <div className="w-[43px] rounded-md bg-f2 flex flex-row items-start justify-start pt-[9px] px-3.5 pb-2.5 box-border text-4xl text-light-mode-white-5-ffffff">
@@ -73,7 +73,6 @@ const FrameComponent = memo(({ className = "", aare, username }) => {
 FrameComponent.propTypes = {
   className: PropTypes.string,
   aare: PropTypes.string,
-  username: PropTypes.string,
 };
 
 export default FrameComponent;
