@@ -62,7 +62,7 @@ const PitchHistory = () => {
   }, [pitchId]);
 
   if (loading) {
-    return <div className="text-center fontSize-xl">Loading pitch booking history...</div>;
+    return <div className="text-center fontSize-4xl">Loading pitch booking history...</div>;
   }
 
   if (error) {

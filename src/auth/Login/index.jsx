@@ -82,8 +82,8 @@ const LoginPage = () => {
       <div className="flex w-full h-screen items-center bg-gray-100 md:flex-col overflow-hidden">
         {/* Login Form */}
         <form onSubmit={handleSignIn} method="post" className="flex mq450:w-[85%] mq450:mt-10 w-[130%] md:w-[89px] lg:w-1/2 md:h-[50px] h-[500px] flex-col items-center px-4 md:px-1 mb-[50px]">
-          <div className="flex w-[564px] max-w-md lg:max-w-sm h-[679px] lg:h-[10%] md:w-[100%] flex-col items-center justify-center gap-0 rounded-lg bg-white-a700_bf px-2 py-[1px] pr-7 mt-[1px] md:px-5 md:py-1 shadow-xl md:shadow-none">
-            <div className="flex flex-col items-center gap-1 w-[436px] h-[450px]">
+          <div className="flex w-[564px] max-w-md lg:max-w-sm h-[679px] lg:h-[10%] md:w-[100%] flex-col items-center justify-center gap-0 rounded-lg bg-white-a700_bf px-2 py-[1px] pr-7 mt-[1px] md:px-5 md:py-1 shadow-xl md:shadow-none mq1050:w-[600px] mq1050:mt-[10rem]">
+            <div className="flex flex-col items-center gap-1 w-[436px] h-[450px] mq1050:w-[300px]">
               <div className="flex flex-col items-center justify-center gap-[1px] w-[197px] mt-[40px]">
                 <Link to="/login" rel="noreferrer" className="no-underline">
                   <Heading size="heading2xl" as="h1" className="font-worksans text-black-900_01 text-center no-underline">
@@ -95,26 +95,26 @@ const LoginPage = () => {
               <div className="flex flex-col items-center gap-2 mq450:w-[300px] md:w-[406px]">
                 <div className="flex flex-col gap-[1px] w-[130%] mq450:w-[100%] mq450:mr-[16px]">
                   <div className="flex flex-col items-start gap-0.1 w-full">
-                    <Text as="p">Email</Text>
+                    <Text as="p" className="mq1050:ml-[3.5rem]">Email</Text>
                     <input
                       size="md"
                       shape="round"
                       name="email"
                       type="email"
-                      className="w-full border border-black-900_01 rounded p-2"
+                      className="w-full border border-black-900_01 rounded p-2 mq1050:w-[75%] mq1050:ml-[3.5rem]" 
                       value={user_id}
                       onChange={handleEmailChange}
                       required
                     />
                   </div>
                   <div className="flex flex-col relative items-start gap-0.5 w-full">
-                    <Text as="p">Password</Text>
+                    <Text as="p" className="mq1050:ml-[3.5rem]">Password</Text>
                     <input
                       size="md"
                       shape="round"
                       name="password"
                       type={showPassword ? "text" : "password"}
-                      className="w-full border border-black-900_01 rounded p-2"
+                      className="w-full border border-black-900_01 rounded p-2 mq1050:w-[75%] mq1050:ml-[3.5rem]"
                       value={password}
                       onChange={handlePasswordChange}
                       required
@@ -122,17 +122,17 @@ const LoginPage = () => {
                      <span
           
           onClick={toggleShowPassword}
-          className="absolute right-1 top-[75px] transform -translate-y-1/2"
+          className="absolute right-1 top-[75px] transform -translate-y-1/2 mq1050:mr-[70px]"
         >
           {showPassword ? <FaEyeSlash /> : <FaEye />}
         </span>
                   </div>
-                  <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center justify-between w-full mq1050:w-[460px]">
                     <CheckBox
                       name="rememberme"
                       label="&nbsp;Remember me?"
                       id="rememberme"
-                      className="gap-2 font-inter text-[16px] text-blue_gray-300"
+                      className="gap-2 font-inter text-[16px] text-blue_gray-300 mq1050:ml-[3.5rem]"
                       
                     />
                     <Link to="/forgotpassword" className="text-right no-underline">
