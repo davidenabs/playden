@@ -41,7 +41,7 @@ const BookingManagement = () => {
         const data = await response.json();
         if (data.success) {
           setBookings(data.data.bookings); 
-          console.log(data);// Set the fetched bookings
+          // console.log(data);// Set the fetched bookings
         } else {
           throw new Error("Failed to fetch bookings");
         }
