@@ -39,7 +39,7 @@ const LoginPage = () => {
     setLoading(true);
     try {
       // Replace with your API endpoint and data
-      const response = await fetch(`${process.env.REACT_APP_API_URL}api/v1/auth/login`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/auth/login`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -50,7 +50,7 @@ const LoginPage = () => {
 
       if (response.ok) {
         const data = await response.json();
-        // console.log('API response data:', data);
+        console.log('API response data:', data);
 
         // Store the token and user_id in localStorage after a successful login
         setSession(data.data.user.token, data.data.user.id);

@@ -14,7 +14,7 @@ const FrameComponent5 = ({ className = "" }) => {
       const formattedDate = date.toISOString().split('T')[0];
       console.log(`Fetching bookings for date: ${formattedDate}`);
       
-      const response = await fetch(`https://api.playdenapp.com/v1/pitch-owner/bookings?date=${formattedDate}`);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/v1/pitch-owner/bookings?date=${formattedDate}`);
       console.log('Raw API Response:', response); // Log the raw response
       
       if (!response.ok) {
@@ -46,7 +46,6 @@ const FrameComponent5 = ({ className = "" }) => {
     <div className={`min-h-screen bg-gray-100 p-8 ${className}`}>
       <div className="max-w-7xl mx-auto">
         <header className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
           <div className="flex items-center gap-2 mt-2">
             <Clock className="w-5 h-5 text-purple-500" />
             <span className="text-gray-600">
