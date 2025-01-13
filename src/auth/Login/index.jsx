@@ -39,7 +39,7 @@ const LoginPage = () => {
     setLoading(true);
     try {
       // Replace with your API endpoint and data
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/auth/login`, {
+      const response = await fetch(`https://api.playdenapp.com/api/v1/auth/login`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -54,7 +54,7 @@ const LoginPage = () => {
 
         // Store the token and user_id in localStorage after a successful login
         setSession(data.data.user.token, data.data.user.id);
-        localStorage.setItem('authToken', data.data.user.token);
+        console.log(`${localStorage.setItem('authToken', data.data.user.token)}`);
        
 
         // Redirect to dashboard
@@ -67,7 +67,7 @@ const LoginPage = () => {
       }
     } catch (error) {
       console.error('Error during sign-in:', error);
-      toast.error('An error occurred. Please try again.');
+      toast.error('Network error! Please try again.');
     } finally {
       setLoading(false); // Set loading to false when the request completes
     }

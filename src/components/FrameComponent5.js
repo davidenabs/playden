@@ -1,32 +1,35 @@
 import React, { useState } from 'react';
-import CalendarView from './Calender/CalenderView'; // Ensure this component supports clicking dates
+import CalendarView from './Calender/CalenderView';
 import StatsChart from './Stats/StatsChart';
 import TodayStats from './Stats/TodayStats';
 import { Calendar, Clock, CheckCircle, XCircle, Clock3 } from 'lucide-react';
-import PropTypes from 'prop-types';
 
 const FrameComponent5 = ({ className = "" }) => {
   const [selectedDateBookings, setSelectedDateBookings] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Function to handle date selection
   const handleDateSelect = async (date) => {
     try {
+      setIsLoading(true);
       const formattedDate = date.toISOString().split('T')[0];
       console.log(`Fetching bookings for date: ${formattedDate}`);
       
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/v1/pitch-owner/bookings?date=${formattedDate}`);
-      console.log('Raw API Response:', response); // Log the raw response
+      const response = await fetch(`https://api.playdenapp.com/api/v1/pitch-manager/bookings?date=${formattedDate}`);
+      console.log('Raw API Response:', response);
       
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       
       const data = await response.json();
-      console.log('Parsed Bookings Data:', data); // Log parsed data
+      console.log('Parsed Bookings Data:', data);
       setSelectedDateBookings(data);
     } catch (error) {
       console.error('Error fetching bookings:', error);
-      setSelectedDateBookings([]); // Reset bookings in case of an error
+      setSelectedDateBookings([]);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -78,8 +81,12 @@ const FrameComponent5 = ({ className = "" }) => {
             <h3 className="text-lg font-semibold">Upcoming Bookings</h3>
             <Calendar className="w-5 h-5 text-purple-500" />
           </div>
-          {selectedDateBookings.length === 0 ? (
-            <p className="text-gray-500">No bookings available for the selected date.</p>
+          {isLoading ? (
+            <div className="flex justify-center items-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>
+            </div>
+          ) : selectedDateBookings.length === 0 ? (
+            <p className="text-gray-500">Select a date to view bookings.</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {selectedDateBookings.map((booking, i) => (
@@ -108,10 +115,6 @@ const FrameComponent5 = ({ className = "" }) => {
       </div>
     </div>
   );
-};
-
-FrameComponent5.propTypes = {
-  className: PropTypes.string,
 };
 
 export default FrameComponent5;

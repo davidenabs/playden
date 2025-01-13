@@ -75,7 +75,7 @@ const SignUp = () => {
     }
 
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}api/v1/auth/register`, {
+        const response = await fetch(`https://api.playdenapp.com/api/v1/auth/register`, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -97,18 +97,20 @@ const SignUp = () => {
 
           // If the API returns a token after successful sign-up, store it or navigate to login
           const userId = data.data.user.id;  // Assuming 'id' is the user ID
-          const token = data.data.user.token;  // Token
+          console.log(userId);
+          const token = data.data.token;  // Token
+          console.log(token);
     
-          if (userId && token) {
+          if (userId && !token) {
             toast.success('Sign-Up successful! OTP has been sent.');
             
             // Redirect to verify OTP page after successful sign-up
-            navigate('/verify-otp', {
-              state: {
-                userId: userId, // Use the correct key from the response
-                token: token    // Ensure token is being passed
-              }
-            }); // Redirect to verify otp page after successful sign-up
+            navigate('/verify-otp')
+              // state: {
+              //   userId: userId, // Use the correct key from the response
+              //   token: token    // Ensure token is being passed
+              // }
+            ; // Redirect to verify otp page after successful sign-up
 
 
       } else {

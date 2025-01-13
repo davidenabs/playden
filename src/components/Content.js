@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import { getImageUrl } from '../utills/imageUtils';
 
-
 const Content = ({ className = "" }) => {
   const [pitches, setPitches] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +11,9 @@ const Content = ({ className = "" }) => {
 
   useEffect(() => {
     const fetchPitches = async () => {
-      const token = localStorage.getItem("authToken");
+      const token = localStorage.getItem("token");
+      console.log("Token retrieved:", token);
+
       if (!token) {
         setError("No token found. Please log in.");
         setLoading(false);
@@ -21,7 +22,7 @@ const Content = ({ className = "" }) => {
 
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}api/v1/pitch-owner/pitches?sort_order=desc`,
+          `https://api.playdenapp.com/api/v1/pitch-owner/pitches?sort_order=desc`,
           {
             method: "GET",
             headers: {
@@ -33,11 +34,20 @@ const Content = ({ className = "" }) => {
           }
         );
 
-        const contentType = response.headers.get("content-type");
+        console.log("Response status:", response.status);
+        console.log("Response headers:", response.headers);
+
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          const errorDetails = await response.text();
+          console.error("Error details:", errorDetails);
+          throw new Error(
+            response.status === 403
+              ? "Unauthorized access. Please check your credentials."
+              : `HTTP error! status: ${response.status}`
+          );
         }
 
+        const contentType = response.headers.get("content-type");
         if (!contentType || !contentType.includes("application/json")) {
           const textResponse = await response.text();
           console.error("Non-JSON response:", textResponse);
@@ -45,18 +55,17 @@ const Content = ({ className = "" }) => {
         }
 
         const data = await response.json();
-        console.log("Fetched pitches data:", data);
+        console.log("Fetched data:", data);
 
-        if (data && data.data && Array.isArray(data.data)) {
+        if (data?.data && Array.isArray(data.data)) {
           setPitches(data.data);
-      
         } else {
-      console.log("No pitches found for this user.");
-    }
+          console.warn("Unexpected API response format or no data.");
+        }
 
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching pitches:", error);
+        console.error("Error fetching pitches:", error.message);
         setError(error.message);
         setLoading(false);
         toast.error("Failed to load pitches. Please try again later.");
@@ -66,13 +75,12 @@ const Content = ({ className = "" }) => {
     fetchPitches();
   }, []);
 
-
   if (loading) {
     return <div className='text-center fontSize-xl'>Loading pitches...</div>;
   }
 
   if (error) {
-    return <div className='text-center font fontSize-xl'>Error: {error}</div>;
+    return <div className='text-center fontSize-xl'>Error: {error}</div>;
   }
 
   return (
@@ -83,15 +91,14 @@ const Content = ({ className = "" }) => {
         pitches.map((pitch) => (
           <Container
             key={pitch.id}
-            image8={getImageUrl(pitch.image) || "/default-image.png"} // image URL from the API or fallback
-            name={`Pitch Name: ${pitch.name || "Football"}`} //  pitch.sport if available
-            size={`Pitch Size: ${pitch.size || "Unknown"}`} //  pitch.size from the API
-            // manager={`PITCH MANAGER: ${pitch.manager_name || "Not available"}`} //  pitch.manager_name if available
-            amount_per_hour={`Per Hour: ₦${pitch.amount_per_hour || "0"}`} //  pitch.amount_per_hour for price
+            image8={getImageUrl(pitch.image) || "/default-image.png"}
+            name={`Pitch Name: ${pitch.name || "Football"}`}
+            size={`Pitch Size: ${pitch.size || "Unknown"}`}
+            amount_per_hour={`Per Hour: ₦${pitch.amount_per_hour || "0"}`}
           />
         ))
       ) : (
-        <div>No pitches available for this particlar user yet!.</div>
+        <div>No pitches available for this particular user yet!</div>
       )}
     </div>
   );

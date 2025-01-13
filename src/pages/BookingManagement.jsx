@@ -12,7 +12,7 @@ const BookingManagement = () => {
   useEffect(() => {
     // Fetch bookings from the API
     const fetchBookings = async () => {
-      const token = localStorage.getItem("authToken"); // Make sure the token is stored correctly
+      const token = localStorage.getItem("token"); // Make sure the token is stored correctly
 
       if (!token) {
         setError("No token found. Please log in.");
@@ -22,7 +22,7 @@ const BookingManagement = () => {
 
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}api/v1/pitch-owner/bookings/`,
+          `https://api.playdenapp.com/api/v1/pitch-manager/bookings/`,
           {
             method: "GET",
             headers: {
@@ -40,8 +40,8 @@ const BookingManagement = () => {
 
         const data = await response.json();
         if (data.success) {
-          setBookings(data.data.bookings); 
-          // console.log(data);// Set the fetched bookings
+          setBookings(data); 
+          console.log(data);// Set the fetched bookings
         } else {
           throw new Error("Failed to fetch bookings");
         }
