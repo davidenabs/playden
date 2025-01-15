@@ -12,10 +12,9 @@ const Content = ({ className = "" }) => {
   useEffect(() => {
     const fetchPitches = async () => {
       const token = localStorage.getItem("token");
-      console.log("Token retrieved:", token);
 
       if (!token) {
-        setError("No token found. Please log in.");
+        setError("You are not logged in. Please log in to view pitches.");
         setLoading(false);
         return;
       }
@@ -34,41 +33,31 @@ const Content = ({ className = "" }) => {
           }
         );
 
-        console.log("Response status:", response.status);
-        console.log("Response headers:", response.headers);
-
         if (!response.ok) {
-          const errorDetails = await response.text();
-          console.error("Error details:", errorDetails);
           throw new Error(
             response.status === 403
-              ? "Unauthorized access. Please check your credentials."
-              : `HTTP error! status: ${response.status}`
+              ? "Unauthorized access. Please log in again."
+              : "Something went wrong while fetching pitches. Please try again later."
           );
         }
 
         const contentType = response.headers.get("content-type");
         if (!contentType || !contentType.includes("application/json")) {
-          const textResponse = await response.text();
-          console.error("Non-JSON response:", textResponse);
-          throw new Error("Received non-JSON response from the API.");
+          throw new Error("Unexpected response from the server. Please contact support.");
         }
 
         const data = await response.json();
-        console.log("Fetched data:", data);
-
         if (data?.data && Array.isArray(data.data)) {
           setPitches(data.data);
         } else {
-          console.warn("Unexpected API response format or no data.");
+          setError("No pitches found. Please check back later.");
         }
 
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching pitches:", error.message);
         setError(error.message);
         setLoading(false);
-        toast.error("Failed to load pitches. Please try again later.");
+        toast.error("An error occurred. Please try again.");
       }
     };
 
@@ -76,11 +65,20 @@ const Content = ({ className = "" }) => {
   }, []);
 
   if (loading) {
-    return <div className='text-center fontSize-xl'>Loading pitches...</div>;
+    return (
+      <div className='flex flex-col items-center justify-center h-screen'>
+        <div className='loader mb-4'></div>
+        <p className='text-center fontSize-xl'>Loading pitches...</p>
+      </div>
+    );
   }
 
   if (error) {
-    return <div className='text-center fontSize-xl'>Error: {error}</div>;
+    return (
+      <div className='text-center fontSize-xl text-red-600 mt-10 mr-[500px] mb-10'>
+        {error}
+      </div>
+    );
   }
 
   return (
