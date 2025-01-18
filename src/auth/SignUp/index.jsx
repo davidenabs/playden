@@ -138,7 +138,7 @@ const SignUp = () => {
         <title>PlayDen</title>
         <meta name="description" content="Web site created using create-react-app" />
       </Helmet>
-      <div className="flex w-full h-screen items-center bg-gray-100 md:flex-col overflow-hidden">
+      <div className="flex w-full h-screen md:h-screen items-center bg-gray-100 md:flex-col overflow-hidden">
         {/* Login Form */}
         <form onSubmit={handleSignUp} method="post" className="flex scale-[0.8] mt-7 mq450:w-[160%] mq450:mt-[0px] mq450:pr-[4px] w-[130%] lg:w-1/2 mq450:h-full h-[750px] mq1050:h-[150%] flex-col items-center px-[2px] md:px-1 md:overflow-y-auto md:mt-0">
           <div className="flex w-[590px] max-w-[70%] lg:max-w-[90%] h-[70%] lg:h-[10%] md:w-[100%] bg-white-a700_bf flex-col items-center justify-center gap-2 rounded-lg bg-light_mode-white-5_ffffff mq450:h-[600%] mq450:pr-[10px] px-8 py-9 my-[1px] pt-[150px] mq450:pt-[1px] mq450:px-0 mq450:mt-[5px] md:py-5 mq450:pt-[40px] shadow-strong md:shadow-none mq1050:mt-[7rem]">
@@ -260,7 +260,7 @@ const SignUp = () => {
                 <Link to="/login" className="text-center no-underline">
                   <Text as="p" className="self-end !text-black-900_02">
                     <span className="text-blue_gray-900">Already have an account</span>
-                    <span className="text-f2">&nbsp; Sign In</span>
+                    <span className="text-f2 text-deep_purple-400">&nbsp; Sign In</span>
                   </Text>
                 </Link>
               </div>

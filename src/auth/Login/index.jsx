@@ -111,7 +111,7 @@ const LoginPage = () => {
               <label className="flex items-center text-sm text-gray-600">
                 <input type="checkbox" className="mr-2" /> Remember me
               </label>
-              <Link to="/forgotpassword" className="text-sm text-blue-600 no-underline">
+              <Link to="/forgotpassword" className="text-sm text-deep_purple-400 no-underline">
                 Forgot Password?
               </Link>
             </div>
@@ -124,7 +124,7 @@ const LoginPage = () => {
           </div>
           <p className="text-sm text-gray-600 mt-4">
             Don't have an account?{' '}
-            <Link to="/signUp" className="text-blue-600 no-underline">
+            <Link to="/signUp" className="text-deep_purple-400 no-underline">
               Sign up here
             </Link>
           </p>

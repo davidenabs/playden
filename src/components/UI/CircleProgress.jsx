@@ -18,7 +18,7 @@ export const CircleProgress = ({ percentage }) => {
           cy="64"
         />
         <circle
-          className="text-purple-500"
+          className="text-deep_purple-400"
           strokeWidth="8"
           strokeDasharray={circumference}
           strokeDashoffset={offset}
