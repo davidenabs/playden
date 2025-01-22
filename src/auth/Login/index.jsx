@@ -21,7 +21,7 @@ const LoginPage = () => {
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
-  };
+  }
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -66,11 +66,11 @@ const LoginPage = () => {
         <title>PlayDen</title>
         <meta name="description" content="Web site created using create-react-app" />
       </Helmet>
-      <div className="flex flex-col md:flex-row w-full md:w-full h-screen items-center bg-gray-100 overflow-hidden">
+      <div className="flex flex-row md:flex-row w-full md:w-full h-screen items-center bg-gray-100 overflow-hidden">
         {/* Login Form */}
         <form
           onSubmit={handleSignIn}
-          className="flex flex-col items-center justify-center w-full md:w-full md:w-1/2 p-4 md:p-8 bg-white shadow-lg md:rounded-lg"
+          className="flex flex-col items-center justify-center w-1/2 h-46 mr-5 ml-5 md:w-full md:h-full p-4 md:p-8 bg-white shadow-lg rounded-lg"
         >
           <div className="flex flex-col items-center w-full max-w-sm">
             <h1 className="text-2xl font-bold text-black mb-2">Login</h1>
@@ -124,7 +124,7 @@ const LoginPage = () => {
           </div>
           <p className="text-sm text-gray-600 mt-4">
             Don't have an account?{' '}
-            <Link to="/signUp" className="text-deep_purple-400 no-underline">
+            <Link to="/signUp" className="text-blue-600 no-underline">
               Sign up here
             </Link>
           </p>

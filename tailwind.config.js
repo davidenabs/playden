@@ -105,6 +105,7 @@ module.exports = {
         silver: "#b5b5c3",
         lightsteelblue: "#a3aed0",
         ghostwhite: "#f4f7fe",
+        whitebg: '#fff',
         mediumpurple: {
           "100": "#8f55a2",
           "200": "rgba(143, 85, 162, 0.38)",

@@ -35,7 +35,12 @@ const FrameComponent1 = ({ className = "", propFlex, propAlignSelf }) => {
               <div className="absolute top-[0px] left-[0px] rounded bg-gray-300 w-full h-full" />
               <div className="absolute top-[11px] left-[9px]">Apps</div>
             </div>
-            <Link to='/pitcth-listing' className="[text-decoration:none] relative text-xs font-medium font-poppins text-ghostwhite text-left inline-block min-w-[68px] z-[1]">Booking Management</Link>
+            <Link to='/booking-management' className="[text-decoration:none] relative text-xs font-medium font-poppins text-ghostwhite text-left inline-block min-w-[140px] z-[1]">Booking Management</Link>
+          </div>
+          <div className="flex flex-col items-start justify-start pt-[11px] px-0 pb-0">
+            <div className="relative font-medium inline-block min-w-[92px]">
+              <Link to='/profile-setting' className="[text-decoration:none] relative text-xs font-medium font-poppins text-gray-200 text-left inline-block min-w-[68px] z-[1]">Profile Setting</Link>
+            </div>
           </div>
         </div>
       </div>

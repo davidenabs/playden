@@ -12,6 +12,7 @@ import ForgetPassword from "./auth/forgetPassword";
 import ResetOTP from "./auth/resetOtp";
 import ResetPassword from './auth/change-password';
 import OTPVerification from "./auth/VerifyPhoneNumber";
+import ProfileSetting from './pages/ProfileSetting';
 
 const App = () => {
   const action = useNavigationType();
@@ -79,6 +80,7 @@ const App = () => {
       <Route path="/verify-otp" element={<OTPVerification />} />
       <Route path="/reset" element={<ResetOTP />} />
       <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/profile-setting" element={<ProfileSetting />} />
       <Route path="/booking-details" element={<BookingDetails />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

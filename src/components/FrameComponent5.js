@@ -15,7 +15,7 @@ const FrameComponent5 = ({ className = "" }) => {
       const formattedDate = date.toISOString().split('T')[0];
       console.log(`Fetching bookings for date: ${formattedDate}`);
 
-      const response = await fetch(`https://api.playdenapp.com/api/v1/pitch-manager/bookings?date=${formattedDate}`);
+      const response = await fetch(`https://api.playdenapp.com/api/v1/pitch-admin/bookings?date=${formattedDate}`);
       console.log('Raw API Response:', response);
 
       if (!response.ok) {

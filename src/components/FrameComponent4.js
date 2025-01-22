@@ -29,8 +29,14 @@ const FrameComponent4 = ({ className = "" }) => {
             <Link to='/pitch-listing' className=" [text-decoration:none] relative text-xs font-medium font-poppins text-gray-200 text-left inline-block min-w-[68px] z-[1]">Pitch Listing</Link>
              
             </div>
+            
             <div className="relative font-medium">
             <Link to='/booking-management' className="no-underline text-gray-200">Booking Management</Link>
+            </div>
+            <div className="relative font-medium inline-block min-w-[72px]">
+            
+            <Link to='/profile-setting' className=" [text-decoration:none] relative text-xs font-medium font-poppins text-gray-200 text-left inline-block min-w-[68px] z-[1]">Profile Setting</Link>
+             
             </div>
           </div>
         </div>

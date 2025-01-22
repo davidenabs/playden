@@ -22,7 +22,7 @@ const BookingManagement = () => {
 
       try {
         const response = await fetch(
-          `https://api.playdenapp.com/api/v1/pitch-manager/bookings/`,
+          `https://api.playdenapp.com/api/v1/pitch-owner/bookings/`,
           {
             method: "GET",
             headers: {
@@ -43,6 +43,7 @@ const BookingManagement = () => {
         }
 
         const data = await response.json();
+        console.log(data);
         if (data.success) {
           setBookings(data.bookings || []);
         } else {

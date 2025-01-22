@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const FrameComponent2 = ({ className = "" }) => {
+const FrameComponent6 = ({ className = "" }) => {
   return (
     <section
       className={`self-stretch flex flex-row items-start justify-start pt-0 px-0 pb-[23px] box-border max-w-full text-left text-xs text-light-mode-white-5-ffffff font-poppins ${className}`}
@@ -19,18 +19,18 @@ const FrameComponent2 = ({ className = "" }) => {
           <div className="flex flex-col items-start justify-start pt-2.5 px-0 pb-0">
           <Link to='/dashboard' className="[text-decoration:none] relative text-xs font-medium font-poppins text-gray-200 text-left inline-block min-w-[68px] z-[1]">Dashboard</Link>
           </div>
-          <button className="cursor-pointer [border:none] pt-[11px] px-[22px] pb-2.5 bg-f2 rounded-md flex flex-row items-start justify-start whitespace-nowrap hover:bg-darkslategray-300">
-            <div className="h-[39px] w-[116px] relative rounded-md bg-f2 hidden" />
-            <div className="relative text-xs font-medium font-poppins text-light-mode-white-5-ffffff text-left inline-block min-w-[72px] z-[1]">
-            <Link to='/pitcth-listing' className="[text-decoration:none] relative text-xs font-medium font-poppins text-ghostwhite text-left inline-block min-w-[68px] z-[1]">Pitch Listing</Link>
-            </div>
-          </button>
+          <div className="flex flex-col items-start justify-start pt-[11px] px-0 pb-0">
+          <Link to='/pitch-listing' className="[text-decoration:none] relative text-xs font-medium font-poppins text-gray-200 text-left inline-block min-w-[68px] z-[1]">Pitch Listing</Link>
+          </div>
           <div className="flex flex-col items-start justify-start pt-[11px] px-0 pb-0">
           <Link to='/booking-management' className="[text-decoration:none] relative text-xs font-medium font-poppins text-gray-200 text-left inline-block min-w-[68px] z-[1]">Booking Management</Link>
           </div>
-          <div className="flex flex-col items-start justify-start pt-[11px] px-0 pb-0">
-          <Link to='/profile-setting' className="[text-decoration:none] relative text-xs font-medium font-poppins text-gray-200 text-left inline-block min-w-[68px] z-[1]">Profile Setting</Link>
-          </div>
+          <button className="cursor-pointer [border:none] pt-[11px] px-[22px] pb-2.5 bg-f2 rounded-md flex flex-row items-start justify-start whitespace-nowrap hover:bg-darkslategray-300">
+            <div className="h-[39px] w-[116px] relative rounded-md bg-f2 hidden" />
+            <div className="relative text-xs font-medium font-poppins text-light-mode-white-5-ffffff text-left inline-block min-w-[72px] z-[1]">
+            <Link to='/profile-setting' className="[text-decoration:none] relative text-xs font-medium font-poppins text-ghostwhite text-left inline-block min-w-[68px] z-[1]">Profile Setting</Link>
+            </div>
+          </button>
         </div>
         <div className="w-[250px] rounded-md bg-f2 border-dimgray-200 border-[1px] border-solid box-border flex flex-row items-start justify-start pt-[9px] px-[18px] pb-2 gap-2 text-smi">
           <div className="h-[42px] w-[250px] relative rounded-md bg-f2 border-dimgray-200 border-[1px] border-solid box-border hidden" />
@@ -50,8 +50,8 @@ const FrameComponent2 = ({ className = "" }) => {
   );
 };
 
-FrameComponent2.propTypes = {
+FrameComponent6.propTypes = {
   className: PropTypes.string,
 };
 
-export default FrameComponent2;
+export default FrameComponent6;
