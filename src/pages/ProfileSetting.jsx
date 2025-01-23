@@ -117,7 +117,7 @@ const ProfileSetting = () => {
 
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch("https://api.playdenapp.com/api/v1/user/password", {
+            const response = await fetch("https://api.playdenapp.com/api/v1/user", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
