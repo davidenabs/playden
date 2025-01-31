@@ -12,7 +12,7 @@ const Container = ({ className = "", image8, name, size, amount_per_hour, pitchI
   }, [navigate, pitchId]);
 
   return (
-    <div className={`self-stretch bg-white-a700_bf flex flex-row items-start justify-between py-0 pl-0 pr-6 box-border max-w-full gap-5 text-center text-base text-text font-poppins mq1000:flex-wrap mq1000:p-5 mq1000:box-border ${className}`}>
+    <div className={`self-stretch bg-white-a700_bf flex flex-row items-start justify-between py-6 pl-6 pr-6 box-border max-w-full h-52 rounded-lg gap-5 text-center text-base text-text font-poppins mq1000:flex-wrap mq1000:p-5 mq1000:box-border ${className}`}>
       <div className="w-[614px] flex flex-row items-start justify-start gap-[23px] max-w-full mq725:flex-wrap">
         <img className="h-[155px] flex-1 relative rounded-xl max-w-full overflow-hidden object-cover min-w-[234px]" loading="lazy" alt="" src={image8} />
         <div className="flex flex-col items-start justify-start pt-[33px] px-0 pb-0 box-border min-w-[231px] mq725:flex-1">
