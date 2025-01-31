@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Container from "./Container";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
-import { getImageUrl } from '../utills/imageUtils';
+import { getImageUrl } from "../utills/imageUtils";
 
 const Content = ({ className = "" }) => {
   const [pitches, setPitches] = useState([]);
@@ -21,14 +21,14 @@ const Content = ({ className = "" }) => {
 
       try {
         const response = await fetch(
-          `https://api.playdenapp.com/api/v1/pitch-owner/pitches?sort_order=desc`,
+          "https://api.playdenapp.com/api/v1/pitch-owner/pitches?sort_order=desc",
           {
             method: "GET",
             headers: {
-              'Accept': "application/json",
+              Accept: "application/json",
               "Content-Type": "application/json",
-              'Authorization': `Bearer ${token}`,
-              'ngrok-skip-browser-warning': 'true'
+              Authorization: `Bearer ${token}`,
+              "ngrok-skip-browser-warning": "true",
             },
           }
         );
@@ -43,21 +43,24 @@ const Content = ({ className = "" }) => {
 
         const contentType = response.headers.get("content-type");
         if (!contentType || !contentType.includes("application/json")) {
-          throw new Error("Unexpected response from the server. Please contact support.");
+          throw new Error("Unexpected response format. Please contact support.");
         }
 
         const data = await response.json();
-        if (data?.data && Array.isArray(data.data)) {
-          setPitches(data.data);
-        } else {
-          setError("No pitches found. Please check back later.");
-        }
+        console.log("Fetched Data:", data);
 
-        setLoading(false);
+        // Check if data is properly structured
+        if (data?.success && data?.data?.pitches && Array.isArray(data.data.pitches)) {
+          setPitches(data.data.pitches);
+        } else {
+          throw new Error("No pitches found. Please check back later.");
+        }
       } catch (error) {
-        setError(error.message);
+        console.error("Error fetching pitches:", error);
+        setError(error.message || "An error occurred. Please try again.");
+        toast.error(error.message || "An error occurred. Please try again.");
+      } finally {
         setLoading(false);
-        toast.error("An error occurred. Please try again.");
       }
     };
 
@@ -66,16 +69,16 @@ const Content = ({ className = "" }) => {
 
   if (loading) {
     return (
-      <div className='flex flex-col items-center justify-center h-screen'>
-        <div className='loader mb-4'></div>
-        <p className='text-center fontSize-xl'>Loading pitches...</p>
+      <div className="flex flex-col items-center justify-center h-screen">
+        <div className="loader mb-4"></div>
+        <p className="text-center text-xl">Loading pitches...</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className='text-center fontSize-xl text-red-600 mt-10 mr-[500px] mb-10'>
+      <div className="text-center text-xl text-red-600 mt-10">
         {error}
       </div>
     );
@@ -83,14 +86,14 @@ const Content = ({ className = "" }) => {
 
   return (
     <div
-      className={`flex-1 flex flex-col items-start justify-start gap-[15.3px] max-w-full mt-[20px] text-center text-base text-text font-poppins ${className}`}
+      className={`flex-1 flex flex-col items-start justify-start gap-4 max-w-full mt-5 text-center text-base font-poppins ${className}`}
     >
       {pitches.length > 0 ? (
         pitches.map((pitch) => (
           <Container
             key={pitch.id}
             image8={getImageUrl(pitch.image) || "/default-image.png"}
-            name={`Pitch Name: ${pitch.name || "Football"}`}
+            name={`Pitch Name: ${pitch.name || "Unknown"}`}
             size={`Pitch Size: ${pitch.size || "Unknown"}`}
             amount_per_hour={`Per Hour: ₦${pitch.amount_per_hour || "0"}`}
           />
