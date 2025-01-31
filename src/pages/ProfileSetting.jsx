@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FrameComponent from '../components/FrameComponent';
 import FrameComponent6 from '../components/FrameComponent6';
 import { toast } from 'react-toastify';
-import { Img, Text, Button, CheckBox, Input, Heading } from "../components";
+import { Button } from "../components";
 
 const ProfileSetting = () => {
     const [loading, setLoading] = useState(false);
@@ -38,8 +38,12 @@ const ProfileSetting = () => {
 
             try {
                 const response = await fetch("https://api.playdenapp.com/api/v1/user", {
+                    method: "GET",
                     headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`,
+                        "ngrok-skip-browser-warning": "true",
                     },
                 });
 
@@ -47,18 +51,29 @@ const ProfileSetting = () => {
                     throw new Error("Failed to fetch profile data.");
                 }
 
-                const data = await response.json();
+                const result = await response.json();
+                console.log("API Response:", result); // Debugging
+
+                if (!result.success || !result.data) {
+                    throw new Error(result.message || "Failed to fetch profile data.");
+                }
+
+                const userData = result.data; // Corrected data extraction
+
+                // Update state with received data, replacing `null` values with empty strings
                 setFormData({
-                    full_name: data.full_name || "",
-                    email: data.email || "",
-                    username: data.username || "",
-                    phone_number: data.phone_number || "",
-                    address: data.address || "",
-                    account_number: data.account_number || "",
-                    account_holder_name: data.account_holder_name || "",
-                    bank_name: data.bank_name || "",
-                    business_name: data.business_name || "",
+                    full_name: userData.full_name ?? "",
+                    email: userData.email ?? "",
+                    username: userData.username ?? "",
+                    phone_number: userData.phone_number ?? "",
+                    address: userData.address ?? "",
+                    account_number: userData.account_number ?? "",
+                    account_holder_name: userData.account_holder_name ?? "",
+                    bank_name: userData.bank_name ?? "",
+                    business_name: userData.business_name ?? "",
                 });
+
+                console.log("Updated FormData State:", formData);
             } catch (err) {
                 setError(err.message);
                 toast.error(err.message);
@@ -84,26 +99,29 @@ const ProfileSetting = () => {
 
         try {
             const token = localStorage.getItem("token");
+            if (!token) throw new Error("User is not authenticated.");
+
+            console.log("Sending payload:", formData);
+
             const response = await fetch("https://api.playdenapp.com/api/v1/user", {
                 method: "PUT",
                 headers: {
+                    Accept: "application/json",
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
+                    "ngrok-skip-browser-warning": "true",
                 },
                 body: JSON.stringify(formData),
             });
 
-            if(response.redirected){
-                // Handle the redirection
-                console.error("Request was redirected", response.url);
+            if (response.redirected) {
                 toast.error("Redirection issue. Profile update might have failed.");
                 return;
-              }
+            }
 
             if (!response.ok) {
                 throw new Error("Failed to update profile.");
             }
-            console.log(response);
 
             toast.success("Profile updated successfully!");
         } catch (err) {
@@ -125,6 +143,8 @@ const ProfileSetting = () => {
 
         try {
             const token = localStorage.getItem("token");
+            if (!token) throw new Error("User is not authenticated.");
+
             const response = await fetch("https://api.playdenapp.com/api/v1/user", {
                 method: "PUT",
                 headers: {
@@ -165,7 +185,7 @@ const ProfileSetting = () => {
                                 <input
                                     type='text'
                                     name={key}
-                                    value={formData[key]}
+                                    value={formData[key] || ""}
                                     onChange={handleInputChange}
                                     className='w-full h-6 rounded-full border border-gray-400 p-2'
                                 />
@@ -186,36 +206,18 @@ const ProfileSetting = () => {
                     <hr className="my-6" />
 
                     <form onSubmit={handlePasswordChange} className='flex flex-col gap-4'>
-                        <div className='flex flex-col gap-2 w-full'>
-                            <label>Old Password</label>
-                            <input
-                                type='password'
-                                name='oldPassword'
-                                value={passwordData.oldPassword}
-                                onChange={handlePasswordInputChange}
-                                className='w-full h-6 rounded-full border border-gray-400 p-2'
-                            />
-                        </div>
-                        <div className='flex flex-col gap-2 w-full'>
-                            <label>New Password</label>
-                            <input
-                                type='password'
-                                name='newPassword'
-                                value={passwordData.newPassword}
-                                onChange={handlePasswordInputChange}
-                                className='w-full h-6 rounded-full border border-gray-400 p-2'
-                            />
-                        </div>
-                        <div className='flex flex-col gap-2 w-full'>
-                            <label>Confirm Password</label>
-                            <input
-                                type='password'
-                                name='confirmPassword'
-                                value={passwordData.confirmPassword}
-                                onChange={handlePasswordInputChange}
-                                className='w-full h-6 rounded-full border border-gray-400 p-2'
-                            />
-                        </div>
+                        {["oldPassword", "newPassword", "confirmPassword"].map((field) => (
+                            <div key={field} className='flex flex-col gap-2 w-full'>
+                                <label>{field.replace(/([A-Z])/g, " $1").toUpperCase()}</label>
+                                <input
+                                    type='password'
+                                    name={field}
+                                    value={passwordData[field] || ""}
+                                    onChange={handlePasswordInputChange}
+                                    className='w-full h-6 rounded-full border border-gray-400 p-2'
+                                />
+                            </div>
+                        ))}
                         <Button
                             type='submit'
                             color="gray_800"
