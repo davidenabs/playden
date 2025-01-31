@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 const WidgetContainer = ({ className = "" }) => {
   return (
     <div
-      className={`self-stretch flex flex-wrap items-start justify-start gap-4 max-w-full text-left text-mid text-white-a700_bf font-poppins ${className}`}
+      className={`self-stretch flex flex-wrap items-start justify-start gap-6 max-w-full text-left text-mid text-white-a700_bf font-poppins ${className}`}
     >
       {/* Card 1 */}
-      <div className="w-[360px] sm:w-[400px] rounded-xl bg-f2 overflow-hidden flex flex-col text-white items-start justify-start pt-[33px] px-[29px] pb-[35px] box-border gap-[33px] max-w-full z-[1] text-13xl font-work-sans">
+      <div className="w-[390px] sm:w-[400px] rounded-xl bg-f2 overflow-hidden flex flex-col text-white items-start justify-start pt-[33px] px-[29px] pb-[35px] box-border gap-[33px] max-w-full z-[1] text-13xl font-work-sans">
         <div className="flex flex-col items-start justify-start gap-[4.5px] w-full">
           <div className="w-[52px] h-[52px] rounded-13xl bg-gray-500 overflow-hidden flex items-center justify-center p-2.5 box-border">
             <img
@@ -34,7 +34,7 @@ const WidgetContainer = ({ className = "" }) => {
       </div>
 
       {/* Card 2 */}
-      <div className="w-[360px] sm:w-[400px] rounded-xl bg-dimgray-100 overflow-hidden flex flex-col text-white items-start justify-start pt-[33px] px-[29px] pb-[35px] box-border gap-[33px] max-w-full z-[1] text-13xl font-work-sans">
+      <div className="w-[390px] sm:w-[400px] rounded-xl bg-dimgray-100 overflow-hidden flex flex-col text-white items-start justify-start pt-[33px] px-[29px] pb-[35px] box-border gap-[33px] max-w-full z-[1] text-13xl font-work-sans">
         <div className="flex flex-col items-start justify-start gap-[4.5px] w-full">
           <div className="w-[52px] h-[52px] rounded-13xl bg-gray-500 overflow-hidden flex items-center justify-center p-2.5 box-border">
             <img
@@ -62,7 +62,7 @@ const WidgetContainer = ({ className = "" }) => {
       </div>
 
       {/* Card 3 */}
-      <div className="w-[360px] sm:w-[400px] rounded-xl bg-deep_purple-400 overflow-hidden flex flex-col text-white items-start justify-start pt-[33px] px-[29px] pb-[35px] box-border gap-[33px] max-w-full z-[1] text-13xl font-work-sans">
+      <div className="w-[390px] sm:w-[400px] rounded-xl bg-deep_purple-400 overflow-hidden flex flex-col text-white items-start justify-start pt-[33px] px-[29px] pb-[35px] box-border gap-[33px] max-w-full z-[1] text-13xl font-work-sans">
         <div className="flex flex-col items-start justify-start gap-[4.5px] w-full">
           <div className="w-[52px] h-[52px] rounded-13xl bg-gray-500 overflow-hidden flex items-center justify-center p-2.5 box-border">
             <img
