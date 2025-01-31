@@ -13,7 +13,7 @@ const WidgetContainer = ({ className = "" }) => {
               className="h-[32.5px] w-[29.3px] relative"
               loading="lazy"
               alt=""
-              src="/elements.svg"
+              src="/general--home-7.svg"
             />
           </div>
           <div className="flex flex-col items-start justify-start">
@@ -41,7 +41,7 @@ const WidgetContainer = ({ className = "" }) => {
               className="h-[32.5px] w-[29.3px] relative"
               loading="lazy"
               alt=""
-              src="/elements.svg"
+              src="/general--home-7-1.svg"
             />
           </div>
           <div className="flex flex-col items-start justify-start">
