@@ -175,8 +175,9 @@ const ProfileSetting = () => {
             <FrameComponent aare="/aare2@2x.png" />
             <FrameComponent6 />
             <section className="self-stretch flex flex-row items-start justify-start bg-gray-300 py-3 pl-[65px] pr-16 box-border max-w-full mq975:pl-8 mq975:pr-8 mq975:box-border">
-                <div className='flex flex-col bg-whitebg rounded-md border-none p-6 w-full h-full'>
-                    <h3>Profile Setting</h3>
+                <div className='flex flex-row bg-white rounded-md border-none p-6 w-full h-full gap-8'>
+                <div className='flex flex-col w-1/2'>
+                <h3>Profile Setting</h3>
                     {error && <p className="text-red-500">{error}</p>}
                     <form onSubmit={handleProfileUpdate} className='flex flex-col gap-4 mb-4'>
                         {Object.keys(formData).map((key) => (
@@ -187,7 +188,7 @@ const ProfileSetting = () => {
                                     name={key}
                                     value={formData[key] || ""}
                                     onChange={handleInputChange}
-                                    className='w-full h-6 rounded-full border border-gray-400 p-2'
+                                    className='w-full h-10 rounded-lg border border-gray-400 p-2'
                                 />
                             </div>
                         ))}
@@ -202,9 +203,12 @@ const ProfileSetting = () => {
                             {loading ? "Updating..." : "Update"}
                         </Button>
                     </form>
+                </div>
 
                     <hr className="my-6" />
 
+                    <div className='flex flex-col w-1/2'>
+                    <h3>Change Password</h3>
                     <form onSubmit={handlePasswordChange} className='flex flex-col gap-4'>
                         {["oldPassword", "newPassword", "confirmPassword"].map((field) => (
                             <div key={field} className='flex flex-col gap-2 w-full'>
@@ -214,7 +218,7 @@ const ProfileSetting = () => {
                                     name={field}
                                     value={passwordData[field] || ""}
                                     onChange={handlePasswordInputChange}
-                                    className='w-full h-6 rounded-full border border-gray-400 p-2'
+                                    className='w-full h-10 rounded-lg border border-gray-400 p-2'
                                 />
                             </div>
                         ))}
@@ -229,6 +233,7 @@ const ProfileSetting = () => {
                             {passwordLoading ? "Changing Password..." : "Change Password"}
                         </Button>
                     </form>
+                    </div>
                 </div>
             </section>
         </div>
