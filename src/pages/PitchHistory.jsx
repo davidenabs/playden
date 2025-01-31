@@ -10,7 +10,7 @@ const PitchHistory = () => {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      const token = localStorage.getItem("authToken"); // Retrieve the token
+      const token = localStorage.getItem("token"); // Retrieve the token
 
       if (!token) {
         setError("No token found. Please log in.");
@@ -19,18 +19,18 @@ const PitchHistory = () => {
       }
 
       console.log("Pitch ID:", pitchId);
-      console.log("Fetching from URL:", `${process.env.REACT_APP_API_URL}api/v1/pitch-owner/pitches/${pitchId}`);
+      // console.log("Fetching from URL:", `${process.env.REACT_APP_API_URL}api/v1/pitch-owner/pitches/${pitchId}`);
 
 
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}api/v1/pitch-owner/pitches/${pitchId}`,
+          `${process.env.REACT_APP_API_URL}/api/v1/pitch-owner/pitches/${pitchId}`,
           {
             method: "GET",
             headers: {
               'Accept': "application/json",
               "Content-Type": "application/json",
-              'Authorization': `Bearer ${token}`,
+              'Authorization': `Token ${token}`,
               "ngrok-skip-browser-warning": "true",
             },
           }
@@ -42,7 +42,7 @@ const PitchHistory = () => {
 
         const data = await response.json();
         if (data && data.data) {
-          setTransactions(data.data.transactions || []); // Assuming `transactions` are in `data.data`
+          setTransactions(data.data.transactions || []); 
         } else {
           toast.info("No transactions found.");
         }

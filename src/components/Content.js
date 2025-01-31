@@ -47,7 +47,7 @@ const Content = ({ className = "" }) => {
         }
 
         const data = await response.json();
-        console.log("Fetched Data:", data);
+        // console.log("Fetched Data:", data);
 
         // Check if data is properly structured
         if (data?.success && data?.data?.pitches && Array.isArray(data.data.pitches)) {
@@ -96,6 +96,7 @@ const Content = ({ className = "" }) => {
             name={`Pitch Name: ${pitch.name || "Unknown"}`}
             size={`Pitch Size: ${pitch.size || "Unknown"}`}
             amount_per_hour={`Per Hour: ₦${pitch.amount_per_hour || "0"}`}
+            pitchId={pitch.id}
           />
         ))
       ) : (

@@ -93,9 +93,17 @@ const ProfileSetting = () => {
                 body: JSON.stringify(formData),
             });
 
+            if(response.redirected){
+                // Handle the redirection
+                console.error("Request was redirected", response.url);
+                toast.error("Redirection issue. Profile update might have failed.");
+                return;
+              }
+
             if (!response.ok) {
                 throw new Error("Failed to update profile.");
             }
+            console.log(response);
 
             toast.success("Profile updated successfully!");
         } catch (err) {

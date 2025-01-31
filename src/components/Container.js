@@ -8,7 +8,7 @@ const Container = ({ className = "", image8, name, size, amount_per_hour, pitchI
   // Navigate to the PitchHistory page with the pitchId in the URL
   const onViewClick = useCallback(() => {
     console.log(pitchId)
-    // navigate(`/pitch-history/${pitchId}`); // Navigate to the path with pitchId
+    navigate(`/pitch-history/${pitchId}`); // Navigate to the path with pitchId
   }, [navigate, pitchId]);
 
   return (
