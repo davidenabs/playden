@@ -68,7 +68,7 @@ const FrameComponent5 = ({ className = "" }) => {
           </div>
 
           {/* Upcoming Bookings Section with increased width */}
-          <div className="flex-[3] min-w-[660px] w-full">
+          <div className="flex-[2] min-w-[610px] w-full">
             <div className="w-full bg-gray-100 rounded-lg p-4 md:p-3 shadow-lg">
               <div className="flex items-center justify-between mb-4 w-full">
                 <h3 className="text-lg font-semibold">Upcoming Bookings</h3>

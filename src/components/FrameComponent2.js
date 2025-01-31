@@ -32,7 +32,7 @@ const FrameComponent2 = ({ className = "" }) => {
           <Link to='/profile-setting' className="[text-decoration:none] relative text-xs font-medium font-poppins text-gray-200 text-left inline-block min-w-[68px] z-[1]">Profile Setting</Link>
           </div>
         </div>
-        <div className="w-[250px] rounded-md bg-f2 border-dimgray-200 border-[1px] border-solid box-border flex flex-row items-start justify-start pt-[9px] px-[18px] pb-2 gap-2 text-smi">
+        {/* <div className="w-[250px] rounded-md bg-f2 border-dimgray-200 border-[1px] border-solid box-border flex flex-row items-start justify-start pt-[9px] px-[18px] pb-2 gap-2 text-smi">
           <div className="h-[42px] w-[250px] relative rounded-md bg-f2 border-dimgray-200 border-[1px] border-solid box-border hidden" />
           <img
             className="h-[19px] w-[19px] relative object-cover z-[1]"
@@ -44,7 +44,7 @@ const FrameComponent2 = ({ className = "" }) => {
     className="h-[10px] w-full rounded-md bg-f2 border-none focus:outline-none outline-none placeholder-silver text-silver"
     placeholder="Search..."
   />
-        </div>
+        </div> */}
       </div>
     </section>
   );
