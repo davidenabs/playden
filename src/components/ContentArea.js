@@ -16,30 +16,30 @@ const ContentArea = ({ className = "" }) => {
 
     // Fetch booking details from API if not available in location state
     useEffect(() => {
-      const token = localStorage.getItem("token"); // Retrieve token outside fetchBookingData
-  
+      const token = localStorage.getItem("token");
+    
       if (!booking && token && bookingId) {
         const fetchBookingData = async () => {
           try {
             const response = await fetch(
-              `${process.env.REACT_APP_API_URL}api/v1/pitch-owner/bookings/${bookingId}`,
+              `${process.env.REACT_APP_API_URL}/api/v1/pitch-owner/bookings/${bookingId}`,
               {
                 method: "GET",
                 headers: {
-                  'Accept': "application/json",
+                  Accept: "application/json",
                   "Content-Type": "application/json",
-                  'Authorization': `Bearer ${token}`,
-                  "ngrok-skip-browser-warning": "true", // Skip ngrok warning
+                  Authorization: `Bearer ${token}`,
+                  "ngrok-skip-browser-warning": "true",
                 },
               }
             );
-  
+    
             if (!response.ok) {
               throw new Error(`Error: ${response.status}`);
             }
-  
+    
             const data = await response.json();
-  
+    
             if (data.success) {
               setBooking(data.data);
             } else {
@@ -50,12 +50,13 @@ const ContentArea = ({ className = "" }) => {
             console.error(err);
           }
         };
-  
+    
         fetchBookingData();
       } else if (!token) {
         setError("No token found. Please log in.");
       }
     }, [booking, bookingId]);
+    
   
     const onConfirmButtonClick = useCallback(() => {
       navigate("/dashboard");
@@ -66,7 +67,7 @@ const ContentArea = ({ className = "" }) => {
     <div
       className={`self-stretch flex flex-row items-start justify-center py-0 pl-[21px] pr-5 box-border max-w-full text-left text-sm text-lightslategray font-oxygen ${className}`}
     >
-      <div className="w-[1115px] shadow-[0px_4px_20px_rgba(184,_168,_168,_0.1)] rounded bg-light-mode-white-5-ffffff border-whitesmoke-200 border-[1px] border-solid box-border flex flex-col items-start justify-start pt-6 px-[29px] pb-[121px] gap-12 max-w-full mq675:gap-6 mq675:pt-5 mq675:pb-[79px] mq675:box-border">
+      <div className="w-[1115px] shadow-[0px_4px_20px_rgba(184,_168,_168,_0.1)] rounded bg-light-mode-white-5-ffffff border-whitesmoke-200 border-[1px] border-solid box-border flex flex-col items-start justify-start pt-6 px-[29px] pb-[50px] gap-12 max-w-full mq675:gap-6 mq675:pt-5 mq675:pb-[79px] mq675:box-border">
         <div className="w-[1115px] h-[596px] relative shadow-[0px_4px_20px_rgba(184,_168,_168,_0.1)] rounded bg-light-mode-white-5-ffffff border-whitesmoke-200 border-[1px] border-solid box-border hidden max-w-full" />
         <div className="flex flex-row items-start justify-start py-0 px-0.5">
           <div className="flex flex-row items-start justify-start gap-[6.5px]">
@@ -86,7 +87,7 @@ const ContentArea = ({ className = "" }) => {
         <div className="w-[1040px] flex flex-col items-start justify-start gap-[43px] max-w-full text-lg text-black mq675:gap-[21px]">
           <div className="flex flex-col items-start justify-start gap-[7px]">
             <h3 className="m-0 relative text-inherit leading-[22px] font-bold font-[inherit] z-[1]">
-            {booking?.user.username || "Name not available"}
+            {booking?.booking_code || "Name not available"}
             </h3>
             <div className="relative text-xs font-medium font-poppins text-f2 inline-block min-w-[57px] z-[1]">
             {booking?.id || "Booking ID not available"}
@@ -95,12 +96,12 @@ const ContentArea = ({ className = "" }) => {
           <div className="self-stretch flex flex-row items-start justify-start py-0 pl-[18px] pr-0 box-border max-w-full text-xs text-darkslategray-400">
             <div className="flex-1 flex flex-row items-start justify-start flex-wrap content-start gap-[37px] max-w-full mq675:gap-[18px]">
               <div className="h-[227px] w-[202px] flex flex-col items-start justify-start pt-px px-0 pb-0 box-border">
-                <img
-                  className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover z-[1]"
-                  loading="lazy"
-                  alt=""
-                  src="/23edeef2d1cb4d1392344b37c50f2ff1-1@2x.png"
-                />
+              <img
+  className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover z-[1]"
+  loading="lazy"
+  alt="QR Code"
+  src={`data:image/png;base64,${booking?.qr_code_path || ""}`}
+/>
               </div>
               <div className="flex-1 flex flex-col items-start justify-start gap-[27.1px] min-w-[509px] max-w-full mq750:min-w-full">
                 <div className="self-stretch flex flex-col items-start justify-start gap-[16.5px]">
@@ -119,7 +120,7 @@ const ContentArea = ({ className = "" }) => {
                           Date joined:
                         </div>
                         <div className="relative leading-[120%] inline-block min-w-[88px] z-[1]">
-                          Mobile Number:
+                          Status
                         </div>
                         <div className="relative leading-[120%] inline-block min-w-[104px] z-[1]">
                           State of Residence:
@@ -130,10 +131,10 @@ const ContentArea = ({ className = "" }) => {
                       </div>
                       <div className="flex-1 flex flex-col items-start justify-start gap-[15px]">
                         <div className="relative leading-[120%] inline-block min-w-[72px] z-[1]">
-                        {booking?.date || "Date not available"}
+                        {booking?.date ? new Date(booking.date).toISOString().split('T')[0] : "Date not available"}
                         </div>
                         <div className="relative leading-[120%] inline-block min-w-[100px] whitespace-nowrap z-[1]">
-                        {booking?.user.phone_number || "Number not available"}
+                        {booking?.status || "Number not available"}
                         </div>
                         <div className="relative leading-[120%] inline-block min-w-[41px] z-[1]">
                           Kaduna
@@ -148,10 +149,10 @@ const ContentArea = ({ className = "" }) => {
                     <div className="w-[209px] flex flex-row items-start justify-start py-0 px-px box-border">
                       <div className="flex-1 flex flex-row items-start justify-between gap-5">
                         <div className="relative leading-[120%] inline-block min-w-[29px] z-[1]">
-                          Pitch:
+                          Total:
                         </div>
                         <div className="relative leading-[120%] inline-block min-w-[117px] z-[1]">
-                        {booking?.pitch.name || "Pitch not available"}
+                        {booking?.total_cost || "Pitch not available"}
                         </div>
                       </div>
                     </div>

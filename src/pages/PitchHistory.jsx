@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import FrameComponent from "../components/FrameComponent";
 import FrameComponent2 from "../components/FrameComponent2";
@@ -12,6 +12,7 @@ const PitchHistory = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const transactionsPerPage = 10;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -75,6 +76,11 @@ const PitchHistory = () => {
     if (pitchId) fetchPitchData();
   }, [pitchId]);
 
+  const handleViewDetails = (transaction) => {
+    navigate("/booking-details", { state: { booking: transaction } });
+  };
+  
+
   const indexOfLastTransaction = currentPage * transactionsPerPage;
   const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage;
   const currentTransactions = transactions.slice(indexOfFirstTransaction, indexOfLastTransaction);
@@ -120,7 +126,7 @@ const PitchHistory = () => {
                         <td className="border px-4 py-2">{transaction.date}</td>
                         <td className="border px-4 py-2 bg-gray-100">₦{transaction.total_cost || "N/A"}</td>
                         <td className="border px-4 py-2">
-                          <button className="text-blue-500 underline">View Details</button>
+                          <button className="text-blue-500 underline" onClick={() => handleViewDetails(transaction)}>View Details</button>
                         </td>
                       </tr>
                     ))}
