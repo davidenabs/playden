@@ -21,11 +21,9 @@ const BookingManagement = () => {
 
       try {
         const response = await fetch(
-          `https://api.playdenapp.com/api/v1/pitch-owner/bookings/`,
+          `https://api.playdenapp.com/api/v1/pitch-owner/bookings`,
           {
             method: "GET",
-            mode: "cors", // Ensure CORS request
-            credentials: "include", // Send cookies if needed
             headers: {
               "Accept": "application/json",
               "Content-Type": "application/json",
@@ -45,7 +43,7 @@ const BookingManagement = () => {
         }
 
         const data = await response.json();
-        console.log("Fetched Data:", data);
+        // console.log("Fetched Data:", data);
 
         if (data.success) {
           setBookings(data.bookings || []);

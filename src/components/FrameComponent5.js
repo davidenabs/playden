@@ -5,15 +5,17 @@ import { Calendar, CheckCircle, XCircle, Clock3 } from 'lucide-react';
 const FrameComponent5 = ({ className = "" }) => {
   const [selectedDateBookings, setSelectedDateBookings] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // Function to handle date selection
   const handleDateSelect = async (date) => {
     try {
       setIsLoading(true);
+      setError(null);
       const formattedDate = date.toISOString().split('T')[0];
       console.log(`Fetching bookings for date: ${formattedDate}`);
 
-      const response = await fetch(`https://api.playdenapp.com/api/v1/pitch-admin/bookings?date=${formattedDate}`);
+      const response = await fetch(`https://api.playdenapp.com/api/v1/pitch-owner/pitches/bookings?date=${formattedDate}`);
       console.log('Raw API Response:', response);
 
       if (!response.ok) {
@@ -25,6 +27,7 @@ const FrameComponent5 = ({ className = "" }) => {
       setSelectedDateBookings(data);
     } catch (error) {
       console.error('Error fetching bookings:', error);
+      setError("Failed to fetch bookings. Please try again.");
       setSelectedDateBookings([]);
     } finally {
       setIsLoading(false);
@@ -44,7 +47,7 @@ const FrameComponent5 = ({ className = "" }) => {
   };
 
   return (
-    <div className={`min-h-screen md:w-full p-4 md:p-2 md:mr-6 ${className}`}>
+    <div className={`min-h-[400px] md:w-full p-4 md:p-2 md:mr-6 ${className}`}>
       <div className="max-w-7xl mx-auto">
         <header className="mb-6 md:mb-8">
           <div className="flex items-center gap-2 mt-2">
@@ -67,7 +70,7 @@ const FrameComponent5 = ({ className = "" }) => {
             <CalendarView onDateSelect={handleDateSelect} />
           </div>
 
-          {/* Upcoming Bookings Section with increased width */}
+          {/* Upcoming Bookings Section */}
           <div className="flex-[2] min-w-[610px] w-full">
             <div className="w-full bg-gray-100 rounded-lg p-4 md:p-3 shadow-lg">
               <div className="flex items-center justify-between mb-4 w-full">
@@ -78,6 +81,8 @@ const FrameComponent5 = ({ className = "" }) => {
                 <div className="flex justify-center items-center py-8">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>
                 </div>
+              ) : error ? (
+                <p className="text-red-500 text-center">{error}</p>
               ) : selectedDateBookings.length === 0 ? (
                 <p className="text-gray-500 text-center">Select a date to view bookings.</p>
               ) : (

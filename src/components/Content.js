@@ -47,7 +47,7 @@ const Content = ({ className = "" }) => {
         }
 
         const data = await response.json();
-        // console.log("Fetched Data:", data);
+        console.log("Fetched Data:", data);
 
         // Check if data is properly structured
         if (data?.success && data?.data?.pitches && Array.isArray(data.data.pitches)) {

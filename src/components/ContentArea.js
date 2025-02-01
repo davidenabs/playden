@@ -16,7 +16,7 @@ const ContentArea = ({ className = "" }) => {
 
     // Fetch booking details from API if not available in location state
     useEffect(() => {
-      const token = localStorage.getItem("authToken"); // Retrieve token outside fetchBookingData
+      const token = localStorage.getItem("token"); // Retrieve token outside fetchBookingData
   
       if (!booking && token && bookingId) {
         const fetchBookingData = async () => {
