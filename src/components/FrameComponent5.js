@@ -74,7 +74,7 @@ const FrameComponent5 = ({ className = "" }) => {
           <div className="flex-[2] min-w-[610px] w-full">
             <div className="w-full bg-gray-100 rounded-lg p-4 md:p-3 shadow-lg">
               <div className="flex items-center justify-between mb-4 w-full">
-                <h3 className="text-lg font-semibold">Upcoming Bookings</h3>
+                <h3 className="text-lg font-black">Upcoming Bookings</h3>
                 <Calendar className="w-5 h-5 text-purple-500" />
               </div>
               {isLoading ? (
@@ -84,7 +84,7 @@ const FrameComponent5 = ({ className = "" }) => {
               ) : error ? (
                 <p className="text-red-500 text-center">{error}</p>
               ) : selectedDateBookings.length === 0 ? (
-                <p className="text-gray-500 text-center">Select a date to view bookings.</p>
+                <p className="font-black text-center">Select a date to view bookings.</p>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {selectedDateBookings.map((booking, i) => (
