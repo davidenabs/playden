@@ -13,10 +13,10 @@ const Dashboard = () => {
       /> */}
       <FrameComponent aare="/aare1@2x.png" />
       <FrameComponent4 />
-      <section className="self-stretch flex pt-10 pb-0 mb-0 flex-row bg-gray-100 items-start justify-start py-0 px-16 box-border md:h-0 max-w-full h-[0%] mq800:pl-8 mq1350:h-0 mq800:pr-8 mq800:box-border">
+      <section className="self-stretch flex pt-10 pb-0 mb-0 flex-row bg-gray-100 items-start justify-start py-0 px-16 box-border max-w-full mq800:pl-8 mq800:pr-8 mq800:box-border">
         <div className="flex-1 flex flex-col items-start justify-start gap-5 max-w-full">
           <WidgetContainer />
-           <FrameComponent5 /> 
+          <FrameComponent5 /> 
         </div>
       </section>
     </div>

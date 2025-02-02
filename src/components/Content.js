@@ -6,8 +6,13 @@ import { getImageUrl } from "../utills/imageUtils";
 
 const Content = ({ className = "" }) => {
   const [pitches, setPitches] = useState([]);
+  const [filteredPitches, setFilteredPitches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [perPage, setPerPage] = useState(10);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchPitches = async () => {
@@ -21,7 +26,7 @@ const Content = ({ className = "" }) => {
 
       try {
         const response = await fetch(
-          "https://api.playdenapp.com/api/v1/pitch-owner/pitches?sort_order=desc",
+          `https://api.playdenapp.com/api/v1/pitch-owner/pitches?sort_order=desc&page=${currentPage}&per_page=${perPage}`,
           {
             method: "GET",
             headers: {
@@ -49,9 +54,10 @@ const Content = ({ className = "" }) => {
         const data = await response.json();
         console.log("Fetched Data:", data);
 
-        // Check if data is properly structured
         if (data?.success && data?.data?.pitches && Array.isArray(data.data.pitches)) {
           setPitches(data.data.pitches);
+          setFilteredPitches(data.data.pitches);
+          setTotalPages(data.data.last_page);
         } else {
           throw new Error("No pitches found. Please check back later.");
         }
@@ -65,7 +71,25 @@ const Content = ({ className = "" }) => {
     };
 
     fetchPitches();
-  }, []);
+  }, [currentPage, perPage]);
+
+  useEffect(() => {
+    const filtered = pitches.filter((pitch) =>
+      pitch.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredPitches(filtered);
+  }, [searchTerm, pitches]);
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
+
+  const handlePerPageChange = (event) => {
+    setPerPage(Number(event.target.value));
+    setCurrentPage(1);
+  };
 
   if (loading) {
     return (
@@ -77,19 +101,61 @@ const Content = ({ className = "" }) => {
   }
 
   if (error) {
-    return (
-      <div className="text-center text-xl text-red-600 mt-10">
-        {error}
-      </div>
-    );
+    return <div className="text-center text-xl text-red-600 mt-10">{error}</div>;
   }
 
   return (
-    <div
-      className={`flex-1 flex flex-col items-start justify-start gap-4 max-w-full mt-5 text-center text-base font-poppins ${className}`}
-    >
-      {pitches.length > 0 ? (
-        pitches.map((pitch) => (
+    <div className={`flex-1 flex flex-col items-start justify-start gap-4 max-w-full mt-5 text-center text-base font-poppins ${className}`}>
+      {/* Search Input */}
+      <div className="w-42 mb-4">
+        <input
+          type="text"
+          placeholder="Search pitches by name..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-42 p-2 border rounded"
+        />
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="flex justify-between items-center w-full mb-4">
+        <div>
+          <label htmlFor="perPage" className="mr-2">Items per page:</label>
+          <select
+            id="perPage"
+            value={perPage}
+            onChange={handlePerPageChange}
+            className="p-2 border rounded"
+          >
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={50}>50</option>
+          </select>
+        </div>
+        <div className="flex gap-2">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="p-2 bg-blue-500 text-white rounded disabled:bg-gray-300"
+          >
+            Previous
+          </button>
+          <span className="p-2">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="p-2 bg-blue-500 text-white rounded disabled:bg-gray-300"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+
+      {/* Pitches List */}
+      {filteredPitches.length > 0 ? (
+        filteredPitches.map((pitch) => (
           <Container
             key={pitch.id}
             image8={getImageUrl(pitch.image) || "/default-image.png"}
@@ -100,7 +166,7 @@ const Content = ({ className = "" }) => {
           />
         ))
       ) : (
-        <div>No pitches available for this particular user yet!</div>
+        <div>No pitches available matching your search.</div>
       )}
     </div>
   );

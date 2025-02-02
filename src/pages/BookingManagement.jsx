@@ -121,7 +121,7 @@ const BookingManagement = () => {
                           {booking.status}
                         </span>
                       </td>
-                      <td className="p-3 border">{booking.date ?? "N/A"}</td>
+                      <td className="p-3 border">{booking?.date ? new Date(booking.date).toISOString().split('T')[0] : "Date not available"}</td>
                       <td className="p-3 border">{booking.end_time ?? "N/A"}</td>
                       <td className="p-3 border">
                         <Link
@@ -146,7 +146,7 @@ const BookingManagement = () => {
                         <li key={index} className="mx-2">
                           <button
                             onClick={() => paginate(index + 1)}
-                            className={`px-4 py-2 rounded-lg cursor-pointer ${
+                            className={`px-4 py-2 rounded-lg bg-f2 ${
                               currentPage === index + 1
                                 ? "bg-f2 text-gray-500"
                                 : "bg-gray-200"
