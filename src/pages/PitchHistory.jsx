@@ -25,7 +25,7 @@ const PitchHistory = () => {
     const fetchPitchData = async () => {
       try {
         const pitchResponse = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/v1/pitch-owner/pitches/${pitchId}`,
+          `https://api.playdenapp.com/api/v1/pitch-owner/pitches/${pitchId}`,
           {
             method: "GET",
             headers: {
@@ -36,6 +36,8 @@ const PitchHistory = () => {
             },
           }
         );
+        // console.log(await pitchResponse.json());
+
         if (!pitchResponse.ok) throw new Error("Failed to fetch pitch details");
         const pitchData = await pitchResponse.json();
         setPitchDetails(pitchData?.data || null);
@@ -43,25 +45,25 @@ const PitchHistory = () => {
         let allBookings = [];
         let page = 1;
         let lastPage = 1;
-        do {
-          const bookingsResponse = await fetch(
-            `https://api.playdenapp.com/api/v1/pitch-owner/pitches/bookings/${pitchId}?page=${page}`,
-            {
-              method: "GET",
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-                "ngrok-skip-browser-warning": "true",
-              },
-            }
-          );
-          if (!bookingsResponse.ok) throw new Error("Failed to fetch booking history");
-          const bookingsData = await bookingsResponse.json();
-          allBookings = [...allBookings, ...(bookingsData?.data?.pitch_bookings || [])];
-          lastPage = bookingsData?.data?.last_page || 1;
-          page++;
-        } while (page <= lastPage);
+        // do {
+        //   const bookingsResponse = await fetch(
+        //     `https://api.playdenapp.com/api/v1/pitch-owner/pitches/bookings/${pitchId}?page=${page}`,
+        //     {
+        //       method: "GET",
+        //       headers: {
+        //         Accept: "application/json",
+        //         "Content-Type": "application/json",
+        //         Authorization: `Bearer ${token}`,
+        //         "ngrok-skip-browser-warning": "true",
+        //       },
+        //     }
+        //   );
+        //   if (!bookingsResponse.ok) throw new Error("Failed to fetch booking history");
+        //   const bookingsData = await bookingsResponse.json();
+        //   allBookings = [...allBookings, ...(bookingsData?.data?.pitch_bookings || [])];
+        //   lastPage = bookingsData?.data?.last_page || 1;
+        //   page++;
+        // } while (page <= lastPage);
 
         setTransactions(allBookings);
       } catch (error) {
@@ -79,7 +81,7 @@ const PitchHistory = () => {
   const handleViewDetails = (transaction) => {
     navigate("/booking-details", { state: { booking: transaction } });
   };
-  
+
 
   const indexOfLastTransaction = currentPage * transactionsPerPage;
   const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage;
@@ -89,9 +91,85 @@ const PitchHistory = () => {
   return (
     <div className="w-full bg-light-mode-gray-10-f5f5f5 flex flex-col items-start justify-start">
       <FrameComponent aare="/aare@2x.png" />
-      <main className="self-stretch flex flex-col items-end justify-start gap-6 max-w-full">
+      <main className="selfstretch flexflex-col itemsend justifystart gap-6 max-w-full">
         <FrameComponent2 />
-        <section className="flex justify-center bg-white py-5 px-5 mr-[50px] max-w-full text-center text-base">
+        <div className="px-12 w-full self-stretch">
+          <div className="bg-white-a700_bf shadow-lg rounded p-4 w-full">
+            <header className="flex space-x-6 mb-6">
+              <img
+                src={pitchDetails?.image}
+                alt="Pitch"
+                className="h-40 w-40 rounded-xl object-cover"
+              />
+              <div>
+                <h3 className="text-xl font-bold">{pitchDetails?.name}</h3>
+                <p className="text-gray-700">Size: {pitchDetails?.size}</p>
+                <p className="text-gray-700">Amount per hour: ₦{pitchDetails?.amount_per_hour}</p>
+                <p className="text-gray-700">Discount: {pitchDetails?.discount}%</p>
+                <p className="text-gray-700">Contact: {pitchDetails?.contact}</p>
+                <p className="text-gray-700">Opening Hours: {pitchDetails?.opening_hours}</p>
+              </div>
+            </header>
+
+            <h3 className="text-lg font-semibold my-4">Amenities & Facilities</h3>
+            <div className="flex space-x-4 text-sm text-gray-600">
+              <div>
+                <p className="font-medium">Amenities:</p>
+                <ul className="list-disc list-inside">
+                  {pitchDetails?.amenities.map((amenity, index) => (
+                    <li key={index}>{amenity}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="font-medium">Facilities:</p>
+                <ul className="list-disc list-inside">
+                  {pitchDetails?.facilities.map((facility, index) => (
+                    <li key={index}>{facility}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <h3 className="text-lg font-semibold my-4">Ratings & Reviews</h3>
+            <div>
+              {pitchDetails?.ratings.length > 0 ? (
+                pitchDetails?.ratings.map((rating) => (
+                  <div key={rating.id} className="p-3 border rounded-md mb-2">
+                    <p className="font-medium">Rating: {rating.rating} ⭐</p>
+                    <p className="text-gray-700">Review: {rating.review}</p>
+                  </div>
+                ))
+              ) : (
+                <p className="text-gray-600">No ratings yet.</p>
+              )}
+            </div>
+
+            {/* <h3 className="text-lg font-semibold my-4">Available Time Slots</h3>
+        <div className="flex flex-wrap gap-2">
+          {pitchDetails?.time_slots.map((slot, index) => (
+            <span key={index} className="px-3 py-1 bg-blue-100 text-blue-700 rounded-md">
+              {slot}
+            </span>
+          ))}
+        </div> */}
+
+            <h3 className="text-lg font-semibold my-4">Manager</h3>
+            {pitchDetails?.managers.length > 0 ? (
+              pitchDetails.managers.map((manager) => (
+                <div key={manager.id} className="p-3 border rounded-md">
+                  <p className="font-medium">{manager.full_name}</p>
+                  <p className="text-gray-700">Email: {manager.email}</p>
+                  <p className="text-gray-700">Phone: {manager.phone_number}</p>
+                  <p className="text-gray-700">Location: {manager.address}</p>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-600">No manager assigned.</p>
+            )}
+          </div>
+        </div>
+        {/* <section className="flex justify-center bg-white py-5 px-5 mr-[50px] max-w-full text-center text-base">
           <div className="w-[1145px] rounded-lg bg-white shadow-md p-6 max-w-full">
             <header className="flex space-x-4 text-left gap-1 mb-6">
               <img src={pitchDetails?.image} alt="Pitch" className="h-[155px] rounded-xl object-cover" />
@@ -154,7 +232,7 @@ const PitchHistory = () => {
               <p className="text-gray-600">No transactions available yet!</p>
             )}
           </div>
-        </section>
+        </section> */}
       </main>
     </div>
   );

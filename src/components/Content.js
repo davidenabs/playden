@@ -101,7 +101,7 @@ const Content = ({ className = "" }) => {
   }
 
   if (error) {
-    return <div className="text-center text-xl text-red-600 mt-10">{error}</div>;
+    return <center className="text-center text-xl text-red-600 mt-10">{error}</center>;
   }
 
   return (
@@ -113,9 +113,27 @@ const Content = ({ className = "" }) => {
           placeholder="Search pitches by name..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-42 p-2 border rounded"
+          className="w-full border rounded-full"
         />
       </div>
+
+
+
+      {/* Pitches List */}
+      {filteredPitches.length > 0 ? (
+        filteredPitches.map((pitch) => (
+          <Container
+            key={pitch.id}
+            image8={getImageUrl(pitch.image) || "/default-image.png"}
+            name={`Pitch Name: ${pitch.name || "Unknown"}`}
+            size={`Pitch Size: ${pitch.size || "Unknown"}`}
+            amount_per_hour={`Per Hour: ₦${pitch.amount_per_hour || "0"}`}
+            pitchId={pitch.id}
+          />
+        ))
+      ) : (
+        <div>No pitches available matching your search.</div>
+      )}
 
       {/* Pagination Controls */}
       <div className="flex justify-between items-center w-full mb-4">
@@ -125,7 +143,7 @@ const Content = ({ className = "" }) => {
             id="perPage"
             value={perPage}
             onChange={handlePerPageChange}
-            className="p-2 border rounded"
+            className="p- border rounded-full"
           >
             <option value={10}>10</option>
             <option value={20}>20</option>
@@ -152,22 +170,6 @@ const Content = ({ className = "" }) => {
           </button>
         </div>
       </div>
-
-      {/* Pitches List */}
-      {filteredPitches.length > 0 ? (
-        filteredPitches.map((pitch) => (
-          <Container
-            key={pitch.id}
-            image8={getImageUrl(pitch.image) || "/default-image.png"}
-            name={`Pitch Name: ${pitch.name || "Unknown"}`}
-            size={`Pitch Size: ${pitch.size || "Unknown"}`}
-            amount_per_hour={`Per Hour: ₦${pitch.amount_per_hour || "0"}`}
-            pitchId={pitch.id}
-          />
-        ))
-      ) : (
-        <div>No pitches available matching your search.</div>
-      )}
     </div>
   );
 };

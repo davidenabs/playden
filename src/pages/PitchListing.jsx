@@ -9,7 +9,7 @@ const PitchListing = () => {
       <FrameComponent aare="/aare1@2x.png" />
       <FrameComponent2 />
       {/* <FrameComponent6 /> */}
-      <section className="self-stretch flex flex-row items-start justify-end bg-gray-300 py-0 pl-[65px] pr-16 box-border max-w-full mq975:pl-8 mq975:pr-8 mq975:box-border">
+      <section className="self-stretch flex flex-row items-start justify-center bg-gray-300 py-0 pl-[65px] pr-16 box-border max-w-full mq975:pl-8 mq975:pr-8 mq975:box-border">
         <Content className="mb-[40px]"/>
       </section>
     </div>

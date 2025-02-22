@@ -7,9 +7,10 @@ import { toast } from "react-toastify";
 import "animate.css";
 import { Img, Text, Button, CheckBox, Input, Heading } from "../../components";
 
-const setSession = (token, user_id) => {
+const setSession = (token, user_id, user) => {
   localStorage.setItem("token", token);
   localStorage.setItem("user_id", user_id);
+  localStorage.setItem("user", user);
 };
 
 const LoginPage = () => {
@@ -46,7 +47,7 @@ const LoginPage = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setSession(data.data.user.token, data.data.user.id);
+        setSession(data.data.user.token, data.data.user.id, data.data.user);
         navigate("/dashboard");
         toast.success("Sign-In successful!");
       } else {
